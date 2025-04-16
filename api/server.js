@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const app = require("./app.js");
-const { connectToDatabase } = require("./db/db.js");
+// const { connectToDatabase } = require("./db/db.js");
 
 function listenForRequests() {
   const port = process.env.PORT || 3000;
@@ -10,6 +10,6 @@ function listenForRequests() {
   });
 }
 
-connectToDatabase().then(() => {
-  listenForRequests();
-});
+// connectToDatabase().then(() => {
+//   listenForRequests();
+// });
