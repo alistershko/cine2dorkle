@@ -1,0 +1,33 @@
+.film-box {
+    background-color: #1e1e2f;
+    color: #f0f0f0;
+    border: 2px solid #444;
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 1rem;
+    width: 250px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .film-box:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  }
+  
+  .film-box h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #ffd700; 
+  }
+  
+  .film-box p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+  }
+  
+  .film-box p:last-of-type {
+    color: #bbb;
+    font-style: italic;
+  }
+  
