@@ -2,7 +2,7 @@
 
 
 const getRandomMovie = async (req, res) => {
-    const url = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=';
+    const url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=';
     const options = {
         method: 'GET',
         headers: {
