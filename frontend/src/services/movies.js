@@ -15,6 +15,7 @@ export const getMovies = async () => {
     return data;
 };
 
+// Fetch one of the popular movies to set as starting movie
 export const getpopularMovie = async () => {
     const requestOptions = {
         method: 'GET',
@@ -29,3 +30,4 @@ export const getpopularMovie = async () => {
     const data = await response.json();
     return data;
 }
+
