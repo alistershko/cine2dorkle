@@ -5,11 +5,11 @@ import "./HomePage.css";
 export const HomePage = () => {
   return (
     <div className="home-page">
-      {/* <Header /> */}
+      <Header />
       <div className="home-content">
         <h1>Welcome to the Home Page!</h1>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
