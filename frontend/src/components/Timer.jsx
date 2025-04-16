@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 //      2. Successful go when playing (timer resets)
 
 function Timer({ onTimeUp }) {
-  const [seconds, setSeconds] = useState(30);
+  const [seconds, setSeconds] = useState(5);
 
   // This runs when component shows & whenever 'seconds' changes
   useEffect(() => {
