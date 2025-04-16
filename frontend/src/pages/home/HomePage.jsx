@@ -4,8 +4,10 @@ import "./HomePage.css";
 import PlayButton from "../../components/PlayButton";
 
 export const HomePage = () => {
+  console.log("Rendering HomePage");
+
   return (
-    <div className="home-page">
+    <div className="page-container">
       <Header />
       <div className="home-content">
         <h1>Welcome to the Home Page!</h1>
