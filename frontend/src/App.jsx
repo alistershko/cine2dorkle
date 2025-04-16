@@ -1,18 +1,24 @@
-import { useState } from "react";
-import "./App.css";
-import { Header } from "./components/header.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ".App.css";
+import { Game } from "./pages/Game/Game";
+import { HomePage } from "./pages/Home/HomePage";
 
-function App() {
-  const [count, setCount] = useState(0);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/game",
+    element: <Game />,
+  },
+]);
 
+const App = () => {
   return (
     <>
-      <div>
-        <Header />
-      </div>
-      <h1>Double Header</h1>
+      <RouterProvider router={router} />
     </>
   );
-}
-
+};
 export default App;
