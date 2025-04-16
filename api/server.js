@@ -10,6 +10,8 @@ function listenForRequests() {
   });
 }
 
+listenForRequests();
+
 // connectToDatabase().then(() => {
 //   listenForRequests();
 // });
