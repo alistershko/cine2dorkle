@@ -31,3 +31,19 @@ export const getpopularMovie = async () => {
     return data;
 }
 
+export const guessMovie = async (movie_title) => {
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ movie_title }),
+    };
+    const response = await fetch(`${BACKEND_URL}/movie/${movie_title}`, requestOptions);
+    if (response.status !== 201) {
+        throw new Error('Failed to guess movie');
+    }
+
+    return response.json();
+}
+
