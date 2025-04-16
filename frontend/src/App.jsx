@@ -1,19 +1,27 @@
-import { useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import "./App.css";
-import { Header } from "./components/header.jsx";
-import Timer from "./components/Timer";
 
-function App() {
-  const [count, setCount] = useState(0);
+import { Game } from "./pages/game/Game";
+import { HomePage } from "./pages/home/HomePage";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/game",
+    element: <Game />,
+  },
+]);
+
+const App = () => {
   return (
     <>
-      <div>
-        <Header />
-      </div>
-      <h1>Double Header</h1>
+      <RouterProvider router={router} />
     </>
   );
-}
+};
 
 export default App;
