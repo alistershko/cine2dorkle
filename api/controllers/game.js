@@ -12,21 +12,22 @@ const getRandomMovie = async (req, res) => {
     };
 
     try {
-        const popularMovies = [];
-        for (let i = 1; i < 5; i++) {
+        const movies = [];
+        for (let i = 1; i <= 10; i++) {
             const response = await fetch(`${url}${i}`, options);
             const data = await response.json();
     
-            const popularMoviesPage = data.results;
-            if (!popularMoviesPage || popularMoviesPage.length === 0) {
+            const moviesPartial = data.results;
+            if (!moviesPartial || moviesPartial.length === 0) {
                 res.status(404).json({ error: 'No movies found' });
             }
-            popularMovies.push(...popularMoviesPage);
+            const englishMovies = moviesPartial.filter((movie) => movie.original_language === "en");
+            movies.push(...englishMovies);
         }
         
-        console.log(popularMovies);
-        const randomIndex = Math.floor(Math.random() * popularMovies.length);
-        const randomMovie = popularMovies[randomIndex];
+        console.log(movies.length);
+        const randomIndex = Math.floor(Math.random() * movies.length);
+        const randomMovie = movies[randomIndex];
         const { title, release_date, id} = randomMovie;
 
         res.json({ title, release_date, id});
