@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 // services to import
-import { getMovie, getInitialMovie, guessMovie, getGuessedMovie } from "../../services/movies";
+import { getInitialMovie } from "../../services/movies";
 
 // components to import
 
