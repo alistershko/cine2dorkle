@@ -22,8 +22,9 @@ const getRandomMovie = async (req, res) => {
 
         const randomIndex = Math.floor(Math.random() * popularMovies.length);
         const randomMovie = popularMovies[randomIndex];
+        const { title, release_date, id} = randomMovie;
 
-        res.json(randomMovie);
+        res.json({ title, release_date, id});
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Failed to fetch movie data' });
