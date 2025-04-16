@@ -1,0 +1,19 @@
+.home-page {
+    display: grid;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    padding: 50px;
+    padding-top: 180px;
+    position: fixed;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
