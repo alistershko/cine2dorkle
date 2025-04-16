@@ -37,31 +37,3 @@ function Timer({ onTimeUp }) {
 }
 
 export default Timer;
-
-
-
-// App code to add ResultsModal when timer ends
-
-// function App() {
-//   const [isModalVisible, setModalVisible] = useState(false);
-
-//   const handleTimeUp = () => {
-//     setModalVisible(true); // Show the scoreboard modal
-//   };
-
-//   return (
-//     <div>
-//       <Timer onTimeUp={handleTimeUp} />
-      
-//       {isModalVisible && (
-//         <div className="modal">
-//           <div className="modal-content">
-//             <h2>Scoreboard</h2>
-//             <p>Game Over! Your time is up!</p>
-//             <button onClick={() => setModalVisible(false)}>Close</button>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
