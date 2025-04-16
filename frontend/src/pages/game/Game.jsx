@@ -7,7 +7,7 @@ import { getInitialMovie } from "../../services/movies";
 // components to import
 
 export const GamePage = () => {
-  let [gameState, setGameState] = useState(["idle"]);
+  let [gameState, setGameState] = useState("idle");
   // let [gameTimer, setGameTimer] = useState(0);
   let [targetMovie, setTargetMovie] = useState();
   let [guessedMovie, setGuessedMovie] = useState();
