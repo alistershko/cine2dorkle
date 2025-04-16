@@ -1,53 +1,45 @@
+:root {
+  --navbar-height: 150px;
+  --navbar-minimized-height: 90px;
+}
+
+.header-container {
+  margin-top: 50px;
+}
+
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 97%;
-    padding: 5px 45px;
-    background-color: #66cdea;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-  }
-  
-  .logo-container {
-    display: flex;
-    align-items: center;
-		max-height: 100px;
-  }
-  
-  .logo {
-    height: 100px;
-    margin-right: 15px;
-  }
-  
-  .title-image {
-		height: 90px;
-		margin-right: 15px;
-  }
-  
-  .nav {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-button {
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    background-color: #1e25e3;
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .nav-button:hover {
-    background-color: #f0e919;
-    color: #333;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #7a785b00;
+  position: fixed;
+  top: 0; /* Position at the top of the viewport */
+  left: 0; /* This is to ensure it starts from the left edge */
+  right: 0; /* This is to ensure it extends to the right edge */
+  height: var(--navbar-height);
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  z-index: 3000;
+  transition: all 0.3s ease;
+}
+
+/* Class for minimized navbar */
+.header.minimized {
+  height: var(--navbar-minimized-height);
+  padding: 0.5rem 2rem;
+}
+
+/* This is to prevent content from hiding behind the navbar */
+body {
+  padding-top: 300px;
+  margin-top: 200px;
+}
+
+/* This ensures that anchors and scroll targets account for the navbar */
+html {
+  scroll-padding-top: 300px;
+}
 
