@@ -5,7 +5,7 @@ export const getMovies = async () => {
     const requestOptions = {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
+            'accept': 'application/json',
         },
     };
     const response = await fetch(`${BACKEND_URL}/movies`, requestOptions);
@@ -21,7 +21,7 @@ export const getPopularMovie = async () => {
     const requestOptions = {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
+            'accept': 'application/json',
         },
     };
     const response = await fetch(`${BACKEND_URL}/movie/popular`, requestOptions);
@@ -39,7 +39,7 @@ export const guessMovie = async (movie_title) => {
     const requestOptions = {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'accept': 'application/json',
         },
         body: JSON.stringify({ movie_title }),
     };
@@ -56,7 +56,7 @@ export const getGuessedMovie = async (movie_title) => {
     const requestOptions = {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
+            'accept': 'application/json',
         },
     };
     const response = await fetch(`${BACKEND_URL}/movie/${movie_title}`, requestOptions);
