@@ -2,7 +2,7 @@
 
 
 const getRandomMovie = async (req, res) => {
-    const url = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+    const url = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=';
     const options = {
         method: 'GET',
         headers: {
@@ -12,14 +12,19 @@ const getRandomMovie = async (req, res) => {
     };
 
     try {
-        const response = await fetch(url, options);
-        const data = await response.json();
-
-        const popularMovies = data.results;
-        if (!popularMovies || popularMovies.length === 0) {
-            res.status(404).json({ error: 'No movies found' });
+        const popularMovies = [];
+        for (let i = 1; i < 5; i++) {
+            const response = await fetch(`${url}${i}`, options);
+            const data = await response.json();
+    
+            const popularMoviesPage = data.results;
+            if (!popularMoviesPage || popularMoviesPage.length === 0) {
+                res.status(404).json({ error: 'No movies found' });
+            }
+            popularMovies.push(...popularMoviesPage);
         }
-
+        
+        console.log(popularMovies);
         const randomIndex = Math.floor(Math.random() * popularMovies.length);
         const randomMovie = popularMovies[randomIndex];
         const { title, release_date, id} = randomMovie;
