@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { Header } from "./components/header.jsx";
+import Timer from "./components/Timer";
 
 function App() {
   const [count, setCount] = useState(0);
