@@ -3,11 +3,13 @@ import Footer from "../../components/Footer";
 import "./HomePage.css";
 
 export const HomePage = () => {
+  console.log("Rendering HomePage");
+
   return (
-    <div className="home-page">
+    <div className="page-container">
       <Header />
       <div className="home-content">
-        <h1>Welcome to the Home Page!</h1>
+        <h1>Future Home of Fliss' Play Button</h1>
       </div>
       <Footer />
     </div>

@@ -1,9 +1,13 @@
+import tmdbLogo from "../assets/tmdb.svg";
 import "../css/Footer.css";
 
 export const Footer = () => {
   return (
     <div className="footer">
-      <p>This is where we put a message about our API</p>
+      <p>
+        This product uses the TMDB API but is not endorsed or certified by TMDB.
+        <img src={tmdbLogo} alt="TMDB Logo" className="tmdbLogo-image"></img>
+      </p>
     </div>
   );
 };

@@ -1,11 +1,16 @@
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    max-height: 100px;
-    background-color: #66cdea;
-    color: white;
-    text-align: center;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  background-color: #173038;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 0;
+}
+
+
+  .tmdbLogo-image {
+    height: 15px;
   }
+
