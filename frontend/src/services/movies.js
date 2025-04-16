@@ -16,17 +16,17 @@ export const getMovies = async () => {
     return data;
 };
 
-// Fetch one of the popular movies to set as starting movie
-export const getPopularMovie = async () => {
+// Fetch one of the top movies to set as starting movie
+export const getInitialMovie = async () => {
     const requestOptions = {
         method: 'GET',
         headers: {
             'accept': 'application/json',
         },
     };
-    const response = await fetch(`${BACKEND_URL}/movie/popular`, requestOptions);
+    const response = await fetch(`${BACKEND_URL}/game/initialMovie`, requestOptions);
     if (response.status !== 200) {
-        throw new Error('Failed to fetch popular movies');
+        throw new Error('Failed to fetch initial movie');
     }
     const data = await response.json();
     return data;
