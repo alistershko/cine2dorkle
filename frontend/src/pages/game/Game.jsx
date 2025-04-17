@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 // services to import
 import { getInitialMovie } from "../../services/movies";
+import HowTo from "../../components/HowTo";
 
 // components to import
 
@@ -54,7 +55,7 @@ export const GamePage = () => {
   );
 };
 
-export default GamePage;
+// export default GamePage;
 
 // import Header from "../../components/header";
 // import Footer from "../../components/Footer";
