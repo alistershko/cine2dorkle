@@ -24,7 +24,7 @@ export const getInitialMovie = async () => {
             'accept': 'application/json',
         },
     };
-    const response = await fetch(`${BACKEND_URL}/game/initialMovie`, requestOptions);
+    const response = await fetch(`${BACKEND_URL}/tmdb/initialMovie`, requestOptions);
     if (response.status !== 200) {
         throw new Error('Failed to fetch initial movie');
     }
@@ -77,9 +77,25 @@ export const getCastFromMovieId = async (id) => {
             'accept': 'application/json',
         },
     };
-    const response = await fetch(`${BACKEND_URL}/game/cast/${id}`, requestOptions);
+    const response = await fetch(`${BACKEND_URL}/tmdb/cast/${id}`, requestOptions);
     if (response.status !== 200) {
         throw new Error('Failed to fetch cast');
+    }
+    const data = await response.json();
+    return data;
+}
+
+// Get request for input field to search for a movie
+export const getSearchResults = async (name) => {
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'accept': 'application/json',
+        },
+    };
+    const response = await fetch(`${BACKEND_URL}/tmdb/search/${name}`, requestOptions);
+    if (response.status !== 200) {
+        throw new Error('Failed to fetch search results');
     }
     const data = await response.json();
     return data;
