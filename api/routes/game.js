@@ -1,10 +1,10 @@
 const express = require("express");
-const GameController = require("../controllers/game");
+const TMDBController = require("../controllers/tmdb");
 
 const router = express.Router();
 
-router.get("/initialMovie", GameController.getRandomMovie);
-router.get("/cast/:id", GameController.getCastFromMovieId);
-router.get("/search/:name", GameController.getSearchResults)
+router.get("/initialMovie", TMDBController.getRandomMovie);
+router.get("/cast/:id", TMDBController.getCastFromMovieId);
+router.get("/search/:name", TMDBController.getSearchResults)
 
 module.exports = router;

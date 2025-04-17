@@ -108,10 +108,10 @@ const getSearchResults = async (req, res) => {
     }
 }
 
-const GameController = {
+const TMDBController = {
     getRandomMovie: getRandomMovie,
     getCastFromMovieId: getCastFromMovieId,
     getSearchResults: getSearchResults,
 };
 
-module.exports = GameController;
+module.exports = TMDBController;
