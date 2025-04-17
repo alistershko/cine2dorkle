@@ -64,7 +64,7 @@ const GamePage = () => {
   );
 };
 
-// export default GamePage;
+export default GamePage;
 
 // import Header from "../../components/header";
 // import Footer from "../../components/Footer";

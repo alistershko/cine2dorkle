@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/HowTo.css";
+import "../css/Modal.css";
 
 const HowTo = () => {
 console.log("reached HowTo")
