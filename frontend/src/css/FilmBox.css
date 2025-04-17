@@ -23,18 +23,14 @@
 }
 
 .Film-Cast {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-  color: #1a1a1a;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
-.Film-Cast-List {
-  list-style-type: disc;
-  padding-left: 1.5rem;
-}
-
-.Film-Cast-List li {
-  margin-bottom: 0.25rem;
+.Film-Cast-Grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
 }
 
 .Error-Message {
@@ -42,3 +38,4 @@
   text-align: center;
   margin-top: 2rem;
 }
+
