@@ -24,7 +24,7 @@ export const getInitialMovie = async () => {
             'accept': 'application/json',
         },
     };
-    const response = await fetch(`${BACKEND_URL}/tmdb/initialMovie`, requestOptions);
+    const response = await fetch(`${BACKEND_URL}/game/initialMovie`, requestOptions);
     if (response.status !== 200) {
         throw new Error('Failed to fetch initial movie');
     }

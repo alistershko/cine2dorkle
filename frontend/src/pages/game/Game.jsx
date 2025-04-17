@@ -32,8 +32,6 @@ export const GamePage = () => {
     setGameState("active");
 
     // This next function will be called when the user submits a movie title as their guess
-
-
   }, []);
     
   return (
