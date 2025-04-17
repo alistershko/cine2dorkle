@@ -2,35 +2,40 @@
   max-width: 500px;
   margin: 2rem auto;
   padding: 1.5rem;
-  border-radius: 1rem;
-  background-color: #ffffff;
+  border-radius: 2rem;
+  background-color: #040404;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
+  border-color: white;
+  filter: drop-shadow(0 0 0.2rem #fcfcfc);
+  border: 3px solid #ccc;
 }
 
 .Film-Title {
   font-size: 1.75rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
-  color: #1a1a1a;
+  color: white;
 }
 
 .Film-Release-Year {
   font-size: 1rem;
   margin-bottom: 1rem;
-  color: #666;
+  color: white;
 }
 
 .Film-Cast {
   font-size: 20px;
   margin-bottom: 10px;
+  color: white;
 }
 
 .Film-Cast-Grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 15px;
+  color: white;
 }
 
 .Error-Message {

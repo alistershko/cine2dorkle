@@ -55,7 +55,7 @@ const GamePage = () => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         ></input>
-        <div>
+        <div className="film-box-container">
           <InitialFilmBox movie={targetMovie} />
         </div>
       </form>
