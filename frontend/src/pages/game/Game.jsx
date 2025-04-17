@@ -6,8 +6,11 @@ import { getInitialMovie } from "../../services/movies";
 import HowTo from "../../components/HowTo";
 
 // components to import
+import InitialFilmBox from "../../components/InitialFilmBox";
+import Header from "../../components/header";
+import Footer from "../../components/Footer";
 
-export const GamePage = () => {
+const GamePage = () => {
   let [gameState, setGameState] = useState("idle");
   // let [gameTimer, setGameTimer] = useState(0);
   let [targetMovie, setTargetMovie] = useState();
@@ -17,40 +20,46 @@ export const GamePage = () => {
   let [input, setInput] = useState("");
 
   useEffect(() => {
+    let isMounted = true; // Flag to track if the component is mounted
 
-    // Fetch the popular movie to set as the target movie before starting the game
-    // and append its id to the movies played list
-    getInitialMovie()
-      .then((data) => {
-        setTargetMovie(data);
-        appendToMoviesPlayed(data.id);
-      })
-      .catch((error) => {
+    const fetchInitialMovie = async () => {
+      try {
+        const data = await getInitialMovie();
+        if (isMounted) {
+          if (data && data.id) {
+            setTargetMovie(data);
+            appendToMoviesPlayed((prev) => [...prev, data.id]);
+          } else {
+            console.error("Invalid movie data:", data);
+          }
+        }
+      } catch (error) {
         console.error("Error setting target movie:", error);
-      });
+      }
+    };
 
-    // Set the game state to "active"
-    setGameState("active");
+    fetchInitialMovie();
 
-    // This next function will be called when the user submits a movie title as their guess
-
-
+    return () => {
+      isMounted = false; // Cleanup to prevent setting state on unmounted component
+    };
   }, []);
-    
+
   return (
     <div>
+      <Header />
       <h1>Enter your guess here</h1>
       <form>
-        <input id="guessed_movie" value={input} onChange={(e) => setInput(e.target.value)}></input>
+        <input
+          id="guessed_movie"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        ></input>
+        <div>
+          <InitialFilmBox movie={targetMovie} />
+        </div>
       </form>
-      <h1>Played movies:</h1>
-      <list>
-        {moviesPlayed.map((movie, index) => (
-          <li key={index}>
-            {movie}
-          </li>
-        ))}
-      </list>
+      <Footer />
     </div>
   );
 };
@@ -68,17 +77,17 @@ export const GamePage = () => {
 // export const Game = () => {
 //   const [isGameOver, setIsGameOver] = useState(false); // Tracks timer state
 //   const [score, setScore] = useState(0); // Example score (need to reset this once we have score logic)
-  
+
 //   // Function called when 'Play Again' button is clicked on ResultsModal
 //   const playAgain = () => {
 //     setIsGameOver(false); // Resets game-over state
-//     setScore(0); // Resets score to 0 
+//     setScore(0); // Resets score to 0
 //   }
 
 //   const handleTimeUp = () => {
 //     setIsGameOver(true); // Change to ResultsModal later
 //   };
-  
+
 //   return (
 //     <div className="game-page">
 //       <Header />
