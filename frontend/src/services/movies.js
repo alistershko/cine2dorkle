@@ -96,7 +96,7 @@ export const getGuessedMovie = async (movie_title) => {
 };
 
 // Get movie by search result
-export const getSearchResult = async (movie_title) => {
+export const getSearchResults = async (movie_title) => {
   try {
     const response = await fetch(`${BACKEND_URL}/tmdb/search/${movie_title}`, {
       method: "GET",

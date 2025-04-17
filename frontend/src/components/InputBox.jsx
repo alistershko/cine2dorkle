@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getSearchResult } from '../services/movies';
+import { getSearchResults } from '../services/movies';
 
 const InputBox = () => {
   const [query, setQuery] = useState('');
@@ -20,9 +20,9 @@ const InputBox = () => {
   }, [query]);
 
   // Mock backend fetch
-  const fetchSuggestions = (input) => {
-    const searchResult = getSearchResult(input)
-    const filtered = searchResult.map((item => item.title))
+  const fetchSuggestions = async (input) => {
+    const searchResult = await getSearchResults(input);
+    const filtered = searchResult.map((item) => (item.title));
     // const filtered = mockData.filter(item =>
     //   item.toLowerCase().includes(input.toLowerCase())
     // );

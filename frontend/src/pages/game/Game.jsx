@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 
 // services to import
 import { getInitialMovie } from "../../services/movies";
-import HowTo from "../../components/HowTo";
 
 // components to import
 import InitialFilmBox from "../../components/InitialFilmBox";
@@ -50,21 +49,10 @@ const GamePage = () => {
     <div>
       <Header />
       <h1>Enter your guess here</h1>
-      <form>
-        <input
-          id="guessed_movie"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        ></input>
         <div>
-<<<<<<< HEAD
           <InputBox />
-          <FilmBox movie={targetMovie} />
-=======
           <InitialFilmBox movie={targetMovie} />
->>>>>>> main
         </div>
-      </form>
       <Footer />
     </div>
   );
