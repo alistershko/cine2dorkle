@@ -1,6 +1,6 @@
-const { getRandomMovie } = require( "./tmdb.js");
+const { getRandomMovieLogic } = require( "./tmdb.js");
 
-const startNewGame = (req, res) => {
+const startNewGame = async (req, res) => {
     // Logic to start a new game
     class Game {
         constructor() {
@@ -8,7 +8,7 @@ const startNewGame = (req, res) => {
         }
     }
     const newGame = new Game();
-    newGame.currentMovie = getRandomMovie();
+    newGame.currentMovie = await getRandomMovieLogic();
 
     try{
         res.json({ message: "New game started", startingMovie: newGame.currentMovie });
