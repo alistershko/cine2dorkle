@@ -6,6 +6,8 @@ import { getInitialMovie } from "../../services/movies";
 
 // components to import
 import FilmBox from "../../components/FilmBox";
+import Header from "../../components/header";
+import Footer from "../../components/Footer";
 
 const GamePage = () => {
   let [gameState, setGameState] = useState("idle");
@@ -17,29 +19,35 @@ const GamePage = () => {
   let [input, setInput] = useState("");
 
   useEffect(() => {
+    let isMounted = true; // Flag to track if the component is mounted
+
     const fetchInitialMovie = async () => {
       try {
-        const data = await getInitialMovie(); // Wait for the movie data
-        console.log("Data received from getInitialMovie:", data); // Debugging log
-        if (data && data.id) {
-          setTargetMovie(data); // Set the target movie
-          appendToMoviesPlayed((prev) => [...prev, data.id]);
-          // Append the movie ID to the played list
-        } else {
-          console.error("Invalid movie data:", data);
+        const data = await getInitialMovie();
+        if (isMounted) {
+          console.log("Data received from getInitialMovie:", data);
+          if (data && data.id) {
+            setTargetMovie(data);
+            appendToMoviesPlayed((prev) => [...prev, data.id]);
+          } else {
+            console.error("Invalid movie data:", data);
+          }
         }
       } catch (error) {
         console.error("Error setting target movie:", error);
       }
     };
 
-    fetchInitialMovie(); // Call the async function
+    fetchInitialMovie();
 
-    setGameState("active"); // Set the game state to active
+    return () => {
+      isMounted = false; // Cleanup to prevent setting state on unmounted component
+    };
   }, []);
 
   return (
     <div>
+      <Header />
       <h1>Enter your guess here</h1>
       <form>
         <input
@@ -51,6 +59,7 @@ const GamePage = () => {
           <FilmBox movie={targetMovie} />
         </div>
       </form>
+      <Footer />
     </div>
   );
 };
