@@ -8,6 +8,7 @@ import { getInitialMovie } from "../../services/movies";
 import FilmBox from "../../components/FilmBox";
 import Header from "../../components/header";
 import Footer from "../../components/Footer";
+import InputBox from "../../components/InputBox";
 
 const GamePage = () => {
   let [gameState, setGameState] = useState("idle");
@@ -56,6 +57,7 @@ const GamePage = () => {
           onChange={(e) => setInput(e.target.value)}
         ></input>
         <div>
+          <InputBox />
           <FilmBox movie={targetMovie} />
         </div>
       </form>
