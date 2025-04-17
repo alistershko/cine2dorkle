@@ -10,9 +10,9 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-app.use("/TMDB", tmdb);
+app.use("/tmdb", tmdb);
 
-app.use("/gameRoutes", gameRoutes);
+app.use("/game", gameRoutes);
 
 // 404 Handler
 app.use((_req, res) => {
