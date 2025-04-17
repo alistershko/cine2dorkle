@@ -79,21 +79,36 @@ export const guessMovie = async (movie_title) => {
 // Get request for the guessed movie to display to the user
 export const getGuessedMovie = async (movie_title) => {
   const requestOptions = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-    },
+      method: 'GET',
+      headers: {
+          'accept': 'application/json',
+      },
   };
-  const response = await fetch(
-    `${BACKEND_URL}/movie/${movie_title}`,
-    requestOptions
-  );
+  const response = await fetch(`${BACKEND_URL}/movie/${movie_title}`, requestOptions);
   if (response.status !== 200) {
-    throw new Error("Failed to fetch guessed movie");
+      throw new Error('Failed to fetch guessed movie');
   }
   const data = await response.json();
   return data;
-};
+}
+
+// Get request for the cast of the guessed movie
+// This is used to display the cast of the guessed movie to the user
+// and to compare the cast of the guessed movie to the cast of the target movie
+export const getCastFromMovieId = async (id) => {
+  const requestOptions = {
+      method: 'GET',
+      headers: {
+          'accept': 'application/json',
+      },
+  };
+  const response = await fetch(`${BACKEND_URL}/tmdb/cast/${id}`, requestOptions);
+  if (response.status !== 200) {
+      throw new Error('Failed to fetch cast');
+  }
+  const data = await response.json();
+  return data;
+}
 
 // Get movie by search result
 export const getSearchResults = async (movie_title) => {
