@@ -34,7 +34,7 @@ export const getMovies = async () => {
 
 export const getInitialMovie = async () => {
   try {
-    const response = await fetch(`${BACKEND_URL}/game/initialMovie`, {
+    const response = await fetch(`${BACKEND_URL}/TMDB/initialMovie`, {
       method: "GET",
       headers: {
         accept: "application/json",
@@ -94,7 +94,6 @@ export const getGuessedMovie = async (movie_title) => {
   const data = await response.json();
   return data;
 };
-
 
 // Get movie by search result
 export const getSearchResult = async (movie_title) => {

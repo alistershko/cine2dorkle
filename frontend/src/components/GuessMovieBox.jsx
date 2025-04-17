@@ -1,6 +1,6 @@
 import "../css/FilmBox.css";
 
-const InitialFilmBox = ({ movie }) => {
+const GuessMovieBox = ({ movie }) => {
   if (!movie) {
     return <div> No movie data available</div>;
   }
@@ -19,4 +19,4 @@ const InitialFilmBox = ({ movie }) => {
   );
 };
 
-export default InitialFilmBox;
+export default GuessMovieBox;

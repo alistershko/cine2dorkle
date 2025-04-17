@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 // services to import
 import { getInitialMovie } from "../../services/movies";
+import HowTo from "../../components/HowTo";
 
 // components to import
 import InitialFilmBox from "../../components/InitialFilmBox";
