@@ -48,7 +48,6 @@ const getCastFromMovieId = async (req, res) => {
         }
     };
     try {
-        const movies = [];
         const response = await fetch(url, options);
         const data = await response.json();
         const cast = data.cast;
@@ -59,7 +58,7 @@ const getCastFromMovieId = async (req, res) => {
 
         console.log(cast.length);
         
-    const sanitisedCast = [];
+        const sanitisedCast = [];
         for (const member of cast) {
             console.log(member);
             const { name, id } = member;
@@ -73,9 +72,46 @@ const getCastFromMovieId = async (req, res) => {
     }
 }
 
-const GameController = {
+const getSearchResults = async (req, res) => {
+    const movieName = req.params.name;
+    const url = `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=1`;
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+        }
+    };
+    try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        const movies = data.results;
+
+        if (!movies || movies.length === 0) {
+            res.status(404).json({ error: 'No movies found' });
+        }
+
+        console.log(movies.length);
+        
+        const sanitisedMovieList = [];
+        for (const index in movies) {
+            if (index < 5) {
+                const { title, release_date, id } = movies[index];
+                sanitisedMovieList.push({ title, release_date, id })
+            }
+        }
+
+        res.json(sanitisedMovieList);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to fetch movie data' });
+    }
+}
+
+const TMDBController = {
     getRandomMovie: getRandomMovie,
     getCastFromMovieId: getCastFromMovieId,
+    getSearchResults: getSearchResults,
 };
 
-module.exports = GameController;
+module.exports = TMDBController;
