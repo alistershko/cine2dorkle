@@ -111,6 +111,7 @@ const getSearchResults = async (req, res) => {
 const GameController = {
     getRandomMovie: getRandomMovie,
     getCastFromMovieId: getCastFromMovieId,
+    getSearchResults: getSearchResults,
 };
 
 module.exports = GameController;
