@@ -1,7 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ".App.css";
-import { Game } from "./pages/Game/Game";
-import { HomePage } from "./pages/Home/HomePage";
+
+import "./App.css";
+
+import { Game } from "./pages/game/Game";
+import { HomePage } from "./pages/home/HomePage";
 
 const router = createBrowserRouter([
   {
@@ -21,4 +23,5 @@ const App = () => {
     </>
   );
 };
+
 export default App;

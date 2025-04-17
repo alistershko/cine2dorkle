@@ -24,4 +24,8 @@ dist-ssr
 *.sw?
 
 .env
+.env.*
+*.env*
+*.env
+
 coverage
