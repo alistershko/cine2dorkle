@@ -6,6 +6,8 @@ import { getInitialMovie } from "../../services/movies";
 
 // components to import
 import FilmBox from "../../components/FilmBox";
+import Header from "../../components/header";
+import Footer from "../../components/Footer";
 
 const GamePage = () => {
   let [gameState, setGameState] = useState("idle");
@@ -45,6 +47,7 @@ const GamePage = () => {
 
   return (
     <div>
+      <Header />
       <h1>Enter your guess here</h1>
       <form>
         <input
@@ -56,6 +59,7 @@ const GamePage = () => {
           <FilmBox movie={targetMovie} />
         </div>
       </form>
+      <Footer />
     </div>
   );
 };
