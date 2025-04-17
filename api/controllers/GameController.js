@@ -5,7 +5,7 @@ const activeGames = new Map(); // Store active games in memory
 // Game class definition
 class Game {
   constructor() {
-    this.id = null; // Need to set this to a unique random value using uuid
+    this.id = null; // Will eventually set this using a unique random value using uuid, right now it's just 1 for development
     this.players = []; // Need to append playerIDs when that feature is implemented
     this.currentPlayer = null; // Need to set this to a random playerID from players when that feature is implemented
     this.gameStatus = "waiting"; // Will change to active when a game starts, and to ended when time runs out
@@ -22,7 +22,7 @@ const startNewGame = async (req, res) => {
   const newGame = new Game();
 
   // Set the new game state properties
-  newGame.id = 1
+  newGame.id = 1 // This will be set to a unique random value using uuid later, right now it's just 1 for development
   newGame.gameStatus = "active";
   newGame.time = 20;
   newGame.targetMovie = await getRandomMovieLogic();
