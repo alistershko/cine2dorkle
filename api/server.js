@@ -1,7 +1,17 @@
-import express from "express";
+require("dotenv").config();
 
-const app = express();
+const app = require("./app.js");
+// const { connectToDatabase } = require("./db/db.js");
 
-app.listen(5000, () => {
-    console.log("Server is running on port 5000");
-})
+function listenForRequests() {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log("Now listening on port", port);
+  });
+}
+
+listenForRequests();
+
+// connectToDatabase().then(() => {
+//   listenForRequests();
+// });
