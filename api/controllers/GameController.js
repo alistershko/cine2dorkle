@@ -1,8 +1,8 @@
-import gameModel from "../models/gameModel.js";
+import GameModel from "../models/GameModel.js";
 import { getRandomMovie } from "./tmdb.js";
 
 const startNewGame = (req, res) => {
-    const newGame = new gameModel();
+    const newGame = new GameModel();
     
     newGame.targetMovie = getRandomMovie();
     

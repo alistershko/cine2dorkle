@@ -1,12 +1,16 @@
-export const gameModel = {}
+// Create a game model to create objects from
+const GameModel = {};
 
-gameModel.id = 1;
-gameModel.players = []
-gameModel.currentPlayer = ""
-gameModel.status = "waiting"
-gameModel.time = 0
-gameModel.targetMovie = []
-gameModel.movieInput = ""
-gameModel.guessedMovie = []
-gameModel.moviesPlayed = []
-gameModel.linksPlayed = []
+// Initialize the game model with default values
+GameModel.id = 1;
+GameModel.players = [];
+GameModel.currentPlayer = "";
+GameModel.status = "waiting";
+GameModel.time = 0;
+GameModel.targetMovie = [];
+GameModel.movieInput = "";
+GameModel.guessedMovie = [];
+GameModel.moviesPlayed = [];
+GameModel.linksPlayed = [];
+
+export default GameModel;
