@@ -10,6 +10,9 @@ import InitialFilmBox from "../../components/InitialFilmBox";
 import Header from "../../components/header";
 import Footer from "../../components/Footer";
 
+// styles to import
+import "./Game.css";
+
 const GamePage = () => {
   let [gameState, setGameState] = useState("idle");
   // let [gameTimer, setGameTimer] = useState(0);
@@ -18,6 +21,18 @@ const GamePage = () => {
   let [moviesPlayed, appendToMoviesPlayed] = useState([]);
   let [linksPlayed, setLinksPlayed] = useState([]);
   let [input, setInput] = useState("");
+
+  const handleGuessSubmit = async (e) => {
+    e.preventDefault(); // Prevent form submission from reloading the page
+    if (!input.trim()) return; // Ignore empty input
+
+    try {
+      const guessedMovie = await guessMovie(input.trim()); // Send POST request to backend
+      //setInput(""); // Clear the input field
+    } catch (error) {
+      console.error("Error guessing movie:", error);
+    }
+  };
 
   useEffect(() => {
     let isMounted = true; // Flag to track if the component is mounted
@@ -49,16 +64,18 @@ const GamePage = () => {
     <div>
       <Header />
       <h1>Enter your guess here</h1>
-      <form>
+      <form onSubmit={handleGuessSubmit}>
         <input
           id="guessed_movie"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         ></input>
+      </form>
+      <div className="movie-box-container">
         <div>
           <InitialFilmBox movie={targetMovie} />
         </div>
-      </form>
+      </div>
       <Footer />
     </div>
   );
