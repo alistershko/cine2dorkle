@@ -21,13 +21,13 @@ export const GamePage = () => {
     // and append its id to the movies played list
     getInitialMovie()
       .then((data) => {
+        console.log("Initial movie data:", data);
         setTargetMovie(data);
         appendToMoviesPlayed(data.id);
       })
       .catch((error) => {
         console.error("Error setting target movie:", error);
       });
-
     // Set the game state to "active"
     setGameState("active");
 
