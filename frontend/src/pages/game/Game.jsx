@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 
 // services to import
 import { getInitialMovie } from "../../services/movies";
-import HowTo from "../../components/HowTo";
 
 // components to import
 import InitialFilmBox from "../../components/InitialFilmBox";
 import Header from "../../components/header";
 import Footer from "../../components/Footer";
+import InputBox from "../../components/InputBox";
 
 const GamePage = () => {
   let [gameState, setGameState] = useState("idle");
@@ -49,6 +49,8 @@ const GamePage = () => {
     <div>
       <Header />
       <h1>Enter your guess here</h1>
+        <div>
+          <InputBox />
       <form>
         <input
           id="guessed_movie"
