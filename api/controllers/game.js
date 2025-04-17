@@ -48,7 +48,6 @@ const getCastFromMovieId = async (req, res) => {
         }
     };
     try {
-        const movies = [];
         const response = await fetch(url, options);
         const data = await response.json();
         const cast = data.cast;
