@@ -49,19 +49,20 @@ const GamePage = () => {
     <div>
       <Header />
       <h1>Enter your guess here</h1>
-        <div>
-          <InputBox />
-      <form>
-        <input
-          id="guessed_movie"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        ></input>
-        <div className="film-box-container">
-          <InitialFilmBox movie={targetMovie} />
-        </div>
-      </form>
-      <Footer />
+      <div>
+        <InputBox />
+        <form>
+          <input
+            id="guessed_movie"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          ></input>
+          <div className="film-box-container">
+            <InitialFilmBox movie={targetMovie} />
+          </div>
+        </form>
+        <Footer />
+      </div>
     </div>
   );
 };
