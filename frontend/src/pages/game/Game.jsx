@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { getInitialMovie } from "../../services/movies";
 
 // components to import
-import FilmBox from "../../components/FilmBox";
+import InitialFilmBox from "../../components/InitialFilmBox";
 import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import InputBox from "../../components/InputBox";
@@ -26,7 +26,6 @@ const GamePage = () => {
       try {
         const data = await getInitialMovie();
         if (isMounted) {
-          console.log("Data received from getInitialMovie:", data);
           if (data && data.id) {
             setTargetMovie(data);
             appendToMoviesPlayed((prev) => [...prev, data.id]);
@@ -57,8 +56,12 @@ const GamePage = () => {
           onChange={(e) => setInput(e.target.value)}
         ></input>
         <div>
+<<<<<<< HEAD
           <InputBox />
           <FilmBox movie={targetMovie} />
+=======
+          <InitialFilmBox movie={targetMovie} />
+>>>>>>> main
         </div>
       </form>
       <Footer />

@@ -2,30 +2,10 @@ import { useEffect, useState } from "react";
 import { getInitialMovie } from "../services/movies";
 import "../css/FilmBox.css";
 
-const FilmBox = ({ movie }) => {
+const InitialFilmBox = ({ movie }) => {
   const [targetMovie, setTargetMovie] = useState(null);
   const [gameState, setGameState] = useState("inactive");
   const [moviesPlayed, appendToMoviesPlayed] = useState([]);
-
-  useEffect(() => {
-    const fetchInitialMovie = async () => {
-      try {
-        const data = await getInitialMovie();
-        console.log("Data received from getInitialMovie:", data);
-        if (data && data.id) {
-          setTargetMovie(data);
-          appendToMoviesPlayed((prev) => [...prev, data.id]);
-        } else {
-          console.error("Invalid movie data:", data);
-        }
-      } catch (error) {
-        console.error("Error setting target movie:", error);
-      }
-    };
-
-    fetchInitialMovie();
-    setGameState("active");
-  }, []); // Dependency array ensures this runs only once
 
   if (!movie) {
     return <div> No movie data available</div>;
@@ -45,4 +25,4 @@ const FilmBox = ({ movie }) => {
   );
 };
 
-export default FilmBox;
+export default InitialFilmBox;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getSearchResult } from '../services/movies';
 
 const InputBox = () => {
   const [query, setQuery] = useState('');
@@ -20,11 +21,11 @@ const InputBox = () => {
 
   // Mock backend fetch
   const fetchSuggestions = (input) => {
-    // Replace this with actual backend call later
-    const mockData = ['apple', 'banana', 'grape', 'orange', 'watermelon'];
-    const filtered = mockData.filter(item =>
-      item.toLowerCase().includes(input.toLowerCase())
-    );
+    const searchResult = getSearchResult(input)
+    const filtered = searchResult.map((item => item.title))
+    // const filtered = mockData.filter(item =>
+    //   item.toLowerCase().includes(input.toLowerCase())
+    // );
     setSuggestions(filtered);
     setShowDropdown(true);
   };

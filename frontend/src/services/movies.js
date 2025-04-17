@@ -94,3 +94,29 @@ export const getGuessedMovie = async (movie_title) => {
   const data = await response.json();
   return data;
 };
+
+
+// Get movie by search result
+export const getSearchResult = async (movie_title) => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/tmdb/search/${movie_title}`, {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Non-200 response:", response.status, errorText);
+      throw new Error(`Failed to fetch search result: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Fetched data:", data);
+    return data;
+  } catch (err) {
+    console.error("Fetch error in getSearchResult:", err);
+    throw err;
+  }
+};
