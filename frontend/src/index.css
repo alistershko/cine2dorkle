@@ -16,6 +16,15 @@
   --text-color: rgba(255, 255, 255, 0.87);
   --button-bg-color: #1a1a1a;
   --button-hover-border-color: #646cff;
+
+  /* Light mode variables */
+  --film-box-shadow-color: rgb(0, 0, 0); /* Black shadow for light mode */
+  --film-background-color: #f9f9f9;
+  --film-border-color: #ccc;
+  --film-text-color: #333;
+  --film-secondary-text-color: #666;
+  --film-card-background-color: #eaeaea;
+  --film-shadow-color: #fcfcfc;
 }
 
 [data-theme="light"] {
@@ -23,6 +32,17 @@
   --text-color: #213547;
   --button-bg-color: #f9f9f9;
   --button-hover-border-color: #747bff;
+}
+
+[data-theme="dark"] {
+  /* Dark mode variables */
+  --film-box-shadow-color: rgb(255, 255, 255); /* White shadow for dark mode */
+  --film-background-color: #333;
+  --film-border-color: #555;
+  --film-text-color: #f9f9f9;
+  --film-secondary-text-color: #aaa;
+  --film-card-background-color: #444;
+  --film-shadow-color: #000;
 }
 
 a {
