@@ -1,24 +1,24 @@
 .FilmBox-Container {
   display: flex; /* Use flexbox for layout */
   align-items: flex-start; /* Align items at the top */
-  gap: 1rem; /* Add space between the poster and details */
-  padding: 1rem;
-  border: 1px solid #ccc;
+  gap: 0.8rem; /* Reduce space between the poster and details */
+  padding: 0.8rem; /* Reduce padding inside the container */
+  border: 1px solid var(--film-border-color);
   border-radius: 10px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: var(--film-background-color);
+  box-shadow: 0 4px 12px var(--film-box-shadow-color); /* Use variable for box-shadow */
   margin-bottom: 1rem;
-  max-width: 500px;
-  margin: 2rem auto;
+  max-width: 450px; /* Reduce the overall width */
+  margin: 1.5rem auto; /* Adjust vertical spacing */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-  filter: drop-shadow(0 0 0.2rem #fcfcfc);
+  color: var(--film-text-color);
+  filter: drop-shadow(0 0 0.2rem var(--film-shadow-color));
 }
 
 .Film-Poster {
-  width: 150px; /* Set a fixed width for the poster */
+  width: 120px; /* Reduce the width of the poster */
   height: auto; /* Maintain aspect ratio */
-  border-radius: 10px;
+  border-radius: 8px; /* Slightly smaller border radius */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -30,30 +30,30 @@
 }
 
 .Film-Title {
-  font-size: 1.5rem;
+  font-size: 1.3rem; /* Slightly smaller font size */
   margin: 0;
-  color: #333;
+  color: var(--film-text-color);
   font-weight: bold;
 }
 
 .Film-Release-Year {
-  font-size: 1rem;
-  color: #666;
-  margin: 0.5rem 0;
+  font-size: 0.9rem; /* Slightly smaller font size */
+  color: var(--film-secondary-text-color);
+  margin: 0.3rem 0; /* Reduce vertical spacing */
 }
 
 .Film-Cast {
-  font-size: 0.9rem;
-  color: #444;
-  margin: 0.5rem 0;
+  font-size: 0.85rem; /* Slightly smaller font size */
+  color: var(--film-secondary-text-color);
+  margin: 0.3rem 0; /* Reduce vertical spacing */
 }
 
 .Film-Cast-Grid {
   display: grid; /* Use grid layout */
   grid-template-columns: repeat(3, 1fr); /* 3 columns */
   grid-auto-rows: auto; /* Automatically adjust row height */
-  gap: 0.5rem; /* Add space between grid items */
-  margin-top: 1rem;
+  gap: 0.4rem; /* Reduce space between grid items */
+  margin-top: 0.5rem; /* Reduce top margin */
 }
 
 .Error-Message {
@@ -63,11 +63,11 @@
 }
 
 .Film-Cast-Card {
-  background-color: #eaeaea;
-  padding: 0.5rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  color: #333;
+  background-color: var(--film-card-background-color);
+  padding: 0.4rem; /* Reduce padding inside each card */
+  border-radius: 4px; /* Slightly smaller border radius */
+  font-size: 0.75rem; /* Slightly smaller font size */
+  color: var(--film-text-color);
   text-align: center;
 }
 
