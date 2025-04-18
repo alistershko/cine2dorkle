@@ -19,6 +19,7 @@
 
 // export default Header;
 
+import React from "react";
 import { useState, useEffect } from "react";
 import { DoubleFeatureLogo } from "./DoubleFeatureLogo";
 import "../css/Header.css";
@@ -45,7 +46,7 @@ function Header() {
   }, []);
 
   return (
-    <div className={`header ${isMinimized ? "minimized" : ""}`}>
+    <div data-testid="header" className={`header ${isMinimized ? "minimized" : ""}`}>
       <DoubleFeatureLogo />
     </div>
   );
