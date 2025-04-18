@@ -1,3 +1,4 @@
+import React from "react";
 import { getCastFromMovieId } from "../services/movies";
 import "../css/FilmBox.css";
 import { useEffect, useState } from "react";
