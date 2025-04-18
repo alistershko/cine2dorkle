@@ -2,19 +2,25 @@ import "../css/FilmBox.css";
 
 const GuessMovieBox = ({ movie }) => {
   if (!movie) {
-    return <div> No movie data available</div>;
+    return <div>No movie data available</div>;
   }
+
+  const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  const releaseYear = movie.release_date
+    ? new Date(movie.release_date).getFullYear()
+    : "Unknown";
 
   return (
     <div className="FilmBox-Container">
-      <h2 className="Film-Title">{movie.title}</h2>
-      <p className="Film-Release-Year">Released: {movie.release_date}</p>
-      <h3 className="Film-Cast">Cast:</h3>
-      {/* <ul className="Film-Cast-List">
-        {movie.cast.map((actor, index) => (
-          <li key={index}>{actor}</li>
-        ))}
-      </ul> */}
+      <img
+        src={posterUrl}
+        alt={`${movie.title} Poster`}
+        className="Film-Poster"
+      />
+      <div className="Film-Details">
+        <h2 className="Film-Title">{movie.title}</h2>
+        <p className="Film-Release-Year">Released: {releaseYear}</p>
+      </div>
     </div>
   );
 };
