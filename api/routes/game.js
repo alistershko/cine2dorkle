@@ -1,9 +1,9 @@
 const express = require("express");
-const GameController = require("../controllers/game");
+const gameController = require("../controllers/gameController");
 
 const router = express.Router();
 
-router.get("/initialMovie", GameController.getRandomMovie);
-router.get("/cast/:id", GameController.getCastFromMovieId)
+router.get("/gameStart", gameController.startNewGame);
+router.get("/:id", gameController.getGameObject);
 
 module.exports = router;
