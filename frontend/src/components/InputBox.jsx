@@ -6,7 +6,7 @@ const InputBox = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  // Debounce logic
+  // fetchSuggestions called after user has been typing for 300ms
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       if (query) {
@@ -19,13 +19,9 @@ const InputBox = () => {
     return () => clearTimeout(delayDebounce);
   }, [query]);
 
-  // Mock backend fetch
   const fetchSuggestions = async (input) => {
     const searchResult = await getSearchResults(input);
     const filtered = searchResult.map((item) => (item.title));
-    // const filtered = mockData.filter(item =>
-    //   item.toLowerCase().includes(input.toLowerCase())
-    // );
     setSuggestions(filtered);
     setShowDropdown(true);
   };
