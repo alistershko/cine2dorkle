@@ -1,26 +1,6 @@
-// import "../css/Header.css";
-// import logo from "../assets/example-logo.png";
-// import title from "../assets/Double-Feature.png";
-
-// export const Header = () => {
-//   return (
-//     <header className="header">
-//       <div className="logo-container">
-//         <img src={logo} alt="Double Feature Logo" className="logo" />
-//         <img
-//           src={title}
-//           alt="Double Feature title"
-//           className="title-image"
-//         ></img>
-//       </div>
-//     </header>
-//   );
-// };
-
-// export default Header;
-
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { DoubleFeatureLogo } from "./DoubleFeatureLogo";
+import ThemeToggle from "./ThemeToggle";
 import "../css/Header.css";
 
 function Header() {
@@ -47,6 +27,7 @@ function Header() {
   return (
     <div className={`header ${isMinimized ? "minimized" : ""}`}>
       <DoubleFeatureLogo />
+      <ThemeToggle />
     </div>
   );
 }
