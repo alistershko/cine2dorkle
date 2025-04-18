@@ -25,7 +25,7 @@ function Header() {
   }, []);
 
   return (
-    <div className={`header ${isMinimized ? "minimized" : ""}`}>
+    <div data-testid="header" className={`header ${isMinimized ? "minimized" : ""}`}>
       <DoubleFeatureLogo />
       <ThemeToggle />
     </div>
