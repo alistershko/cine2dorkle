@@ -1,46 +1,73 @@
 .FilmBox-Container {
+  display: flex; /* Use flexbox for layout */
+  align-items: flex-start; /* Align items at the top */
+  gap: 1rem; /* Add space between the poster and details */
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
   max-width: 500px;
   margin: 2rem auto;
-  padding: 1.5rem;
-  border-radius: 2rem;
-  background-color: #040404;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
-  border-color: white;
   filter: drop-shadow(0 0 0.2rem #fcfcfc);
-  border: 3px solid #ccc;
+}
+
+.Film-Poster {
+  width: 150px; /* Set a fixed width for the poster */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.Film-Details {
+  flex: 1; /* Allow details to take up remaining space */
+  display: flex;
+  flex-direction: column; /* Stack details vertically */
+  justify-content: flex-start;
 }
 
 .Film-Title {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
+  margin: 0;
+  color: #333;
   font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: white;
 }
 
 .Film-Release-Year {
   font-size: 1rem;
-  margin-bottom: 1rem;
-  color: white;
+  color: #666;
+  margin: 0.5rem 0;
 }
 
 .Film-Cast {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: white;
+  font-size: 0.9rem;
+  color: #444;
+  margin: 0.5rem 0;
 }
 
 .Film-Cast-Grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  color: white;
+  display: grid; /* Use grid layout */
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-auto-rows: auto; /* Automatically adjust row height */
+  gap: 0.5rem; /* Add space between grid items */
+  margin-top: 1rem;
 }
 
 .Error-Message {
   color: red;
   text-align: center;
   margin-top: 2rem;
+}
+
+.Film-Cast-Card {
+  background-color: #eaeaea;
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  color: #333;
+  text-align: center;
 }
 
