@@ -1,0 +1,37 @@
+.timer-container {
+  background: radial-gradient(ellipse at center, #222 0%, #000 100%);
+  border: 3px solid white;
+  border-radius: 6px;
+  padding: 1rem;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.08),
+              0 0 30px rgba(255, 255, 255, 0.04);
+  filter: grayscale(100%) contrast(120%);
+  animation: flicker 1s infinite;
+  width: 140px; 
+  margin: 0 auto;
+}
+  
+  .timer-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 6rem;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.2);
+    letter-spacing: 4px;
+    filter: blur(0.5px);
+  }
+  
+  /* Flicker effect */
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    20% { opacity: 0.92; }
+    22% { opacity: 1; }
+    40% { opacity: 0.88; }
+    42% { opacity: 1; }
+    60% { opacity: 0.9; }
+    62% { opacity: 1; }
+    80% { opacity: 0.93; }
+    82% { opacity: 1; }
+  }
+  
+  
+  

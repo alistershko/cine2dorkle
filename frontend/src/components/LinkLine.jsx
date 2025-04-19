@@ -1,3 +1,5 @@
+// code won't work until reference points added to film boxes
+
 // CSS FILM LINE - SITS BETWEEN BOXES
 
 import { useEffect, useState } from 'react';

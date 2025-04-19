@@ -9,6 +9,7 @@ import InitialFilmBox from "../../components/InitialFilmBox";
 import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import InputBox from "../../components/InputBox";
+import Timer from "../../components/Timer";
 
 const GamePage = () => {
   let [gameState, setGameState] = useState("idle");

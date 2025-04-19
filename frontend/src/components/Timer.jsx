@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import "../css/Timer.css";
 
 // Need to add code so timer is triggered by:
-//      1. playButton
+//      1. playButton (DONE)
 //      2. Successful go when playing (timer resets)
 
 function Timer({ onTimeUp }) {
@@ -27,13 +28,12 @@ function Timer({ onTimeUp }) {
   }, [seconds, onTimeUp]);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      {/* Swap this out with <img src={`/countdown${seconds}.png`} /> if we use a clock image */}
-      <div className="text-7xl font-bold text-white font-mono animate-pulse">
+    <div className="timer-container flex flex-col items-center justify-center">
+      <div className="timer-text">
         {seconds}
       </div>
     </div>
-  );
-}
+  );  
+};
 
 export default Timer;
