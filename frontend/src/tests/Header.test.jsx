@@ -2,13 +2,9 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import '@testing-library/jest-dom';
-// import Header from "./Header";
 import Header from "../components/header";
 
-// UNIT TESTS
-
 // Header renders logo
-
 describe("Header component", () => {
     it("renders the DoubleFeatureLogo component", () => {
         render(<Header />);
@@ -18,7 +14,6 @@ describe("Header component", () => {
 });
 
 // Minimize works correctly
-
     it("should minimize when scrollY is greater than 50", () => {
         render(<Header />);
         fireEvent.scroll(window, { target: { scrollY: 100 }}); // simulates scroll event
