@@ -1,3 +1,4 @@
+import React from "react";
 import "../css/FilmBox.css";
 
 const GuessMovieBox = ({ movie }) => {
