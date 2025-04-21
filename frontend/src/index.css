@@ -27,14 +27,16 @@
   --film-shadow-color: #fcfcfc;
 }
 
-[data-theme="light"] {
+[data-theme="light"],
+html.light {
   --background-color: #ffffff;
   --text-color: #213547;
   --button-bg-color: #f9f9f9;
   --button-hover-border-color: #747bff;
 }
 
-[data-theme="dark"] {
+[data-theme="dark"],
+html.dark {
   /* Dark mode variables */
   --film-box-shadow-color: rgb(255, 255, 255); /* White shadow for dark mode */
   --film-background-color: #333;
@@ -69,7 +71,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+/* button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -86,4 +88,4 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+} */

@@ -54,17 +54,18 @@ const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
   };
 
   return (
-    <div>
+    <div className="relative w-96 mx-auto mt-4">
       <input
         type="text"
         placeholder="Search for a movie..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onFocus={() => query && suggestions.length > 0 && setShowDropdown(true)}
+        className="w-full bg-white text-gray-900 rounded p-4 dark:bg-gray-500 dark:text-gray-50 border border-gray-400 outline-red-700"
       />
 
-      <div className="suggestions">
-        {showDropdown && suggestions.length > 0 && (
+      {showDropdown && suggestions.length > 0 && (
+        <div className="absolute z-10 bg-white border border-gray-300 rounded shadow-md top-full left-0 right-0">
           <ul>
             {suggestions.map((item, index) => (
               <li
@@ -73,13 +74,14 @@ const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
                   handleSelect(item);
                   handleMovieSelect(item);
                 }}
+                className="text-gray-900 cursor-pointer hover:bg-gray-200 p-2"
               >
                 {item}
               </li>
             ))}
           </ul>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
