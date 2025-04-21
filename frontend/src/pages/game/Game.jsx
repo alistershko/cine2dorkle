@@ -1,5 +1,5 @@
 // dependencies to import
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 // services to import
 import { getInitialMovie } from "../../services/movies";
@@ -11,25 +11,19 @@ import Footer from "../../components/Footer";
 import InputBox from "../../components/InputBox";
 import Timer from "../../components/Timer";
 
+import "./Game.css";
+
 const GamePage = () => {
-  let [gameState, setGameState] = useState("idle");
-  // let [gameTimer, setGameTimer] = useState(0);
-  let [targetMovie, setTargetMovie] = useState();
-  let [guessedMovie, setGuessedMovie] = useState();
   let [moviesPlayed, appendToMoviesPlayed] = useState([]);
-  let [linksPlayed, setLinksPlayed] = useState([]);
-  let [input, setInput] = useState("");
 
   useEffect(() => {
     let isMounted = true; // Flag to track if the component is mounted
-
     const fetchInitialMovie = async () => {
       try {
         const data = await getInitialMovie();
         if (isMounted) {
           if (data && data.id) {
-            setTargetMovie(data);
-            appendToMoviesPlayed((prev) => [...prev, data.id]);
+            appendToMoviesPlayed((prev) => [...prev, { movie: data }]);
           } else {
             console.error("Invalid movie data:", data);
           }
@@ -46,17 +40,34 @@ const GamePage = () => {
     };
   }, []);
 
+  const targetMovie = useMemo(() => {
+    return moviesPlayed[moviesPlayed.length - 1]?.movie;
+  }, [moviesPlayed]);
+
+  const onSuccessfulGuess = (movie, overlappingActors) => {
+    appendToMoviesPlayed((prev) => [...prev, { movie, overlappingActors }]);
+  };
+
   return (
-    <div>
+    <div className="page-container">
       <Header />
       <h1>Enter your guess here</h1>
-      <div>
-        <InputBox />
-          <div className="film-box-container">
-            <InitialFilmBox movie={targetMovie} />
-          </div>
-        <Footer />
+      <div className="game-content">
+        <InputBox
+          targetMovie={targetMovie}
+          onSuccessfulGuess={onSuccessfulGuess}
+        />
+        <div className="film-box-container">
+          {moviesPlayed.map(({ movie, overlappingActors }, index) => (
+            <InitialFilmBox
+              key={index}
+              movie={movie}
+              overlappingActors={overlappingActors}
+            />
+          ))}
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };

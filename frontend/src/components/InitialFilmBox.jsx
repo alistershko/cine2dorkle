@@ -3,7 +3,7 @@ import { getCastFromMovieId } from "../services/movies";
 import "../css/FilmBox.css";
 import { useEffect, useState } from "react";
 
-const InitialFilmBox = ({ movie }) => {
+const InitialFilmBox = ({ movie, overlappingActors }) => {
   const [cast, setCast] = useState([]); // State to store the cast
 
   useEffect(() => {
@@ -44,7 +44,16 @@ const InitialFilmBox = ({ movie }) => {
         <div className="Film-Cast-Grid">
           {cast.map((actor, index) => (
             <div key={index} className="Film-Cast-Card">
-              <div className="Actor-Name">{actor.name}</div>
+              <div
+                className={[
+                  overlappingActors?.includes(actor.name) && "matching-actor",
+                  "Actor-Name",
+                ]
+                  .filter((v) => v)
+                  .join(" ")}
+              >
+                {actor.name}
+              </div>
             </div>
           ))}
         </div>
