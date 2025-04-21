@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/DoubleFeatureLogo.css";
-import DoubleFeature from "../assets/DoubleFeature.png";
+import DoubleFeature from "../assets/DoubleFeature2.png";
 
 export function DoubleFeatureLogo() {
   return (

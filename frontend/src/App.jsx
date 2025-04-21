@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./App.css";
 
-import  GamePage  from "./pages/game/Game";
+import GamePage from "./pages/game/Game";
 import { HomePage } from "./pages/home/HomePage";
 
 const router = createBrowserRouter([

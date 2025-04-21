@@ -57,22 +57,19 @@ export const getInitialMovie = async () => {
 };
 
 // Post request for a correctly guessed movie
-export const guessMovie = async (movie_title) => {
+export const guessMovie = async (movie_title, target_movie_id) => {
   const requestOptions = {
     method: "POST",
     headers: {
       accept: "application/json",
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ movie_title }),
+    body: JSON.stringify({ movie_title, target_movie_id }),
   };
-  const response = await fetch(
-    `${BACKEND_URL}/movie/${movie_title}`,
-    requestOptions
-  );
-  if (response.status !== 201) {
+  const response = await fetch(`${BACKEND_URL}/game/guess`, requestOptions);
+  if (!response.ok) {
     throw new Error("Failed to guess movie");
   }
-  // Returns: If >0 matches between target_movie cast array and guessed_Movie cast array return success and add movie to array of guessed films
   return response.json();
 };
 
