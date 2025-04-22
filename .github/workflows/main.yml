@@ -40,11 +40,6 @@ jobs:
       - name: Run backend tests
         working-directory: ./api
         run: npm ci
-
-    # Step 5: Build backend
-      - name: Build backend
-        working-directory: ./api
-        run: npm run dev
     
   frontend:
     name: Frontend Tests and Build
@@ -76,4 +71,4 @@ jobs:
       # Step 5: Run frontend tests
       - name: Run frontend tests
         working-directory: ./frontend
-        run: npm ci
+        run: npm test
