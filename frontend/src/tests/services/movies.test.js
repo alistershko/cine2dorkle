@@ -2,6 +2,8 @@
 import { describe, it, expect, vi } from "vitest";
 import { getInitialMovie, getCastFromMovieId } from "../../services/movies";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 describe("getInitialMovie", () => {
   it("should fetch the initial movie", async () => {
     const mockResponse = { title: "Inception", id: 123 };
@@ -58,7 +60,7 @@ describe("getCastFromMovieId", () => {
       const data = await getCastFromMovieId(123);
       expect(data).toEqual(mockResponse);
       expect(fetch).toHaveBeenCalledWith(
-        "http://localhost:3000/tmdb/cast/123",
+        `${BACKEND_URL}/tmdb/cast/123`,
         {
           method: "GET",
           headers: {

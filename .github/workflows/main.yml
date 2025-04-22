@@ -55,6 +55,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 23.9.0
+    
+    # Step 2: Set up environment variables
+      - name: Set environment variables
+        run: echo "BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}" >> .env
 
       # Step 3: Clean up node_modules and package-lock.json
       - name: Clean up dependencies
