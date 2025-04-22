@@ -72,16 +72,28 @@ const processGuess = async (req, res) => {
     for (const guessedMovie of searchResults) {
       console.log("Checking movie:", guessedMovie);
       // Use the service function directly
+      const guessedMovieId = guessedMovie.id;
       const guessedCast = await fetchCastFromMovieId(guessedMovie.id);
       const matchingCast = guessedCast.filter((actor) =>
         targetCastIds.has(actor.id)
       );
 
+      // Check if guessed movie has been played already
+      const game = activeGames.get(1);
+      if (game && game.movieIDsPlayed.includes(guessedMovieId)) {
+        console.log("Movie has already been played:", guessedMovie.title);
+        return res.status(400).json({ error: "Movie has already been played" });
+      }
+
+      // NEED TO CHECK HOW MANY TIMES A CAST MEMBER HAS BEEN PLAYED
+
+      // On a successful guess
       if (matchingCast.length > 0) {
         const game = activeGames.get(1);
         if (game) {
           game.targetMovie = guessedMovie;
           game.movieIDsPlayed.push(guessedMovie.id);
+          game.linkIDsPlayed.push(matchingCast);
         }
 
         return res.status(200).json({ guessedMovie, matchingCast });
