@@ -51,7 +51,6 @@ const GamePage = () => {
   return (
     <div className="page-container">
       <Header />
-      <h1>Enter your guess here</h1>
       <div className="game-content">
         <InputBox
           targetMovie={targetMovie}
