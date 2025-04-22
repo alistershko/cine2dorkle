@@ -42,7 +42,7 @@ jobs:
         run: npm test
     
   frontend:
-    name: Frontend Tests and Build
+    name: Frontend Tests
     runs-on: ubuntu-latest
 
     steps:
