@@ -47,13 +47,17 @@ const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
 
     const result = await guessMovie(movieTitle, targetMovie.id);
 
-    if (result.status !== 200) {
+    if (result.error) {
       setError(result.error);
+      console.log("hello");
+      console.log(result);
       return;
     }
 
     const { guessedMovie, matchingCast } = result;
-
+    console.log(result);
+    console.log(guessedMovie);
+    console.log(matchingCast);
 
     onSuccessfulGuess(
       guessedMovie,
