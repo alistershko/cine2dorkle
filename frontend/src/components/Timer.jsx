@@ -5,8 +5,13 @@ import "../css/Timer.css";
 //      1. playButton (DONE)
 //      2. Successful go when playing (timer resets)
 
-function Timer({ onTimeUp }) {
-  const [seconds, setSeconds] = useState(5);
+function Timer({ onTimeUp, resetTrigger }) {
+  const [seconds, setSeconds] = useState(15);
+
+  // Resets timer when resetTrigger changes
+  useEffect(() => {
+    setSeconds(15); // Set back to full time 
+  }, [resetTrigger]);
 
   // This runs when component shows & whenever 'seconds' changes
   useEffect(() => {

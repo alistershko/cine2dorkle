@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getSearchResults } from "../services/movies";
 import { guessMovie } from "../services/game";
 
-const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
+const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -57,10 +57,9 @@ const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
     }
 
     const { guessedMovie, matchingCast } = result;
-    console.log(result);
-    console.log(guessedMovie);
-    console.log(matchingCast);
 
+    onGuessMade(movieTitle);
+    
     onSuccessfulGuess(
       guessedMovie,
       matchingCast.map((actor) => actor.name)
