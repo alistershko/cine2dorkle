@@ -1,4 +1,4 @@
-.film-box-container{
+.film-box-container {
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
@@ -40,9 +40,9 @@
 .game-mode-indicator.hard {
   background-color: #913838;
   color: white;
+}
 
 .slide {
   height: 4rem;
   z-index: 2;
-
 }

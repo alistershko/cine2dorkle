@@ -41,7 +41,7 @@ const GamePage = () => {
     fetchInitialMovie();
 
     return () => {
-      isMounted = false; // Cleanup to prevent setting state on unmounted component - This prevents a weird glitch in development mode
+      isMounted = false; // Cleanup to prevent setting state on unmounted component
     };
   }, []);
 
@@ -55,8 +55,8 @@ const GamePage = () => {
 
   const slides = [];
   for (let i = 0; i < 2; i++) {
-    slides.push(<img src={slide} alt="slide" className="slide"></img>)
-  };
+    slides.push(<img src={slide} alt="slide" className="slide"></img>);
+  }
 
   return (
     <div className="page-container">
@@ -68,18 +68,15 @@ const GamePage = () => {
         />
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
-
-            <InitialFilmBox
-              key={index}
-              movie={movie}
-              overlappingActors={overlappingActors}
-              gameMode={gameMode}
-              isInitialFilm={index === 0} // The first film (index 0) is the initial film
-            />
-              {index === moviesPlayed.length - 1 ||
-              <div>
-                {slides}
-              </div>}
+            <>
+              <InitialFilmBox
+                key={index}
+                movie={movie}
+                overlappingActors={overlappingActors}
+                gameMode={gameMode}
+                isInitialFilm={index === 0}
+              />
+              {index === moviesPlayed.length - 1 || <div>{slides}</div>}
             </>
           ))}
         </div>
