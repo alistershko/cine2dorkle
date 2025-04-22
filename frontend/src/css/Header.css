@@ -33,13 +33,19 @@
   height: var(--navbar-minimized-height);
   padding: 0.3rem var(--navbar-minimized-padding);
   /* Reduce the translation to prevent moving off screen */
-  transform: translateX(-5%);
+  transform: translateY(-5%);
+  transition-duration: 0.4s;
+}
+
+.logo {
+  transition-duration: 0.4s;
 }
 
 /* Make the logo container move more to the left but stay visible */
 .header.minimized .logo {
   transform: scale(0.65); /* Just scale down without moving */
   transform-origin: left center; /* Keep the origin on the left */
+  transition-duration: 0.4s;
 }
 
 /* Adjust the theme toggle to move slightly right */
@@ -95,7 +101,7 @@ html {
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   .header.minimized {
-    transform: translateX(-2%); /* Minimal shift on small screens */
+    transform: translateY(-2%); /* Minimal shift on small screens */
   }
 
   .header.minimized .logo {
@@ -103,7 +109,7 @@ html {
   }
 
   .header.minimized button {
-    transform: translateX(2%); /* Minimal shift on small screens */
+    transform: translateY(2%); /* Minimal shift on small screens */
   }
 
   .header-right {

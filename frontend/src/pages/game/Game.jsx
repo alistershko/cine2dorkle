@@ -1,6 +1,8 @@
 // dependencies to import
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
+import slideLight from "../../assets/slide-trans-light.png";
+import slide from "../../assets/slide-trans.png";
 
 // services to import
 import { getInitialMovie } from "../../services/movies";
@@ -51,6 +53,11 @@ const GamePage = () => {
     appendToMoviesPlayed((prev) => [...prev, { movie, overlappingActors }]);
   };
 
+  const slides = [];
+  for (let i = 0; i < 2; i++) {
+    slides.push(<img src={slide} alt="slide" className="slide"></img>)
+  };
+
   return (
     <div className="page-container">
       <Header gameMode={gameMode} />
@@ -61,6 +68,7 @@ const GamePage = () => {
         />
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
+
             <InitialFilmBox
               key={index}
               movie={movie}
@@ -68,6 +76,11 @@ const GamePage = () => {
               gameMode={gameMode}
               isInitialFilm={index === 0} // The first film (index 0) is the initial film
             />
+              {index === moviesPlayed.length - 1 ||
+              <div>
+                {slides}
+              </div>}
+            </>
           ))}
         </div>
       </div>
