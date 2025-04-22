@@ -34,7 +34,7 @@ jobs:
       # Step 3: Install backend dependencies
       - name: Install backend dependencies
         working-directory: ./api
-        run: npm ci
+        run: npm install
 
       # Step 4: Run backend tests
       - name: Run backend tests
@@ -66,7 +66,7 @@ jobs:
       # Step 4: Install frontend dependencies
       - name: Install frontend dependencies
         working-directory: ./frontend
-        run: npm ci
+        run: npm install
 
       # Step 5: Run frontend tests
       - name: Run frontend tests
