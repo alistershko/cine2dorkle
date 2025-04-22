@@ -34,6 +34,7 @@ function Header({ gameMode }) {
 
       <div className="header-right">
         <ThemeToggle />
+        <br />
         {gameMode && (
           <div className={`game-mode-indicator ${gameMode}`}>
             {gameMode === "easy" ? "Easy Mode" : "Hard Mode"}
