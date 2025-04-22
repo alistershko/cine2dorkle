@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getSearchResults, guessMovie } from "../services/movies";
 
-const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
+const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -50,6 +50,10 @@ const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
       console.log("Guess result:", response);
     } catch (error) {
       console.error("Error guessing movie:", error);
+    }
+    
+    if (onGuessMade) {
+      onGuessMade(movieTitle);
     }
   };
 
