@@ -1,5 +1,7 @@
 // dependencies to import
 import { useState, useEffect, useMemo } from "react";
+import slideLight from "../../assets/slide-trans-light.png";
+import slide from "../../assets/slide-trans.png";
 
 // services to import
 import { getInitialMovie } from "../../services/movies";
@@ -48,6 +50,11 @@ const GamePage = () => {
     appendToMoviesPlayed((prev) => [...prev, { movie, overlappingActors }]);
   };
 
+  const slides = [];
+  for (let i = 0; i < 4; i++) {
+    slides.push(<img src={slideLight} alt="slide" style={{height: "2rem"}}></img>)
+  };
+
   return (
     <div className="page-container">
       <Header />
@@ -59,11 +66,16 @@ const GamePage = () => {
         />
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
-            <InitialFilmBox
-              key={index}
-              movie={movie}
-              overlappingActors={overlappingActors}
-            />
+            <>
+              <div>
+                {slides}
+              </div>
+              <InitialFilmBox
+                key={index}
+                movie={movie}
+                overlappingActors={overlappingActors}
+              />
+            </>
           ))}
         </div>
       </div>

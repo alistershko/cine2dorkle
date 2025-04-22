@@ -1,6 +1,9 @@
-.film-box-container {
+.film-box-container{
   display: flex;
   flex-direction: column-reverse;
+  align-items: center;
+  gap: 0px;
+  margin: 2rem;
 }
 
 * {
