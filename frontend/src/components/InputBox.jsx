@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getSearchResults, guessMovie } from "../services/movies";
+import { getSearchResults } from "../services/movies";
+import { guessMovie } from "../services/game";
 
 const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
   const [query, setQuery] = useState("");

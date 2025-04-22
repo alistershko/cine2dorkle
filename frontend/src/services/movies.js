@@ -16,22 +16,6 @@ export const getMovies = async () => {
   return data;
 };
 
-// Fetch one of the top movies to set as starting movie
-// export const getInitialMovie = async () => {
-//     const requestOptions = {
-//         method: 'GET',
-//         headers: {
-//             'accept': 'application/json',
-//         },
-//     };
-//     const response = await fetch(`${BACKEND_URL}/game/initialMovie`, requestOptions);
-//     if (response.status !== 200) {
-//         throw new Error('Failed to fetch initial movie');
-//     }
-//     const data = await response.json();
-//     return data;
-// }
-
 export const getInitialMovie = async () => {
   try {
     const response = await fetch(`${BACKEND_URL}/tmdb/initialMovie`, {
@@ -54,23 +38,6 @@ export const getInitialMovie = async () => {
     console.error("Fetch error in getInitialMovie:", err);
     throw err;
   }
-};
-
-// Post request for a correctly guessed movie
-export const guessMovie = async (movie_title, target_movie_id) => {
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ movie_title, target_movie_id }),
-  };
-  const response = await fetch(`${BACKEND_URL}/game/guess`, requestOptions);
-  if (!response.ok) {
-    throw new Error("Failed to guess movie");
-  }
-  return response.json();
 };
 
 // Get request for the guessed movie to display to the user
