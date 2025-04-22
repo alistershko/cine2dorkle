@@ -66,14 +66,15 @@ const GamePage = () => {
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
             <>
-              <div>
-                {slides}
-              </div>
               <InitialFilmBox
                 key={index}
                 movie={movie}
                 overlappingActors={overlappingActors}
               />
+              {index === moviesPlayed.length - 1 ||
+              <div>
+                {slides}
+              </div>}
             </>
           ))}
         </div>
