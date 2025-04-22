@@ -30,7 +30,7 @@ export const guessMovie = async (movie_title, target_movie_id) => {
   };
   const response = await fetch(`${BACKEND_URL}/game/guess`, requestOptions);
   if (!response.ok) {
-    throw new Error("Failed to guess movie");
+    return response.json();
   }
   return response.json();
 };
