@@ -1,6 +1,10 @@
 // dependencies to import
 import { useState, useEffect, useMemo } from "react";
+
 import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import slideLight from "../../assets/slide-trans-light.png";
+import slide from "../../assets/slide-trans.png";
 
 // services to import
 import { getInitialMovie } from "../../services/movies";
@@ -41,6 +45,8 @@ const GamePage = () => {
 // useEffect(() => {
 //   fetchInitialMovie();
 // }, []); // Only runs once when the component mounts
+  let [searchParams] = useSearchParams();
+  const gameMode = searchParams.get("mode") || "easy";
 
   useEffect(() => {
     let isMounted = true; // Flag to track if the component is mounted
@@ -102,6 +108,11 @@ const GamePage = () => {
     setIsGameOver(true); // Change to ResultsModal later
   };
 
+  const slides = [];
+  for (let i = 0; i < 2; i++) {
+    slides.push(<img src={slide} alt="slide" className="slide"></img>);
+  }
+
   return (
     <div className="page-container">
       <Header />
@@ -110,6 +121,7 @@ const GamePage = () => {
           resetTrigger={timerResetTrigger}
           onTimeUp={handleTimeUp}
         />
+      <Header gameMode={gameMode} />
       <div className="game-content">
         <InputBox
           targetMovie={targetMovie}
@@ -118,11 +130,16 @@ const GamePage = () => {
         />
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
-            <InitialFilmBox
-              key={index}
-              movie={movie}
-              overlappingActors={overlappingActors}
-            />
+            <>
+              <InitialFilmBox
+                key={index}
+                movie={movie}
+                overlappingActors={overlappingActors}
+                gameMode={gameMode}
+                isInitialFilm={index === 0}
+              />
+              {index === moviesPlayed.length - 1 || <div>{slides}</div>}
+            </>
           ))}
         </div>
       </div>

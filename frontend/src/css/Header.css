@@ -1,10 +1,12 @@
 :root {
-  --navbar-height: 150px;
-  --navbar-minimized-height: 90px;
+  --navbar-height: 120px; /* Reduced initial height */
+  --navbar-minimized-height: 50px; /* Further reduced minimized height */
+  --navbar-full-padding: 2rem;
+  --navbar-minimized-padding: 1rem;
 }
 
 .header-container {
-  margin-top: 50px;
+  margin-top: var(--navbar-height); /* Match to header height */
 }
 
 .header {
@@ -12,12 +14,12 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #7a785b00;
+  padding: 1rem var(--navbar-full-padding);
+  background-color: #7a785b00; /* Consider adding a slight background for visibility */
   position: fixed;
-  top: 0; /* Position at the top of the viewport */
-  left: 0; /* This is to ensure it starts from the left edge */
-  right: 0; /* This is to ensure it extends to the right edge */
+  top: 0;
+  left: 0;
+  right: 0;
   height: var(--navbar-height);
   width: 100%;
   margin: 0;
@@ -26,20 +28,96 @@
   transition: all 0.3s ease;
 }
 
-/* Class for minimized navbar */
+/* Class for minimized navbar - simpler transformations */
 .header.minimized {
   height: var(--navbar-minimized-height);
-  padding: 0.5rem 2rem;
+  padding: 0.3rem var(--navbar-minimized-padding);
+  /* Reduce the translation to prevent moving off screen */
+  transform: translateY(-5%);
+  transition-duration: 0.4s;
 }
 
-/* This is to prevent content from hiding behind the navbar */
+.logo {
+  transition-duration: 0.4s;
+}
+
+/* Make the logo container move more to the left but stay visible */
+.header.minimized .logo {
+  transform: scale(0.65); /* Just scale down without moving */
+  transform-origin: left center; /* Keep the origin on the left */
+  transition-duration: 0.4s;
+}
+
+/* Adjust the theme toggle to move slightly right */
+.header.minimized button {
+  transform: translateX(5%); /* Reduced from 40% to prevent moving off screen */
+  scale: 0.8; /* Further reduce button size */
+}
+
+/* Ensure content doesn't hide behind the navbar */
 body {
-  padding-top: 300px;
-  margin-top: 200px;
+  padding-top: var(--navbar-height);
+  margin: 0; /* Reset margin */
 }
 
 /* This ensures that anchors and scroll targets account for the navbar */
 html {
-  scroll-padding-top: 300px;
+  scroll-padding-top: var(--navbar-height);
 }
 
+/* Add this to your existing CSS */
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.game-mode-indicator {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.game-mode-indicator.easy {
+  background-color: #173038;
+  color: white;
+}
+
+.game-mode-indicator.hard {
+  background-color: #913838;
+  color: white;
+}
+
+/* Add responsive styles for minimized header */
+.header.minimized .header-right {
+  transform: scale(0.8);
+  transform-origin: right center;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .header.minimized {
+    transform: translateY(-2%); /* Minimal shift on small screens */
+  }
+
+  .header.minimized .logo {
+    transform: scale(0.6); /* Just scale without translation on small screens */
+  }
+
+  .header.minimized button {
+    transform: translateY(2%); /* Minimal shift on small screens */
+  }
+
+  .header-right {
+    gap: 3px;
+  }
+
+  .game-mode-indicator {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+}

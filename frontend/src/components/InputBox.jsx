@@ -5,6 +5,7 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [error, setError] = useState(""); // Add state for error message
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
@@ -19,10 +20,17 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
   }, [query]);
 
   const fetchSuggestions = async (input) => {
-    const searchResult = await getSearchResults(input);
-    const filtered = searchResult.map((item) => item.title);
-    setSuggestions(filtered);
-    setShowDropdown(true);
+    try {
+      const searchResult = await getSearchResults(input);
+      const filtered = searchResult.map((item) => item.title);
+      setSuggestions(filtered);
+      setShowDropdown(true);
+      // Clear any previous errors when new suggestions are loaded
+      setError("");
+    } catch (err) {
+      console.error("Error fetching suggestions:", err);
+      setError("Failed to fetch movie suggestions");
+    }
   };
 
   const handleSelect = (item) => {
@@ -32,7 +40,7 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
 
   const handleMovieSelect = async (movieTitle) => {
     if (!targetMovie || !targetMovie.id) {
-      console.error("Target movie is not set or invalid");
+      setError("Unable to process guess: No target movie set");
       return;
     }
 
@@ -47,9 +55,24 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
         matchingCast.map((actor) => actor.name)
       );
 
-      console.log("Guess result:", response);
+      // Clear the input field after successful guess
+      setQuery("");
+      setShowDropdown(false);
+      setError("");
     } catch (error) {
       console.error("Error guessing movie:", error);
+      // Display appropriate error message based on error status
+      if (error.message.includes("400")) {
+        setError("No matching cast members found between these films");
+      } else if (error.message.includes("404")) {
+        setError("Movie not found");
+      } else {
+        setError("No matching cast members found between these films.");
+      }
+
+      // Also clear the input field after an unsuccessful guess
+      setQuery("");
+      setShowDropdown(false);
     }
     
     if (onGuessMade) {
@@ -59,6 +82,9 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
 
   return (
     <div className="relative w-96 mx-auto mt-4">
+      {/* Error message display */}
+      {error && <div className="error-message">{error}</div>}
+
       <input
         type="text"
         placeholder="Search for a movie..."

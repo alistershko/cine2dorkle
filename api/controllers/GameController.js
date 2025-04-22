@@ -14,7 +14,7 @@ class Game {
     this.targetMovie = null; // Need to set this to a random movie from the API
     this.movieInput = null; // Where an input movie will be stored when a player sends a movie title from the frontend
     this.movieIDsPlayed = []; // Movie IDs that have been played
-    this.linkIDsPlayed = []; // Cast member IDs that have been played
+    this.linkIDsPlayed = {}; // Cast member IDs that have been played, and how many times they have been played
   }
 }
 
@@ -72,19 +72,61 @@ const processGuess = async (req, res) => {
     for (const guessedMovie of searchResults) {
       console.log("Checking movie:", guessedMovie);
       // Use the service function directly
+      const guessedMovieId = guessedMovie.id;
       const guessedCast = await fetchCastFromMovieId(guessedMovie.id);
       const matchingCast = guessedCast.filter((actor) =>
         targetCastIds.has(actor.id)
       );
 
+      // Check if guessed movie has been played already
+      const game = activeGames.get(1);
+      if (game && game.movieIDsPlayed.includes(guessedMovieId)) {
+        console.log("Movie has already been played:", guessedMovie.title);
+        return res.status(400).json({ error: "Movie has already been played" });
+      }
+
+      // Check if any cast member has been used too many times
+      const maxCastUsageLimit = 3;
+      const overusedCastMember = matchingCast.find(
+        (cast) => (game.linkIDsPlayed[cast.id] || 0) >= maxCastUsageLimit
+      );
+
+      if (overusedCastMember) {
+        return res.status(400).json({
+          error: `Cast member ${overusedCastMember.name} has already been used ${maxCastUsageLimit} times`,
+        });
+      }
+
+      // On a successful guess
       if (matchingCast.length > 0) {
         const game = activeGames.get(1);
         if (game) {
           game.targetMovie = guessedMovie;
           game.movieIDsPlayed.push(guessedMovie.id);
+
+          // Update cast member usage counts
+          matchingCast.forEach((cast) => {
+            // Add cast member to the played list if not already existing, then increment the count
+            game.linkIDsPlayed[cast.id] = (game.linkIDsPlayed[cast.id] || 0) + 1;
+          });
         }
 
-        return res.status(200).json({ guessedMovie, matchingCast });
+        // Create a response object with the guessed movie, matching cast members and their usage counts
+        const response = {
+          guessedMovie: {
+            title: guessedMovie.title,
+            release_date: guessedMovie.release_date,
+            id: guessedMovie.id,
+            poster_path: guessedMovie.poster_path,
+          },
+          matchingCast: matchingCast.map((actor) => ({
+            name: actor.name,
+            id: actor.id,
+            usageCount: game.linkIDsPlayed[actor.id],
+          })),
+        };
+
+        return res.status(200).json(response);
       }
     }
 

@@ -1,6 +1,9 @@
 .film-box-container {
   display: flex;
   flex-direction: column-reverse;
+  align-items: center;
+  gap: 0px;
+  margin: 2rem;
 }
 
 * {
@@ -17,4 +20,29 @@
 
 .game-content {
   flex-grow: 1;
+}
+
+.game-mode-indicator {
+  position: absolute;
+  top: 75px;
+  right: 20px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.game-mode-indicator.easy {
+  background-color: #173038;
+  color: white;
+}
+
+.game-mode-indicator.hard {
+  background-color: #913838;
+  color: white;
+}
+
+.slide {
+  height: 4rem;
+  z-index: 2;
 }
