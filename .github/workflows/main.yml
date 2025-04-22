@@ -1,0 +1,71 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  backend:
+    name: Backend Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Step 3: Install backend dependencies
+      - name: Install backend dependencies
+        working-directory: ./api
+        run: npm install
+
+      # Step 4: Run backend tests
+      - name: Run backend tests
+        working-directory: ./api
+        run: npm test
+    
+    # Step 5: Build backend
+      - name: Build backend
+        working-directory: ./api
+        run: npm run dev
+
+  frontend:
+    name: Frontend Tests and Build
+    runs-on: ubuntu-latest
+    needs: backend
+
+    steps:
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Step 3: Install frontend dependencies
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      # Step 4: Run frontend tests
+      - name: Run frontend tests
+        working-directory: ./frontend
+        run: npm test
+
+      # Step 5: Build frontend
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run run dev
