@@ -1,11 +1,11 @@
-import React from "react";
+// import React from "react";
 import PlayAgainButton from "./PlayAgainButton";
 import LeaveGameButton from "./LeaveGameButton";
 import "../css/ResultsModal.css";
+import React, { useState } from "react";
 // import "../css/Modal.css";
 
 const ResultsModal = ({ isOpen, playAgain, leaveGame, score }) => {
-    // if (!isOpen) return null;
 
     return (
         <div>
