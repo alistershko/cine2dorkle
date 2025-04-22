@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
-import { vi } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import InitialFilmBox from "../components/InitialFilmBox";
 import { getCastFromMovieId } from "../services/movies";
 
