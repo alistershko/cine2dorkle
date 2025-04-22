@@ -45,42 +45,32 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
       return;
     }
 
-    try {
-      const { guessedMovie, matchingCast } = await guessMovie(
-        movieTitle,
-        targetMovie.id
-      );
+    const result = await guessMovie(movieTitle, targetMovie.id);
 
-      onSuccessfulGuess(
-        guessedMovie,
-        matchingCast.map((actor) => actor.name)
-      );
+    if (result.error) {
+      setError(result.error);
 
-      // Clear the input field after successful guess
+      // Clear the input field after an unsuccessful guess
       setQuery("");
       setShowDropdown(false);
-      setError("");
-
-      if (onGuessMade) {
-        onGuessMade(movieTitle);
-      }      
-
-    } catch (error) {
-      console.error("Error guessing movie:", error);
-      // Display appropriate error message based on error status
-      if (error.message.includes("400")) {
-        setError("No matching cast members found between these films");
-      } else if (error.message.includes("404")) {
-        setError("Movie not found");
-      } else {
-        setError("No matching cast members found between these films.");
-      }
-
-      // Also clear the input field after an unsuccessful guess
-      setQuery("");
-      setShowDropdown(false);
+      return;
     }
-  };
+
+    const { guessedMovie, matchingCast } = result;
+
+    onGuessMade(movieTitle);
+    
+    onSuccessfulGuess(
+      guessedMovie,
+      matchingCast.map((actor) => actor.name)
+    );
+
+    // Clear the input field after successful guess
+    setQuery("");
+    setShowDropdown(false);
+    setError("");
+
+  }
 
   return (
     <div className="relative w-96 mx-auto mt-4">
