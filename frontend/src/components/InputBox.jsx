@@ -49,8 +49,10 @@ const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
 
     if (result.error) {
       setError(result.error);
-      console.log("hello");
-      console.log(result);
+
+      // Clear the input field after an unsuccessful guess
+      setQuery("");
+      setShowDropdown(false);
       return;
     }
 
@@ -69,25 +71,7 @@ const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
     setShowDropdown(false);
     setError("");
 
-      //  } catch (error) {
-    //   console.error("Error guessing movie:", error);
-      // Display appropriate error message recieived from the backend
-      // if (error.status !== "200") {
-      //   setError(res);
-
-
-      // if (error.message.includes("400")) {
-      //   setError("No matching cast members found between these films");
-      // } else if (error.message.includes("404")) {
-      //   setError("Movie not found");
-      // } else {
-      //   setError("No matching cast members found between these films.");
-      // }
-
-      // Also clear the input field after an unsuccessful guess
-      setQuery("");
-      setShowDropdown(false);
-    }
+  }
 
   return (
     <div className="relative w-96 mx-auto mt-4">
