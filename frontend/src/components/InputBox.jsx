@@ -60,6 +60,11 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
       setQuery("");
       setShowDropdown(false);
       setError("");
+
+      if (onGuessMade) {
+        onGuessMade(movieTitle);
+      }      
+
     } catch (error) {
       console.error("Error guessing movie:", error);
       // Display appropriate error message based on error status
@@ -74,10 +79,6 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
       // Also clear the input field after an unsuccessful guess
       setQuery("");
       setShowDropdown(false);
-    }
-    
-    if (onGuessMade) {
-      onGuessMade(movieTitle);
     }
   };
 
