@@ -1,5 +1,6 @@
 // dependencies to import
 import { useState, useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import slideLight from "../../assets/slide-trans-light.png";
 import slide from "../../assets/slide-trans.png";
 
@@ -17,6 +18,8 @@ import "./Game.css";
 
 const GamePage = () => {
   let [moviesPlayed, appendToMoviesPlayed] = useState([]);
+  let [searchParams] = useSearchParams();
+  const gameMode = searchParams.get("mode") || "easy";
 
   useEffect(() => {
     let isMounted = true; // Flag to track if the component is mounted
@@ -38,7 +41,7 @@ const GamePage = () => {
     fetchInitialMovie();
 
     return () => {
-      isMounted = false; // Cleanup to prevent setting state on unmounted component
+      isMounted = false; // Cleanup to prevent setting state on unmounted component - This prevents a weird glitch in development mode
     };
   }, []);
 
@@ -57,7 +60,7 @@ const GamePage = () => {
 
   return (
     <div className="page-container">
-      <Header />
+      <Header gameMode={gameMode} />
       <div className="game-content">
         <InputBox
           targetMovie={targetMovie}
@@ -65,12 +68,14 @@ const GamePage = () => {
         />
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
-            <>
-              <InitialFilmBox
-                key={index}
-                movie={movie}
-                overlappingActors={overlappingActors}
-              />
+
+            <InitialFilmBox
+              key={index}
+              movie={movie}
+              overlappingActors={overlappingActors}
+              gameMode={gameMode}
+              isInitialFilm={index === 0} // The first film (index 0) is the initial film
+            />
               {index === moviesPlayed.length - 1 ||
               <div>
                 {slides}
