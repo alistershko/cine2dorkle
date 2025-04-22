@@ -4,7 +4,7 @@ import LeaveGameButton from "./LeaveGameButton";
 import "../css/ResultsModal.css";
 // import "../css/Modal.css";
 
-const ResultsModal = ({ isOpen, playAgain, score }) => {
+const ResultsModal = ({ isOpen, playAgain, leaveGame, score }) => {
     // if (!isOpen) return null;
 
     return (
@@ -15,7 +15,7 @@ const ResultsModal = ({ isOpen, playAgain, score }) => {
                 <h2>Game Over</h2>
                 <p>Your Score: {score}</p>
                 <PlayAgainButton onClick={playAgain} />
-                {/* <LeaveGameButton onClick={leaveGame} /> */}
+                <LeaveGameButton onClick={leaveGame} />
             </div>
             </div>
         )}

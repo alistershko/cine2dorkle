@@ -4,7 +4,7 @@ const LeaveGameButton = ({ onClick }) => {
 
   return (
     <button className="modal-button" onClick={onClick}>
-      Leave Game
+      Home
     </button>
   );
 };

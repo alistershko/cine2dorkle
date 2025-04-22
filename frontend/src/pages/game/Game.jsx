@@ -91,9 +91,9 @@ const GamePage = () => {
     // fetchInitialMovie();
   }
     // Function called when 'Leave Game' button is clicked on ResultsModal
-    // const leaveGame = () => {
-    //   navigate("/");
-    // }
+    const leaveGame = () => {
+      navigate("/");
+    }
 
   const handleTimeUp = () => {
     setIsGameOver(true); // Change to ResultsModal later
@@ -127,7 +127,7 @@ const GamePage = () => {
       <ResultsModal 
           isOpen={isGameOver}
           playAgain={playAgain}
-          // leaveGame={leaveGame}
+          leaveGame={leaveGame}
           score={score}
         />
     </div>
