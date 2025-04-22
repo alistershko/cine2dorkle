@@ -55,8 +55,9 @@ const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
         matchingCast.map((actor) => actor.name)
       );
 
-      console.log("Guess result:", response);
-      // Clear error on successful guess
+      // Clear the input field after successful guess
+      setQuery("");
+      setShowDropdown(false);
       setError("");
     } catch (error) {
       console.error("Error guessing movie:", error);
@@ -68,6 +69,10 @@ const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
       } else {
         setError("No matching cast members found between these films.");
       }
+
+      // Also clear the input field after an unsuccessful guess
+      setQuery("");
+      setShowDropdown(false);
     }
   };
 
