@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getSearchResults } from "../services/movies";
 import { guessMovie } from "../services/game";
 
-const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
+const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -74,6 +74,10 @@ const InputBox = ({ targetMovie, onSuccessfulGuess }) => {
       // Also clear the input field after an unsuccessful guess
       setQuery("");
       setShowDropdown(false);
+    }
+    
+    if (onGuessMade) {
+      onGuessMade(movieTitle);
     }
   };
 
