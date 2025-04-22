@@ -51,8 +51,8 @@ const GamePage = () => {
   };
 
   const slides = [];
-  for (let i = 0; i < 4; i++) {
-    slides.push(<img src={slideLight} alt="slide" style={{height: "2rem"}}></img>)
+  for (let i = 0; i < 2; i++) {
+    slides.push(<img src={slide} alt="slide" className="slide"></img>)
   };
 
   return (

@@ -21,3 +21,8 @@
 .game-content {
   flex-grow: 1;
 }
+
+.slide {
+  height: 4rem;
+  z-index: 2;
+}
