@@ -71,7 +71,10 @@ const GamePage = () => {
   }, [moviesPlayed]);
 
   const onSuccessfulGuess = (movie, overlappingActors) => {
+    console.log("onSuccessfulGuess");
     appendToMoviesPlayed((prev) => [...prev, { movie, overlappingActors }]);
+    setScore((prevScore) => prevScore + 1);
+    console.log("score: " + (score + 1));
   };
 
   // Resets timer when guess is made
