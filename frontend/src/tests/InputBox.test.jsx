@@ -19,14 +19,14 @@ describe("InputBox", () => {
   // Checks there's an input field
   it("renders input field", () => {
     render(<InputBox />);
-    const input = screen.getByPlaceholderText(/search for a fruit/i);
+    const input = screen.getByPlaceholderText(/search for a movie.../i);
     expect(input).toBeInTheDocument();
   });
 
   // Checks input is updated when user types
   it("updates input value when typed", () => {
     render(<InputBox />);
-    const input = screen.getByPlaceholderText(/search for a fruit/i); // Need to update with placeholder
+    const input = screen.getByPlaceholderText(/search for a movie.../i); // Need to update with placeholder
     fireEvent.change(input, { target: { value: "apple" } });
     expect(input.value).toBe("apple");
   });
@@ -36,7 +36,7 @@ describe("InputBox", () => {
     getSearchResults.mockResolvedValue([{ title: "Apple" }, { title: "Banana" }]);
 
     render(<InputBox />);
-    const input = screen.getByPlaceholderText(/search for a fruit/i);
+    const input = screen.getByPlaceholderText(/search for a movie.../i);
     fireEvent.change(input, { target: { value: "app" } });
 
     await waitFor(() => {
@@ -49,7 +49,7 @@ describe("InputBox", () => {
     getSearchResults.mockResolvedValue([{ title: "Apple" }, { title: "Apricot" }]);
 
     render(<InputBox />);
-    const input = screen.getByPlaceholderText(/search for a fruit/i);
+    const input = screen.getByPlaceholderText(/search for a movie.../i);
     fireEvent.change(input, { target: { value: "ap" } });
 
     await screen.findByText("Apple"); // Waits for the dropdown
@@ -62,7 +62,7 @@ describe("InputBox", () => {
     getSearchResults.mockResolvedValue([{ title: "Apple" }]);
 
     render(<InputBox />);
-    const input = screen.getByPlaceholderText(/search for a fruit/i);
+    const input = screen.getByPlaceholderText(/search for a movie.../i);
     fireEvent.change(input, { target: { value: "app" } });
 
     const item = await screen.findByText("Apple");

@@ -107,7 +107,7 @@ describe("getCastFromMovieId", () => {
         await getCastFromMovieId(req, mockRes);
 
         expect(mockRes.status).toHaveBeenCalledWith(500);
-        expect(mockRes.json).toHaveBeenCalledWith({ error: 'Failed to fetch movie data' });
+        expect(mockRes.json).toHaveBeenCalledWith({ error: 'Failed to fetch movie cast' });
     });
 });
 
@@ -193,6 +193,6 @@ describe("getSearchResults", () => {
         await getSearchResults(mockReq, mockRes);
 
         expect(mockRes.status).toHaveBeenCalledWith(500);
-        expect(mockRes.json).toHaveBeenCalledWith({ error: 'Failed to fetch movie data' });
+        expect(mockRes.json).toHaveBeenCalledWith({ error: 'Failed to fetch movies by name' });
     });
 });
