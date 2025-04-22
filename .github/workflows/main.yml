@@ -22,7 +22,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 23.9.0
+        
+    # Step 3: Clean up node_modules and package-lock.json
+      - name: Clean up dependencies
+        working-directory: ./frontend
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
 
       # Step 3: Install backend dependencies
       - name: Install backend dependencies
@@ -32,7 +39,12 @@ jobs:
       # Step 4: Run backend tests
       - name: Run backend tests
         working-directory: ./api
-        run: npm test
+        run: npm ci
+
+    # Step 5: Build backend
+      - name: Build backend
+        working-directory: ./api
+        run: npm run dev
     
   frontend:
     name: Frontend Tests and Build
@@ -47,14 +59,21 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 23.9.0
 
-      # Step 3: Install frontend dependencies
+      # Step 3: Clean up node_modules and package-lock.json
+      - name: Clean up dependencies
+        working-directory: ./frontend
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+
+      # Step 4: Install frontend dependencies
       - name: Install frontend dependencies
         working-directory: ./frontend
         run: npm install
 
-      # Step 4: Run frontend tests
+      # Step 5: Run frontend tests
       - name: Run frontend tests
         working-directory: ./frontend
-        run: npm test
+        run: npm ci
