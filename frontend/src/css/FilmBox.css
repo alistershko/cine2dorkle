@@ -10,7 +10,7 @@
   margin-bottom: 1rem;
   max-width: 450px; /* Reduce the overall width */
   margin: 1.5rem auto; /* Adjust vertical spacing */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: var(--film-text-color);
   filter: drop-shadow(0 0 0.2rem var(--film-shadow-color));
 }
@@ -73,4 +73,15 @@
 
 .matching-actor {
   font-weight: bold;
+}
+
+.hard-mode-message {
+  font-style: italic;
+  color: var(--film-secondary-text-color);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  text-align: center;
+  border: 1px dashed var(--film-border-color);
+  padding: 0.5rem;
+  border-radius: 4px;
 }

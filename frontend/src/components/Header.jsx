@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { DoubleFeatureLogo } from "./DoubleFeatureLogo";
 import ThemeToggle from "./ThemeToggle";
 import "../css/Header.css";
 
-function Header() {
+function Header({ gameMode }) {
+  // Add gameMode as a prop
   const [isMinimized, setIsMinimized] = useState(false);
 
   useEffect(() => {
@@ -25,9 +26,20 @@ function Header() {
   }, []);
 
   return (
-    <div data-testid="header" className={`header ${isMinimized ? "minimized" : ""}`}>
+    <div
+      data-testid="header"
+      className={`header ${isMinimized ? "minimized" : ""}`}
+    >
       <DoubleFeatureLogo />
-      <ThemeToggle />
+
+      <div className="header-right">
+        <ThemeToggle />
+        {gameMode && (
+          <div className={`game-mode-indicator ${gameMode}`}>
+            {gameMode === "easy" ? "Easy Mode" : "Hard Mode"}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
