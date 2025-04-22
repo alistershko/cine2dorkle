@@ -5,7 +5,7 @@ import slideLight from "../../assets/slide-trans-light.png";
 import slide from "../../assets/slide-trans.png";
 
 // services to import
-import { getInitialMovie } from "../../services/movies";
+import { startNewGame } from "../../services/game";
 
 // components to import
 import InitialFilmBox from "../../components/InitialFilmBox";
@@ -17,28 +17,32 @@ import Timer from "../../components/Timer";
 import "./Game.css";
 
 const GamePage = () => {
-  let [moviesPlayed, appendToMoviesPlayed] = useState([]);
+  let [gameID, setGameID] = useState(0);
+  let [moviesPlayed, setMoviesPlayed] = useState([]);
   let [searchParams] = useSearchParams();
   const gameMode = searchParams.get("mode") || "easy";
 
   useEffect(() => {
     let isMounted = true; // Flag to track if the component is mounted
-    const fetchInitialMovie = async () => {
+
+    const startGame = async () => {
       try {
-        const data = await getInitialMovie();
+        const data = await startNewGame();
+        const initialMovie = data.targetMovie
         if (isMounted) {
           if (data && data.id) {
-            appendToMoviesPlayed((prev) => [...prev, { movie: data }]);
+            setGameID(data.id);
+            setMoviesPlayed(prev => [...prev, { movie: initialMovie }]);
           } else {
             console.error("Invalid movie data:", data);
           }
         }
       } catch (error) {
-        console.error("Error setting target movie:", error);
+        console.error("Error starting new game:", error);
       }
     };
 
-    fetchInitialMovie();
+    startGame();
 
     return () => {
       isMounted = false; // Cleanup to prevent setting state on unmounted component
@@ -50,7 +54,7 @@ const GamePage = () => {
   }, [moviesPlayed]);
 
   const onSuccessfulGuess = (movie, overlappingActors) => {
-    appendToMoviesPlayed((prev) => [...prev, { movie, overlappingActors }]);
+    setMoviesPlayed((prev) => [...prev, { movie, overlappingActors }]);
   };
 
   const slides = [];
