@@ -66,6 +66,8 @@ const GamePage = () => {
     console.log("onSuccessfulGuess");
     setMoviesPlayed((prev) => [...prev, { movie, overlappingActors }]);
     setScore((prevScore) => prevScore + 1);
+    // console.log(moviesPlayed);
+    console.log(overlappingActors);
     console.log("score: " + (score + 1));
   };
 
@@ -111,6 +113,17 @@ const GamePage = () => {
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
             <>
+              {index === moviesPlayed.length ||
+                <div>
+                  {(!overlappingActors || overlappingActors.length === 0) || overlappingActors.map((actor) => (
+                    <div className="link-box">
+                      <div className="link-box-item left">{actor.name}</div>
+                      <div className="link-box-item middle"><img src={slide} alt="slide" className="slide"></img></div>
+                      <div className="link-box-item right">{"x".repeat(actor.usageCount)}</div>
+                    </div>
+                  ))}
+                </div>
+              }
               <InitialFilmBox
                 key={index}
                 movie={movie}
@@ -118,7 +131,7 @@ const GamePage = () => {
                 gameMode={gameMode}
                 isInitialFilm={index === 0}
               />
-              {index === moviesPlayed.length - 1 || <div>{slides}</div>}
+              
             </>
           ))}
         </div>

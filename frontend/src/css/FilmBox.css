@@ -8,7 +8,6 @@
   background-color: var(--film-background-color);
   box-shadow: 0 4px 12px var(--film-box-shadow-color); /* Use variable for box-shadow */
   max-width: 450px; /* Reduce the overall width */
-  margin: 1.5rem auto; /* Adjust vertical spacing */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   color: var(--film-text-color);
