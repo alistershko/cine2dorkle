@@ -11,7 +11,7 @@ export const HomePage = () => {
     <div className="page-container">
       <Header />
       <div className="home-content">
-        <h1>Welcome to Double Feature!</h1>
+        <h1 className="home-title">Welcome to Double Feature!</h1>
         <p>Make connections between movies to win!</p>
         <PlayButton />
         <ModeToggle />
