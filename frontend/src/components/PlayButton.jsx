@@ -7,7 +7,7 @@ const PlayButton = () => {
 
   const handleClick = () => {
     const gameMode = localStorage.getItem("gameMode") || "easy";
-    navigate(`/game?mode=${gameMode}`);
+    navigate(`/game`);
   };
 
   return (
