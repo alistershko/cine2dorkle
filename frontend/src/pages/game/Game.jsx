@@ -20,6 +20,7 @@ import InputBox from "../../components/InputBox";
 import Timer from "../../components/Timer";
 import ResultsModal from "../../components/ResultsModal";
 import ControlsHeader from "../../components/ControlsHeader";
+import tempHeaderPath from "../../assets/temp-header.png";
 
 import "./Game.css";
 
@@ -111,6 +112,7 @@ const GamePage = () => {
 
   return (
     <div className="page-container">
+      <div className="temp-header"><img src={tempHeaderPath}></img></div>
       <ControlsHeader gameMode={gameMode} />
       <Timer resetTrigger={timerResetTrigger} onTimeUp={handleTimeUp} />
       <div className="game-content">
