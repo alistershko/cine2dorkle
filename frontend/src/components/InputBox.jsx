@@ -72,6 +72,14 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
     return new Date(dateString).getFullYear();
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && suggestions.length > 0) {
+      const firstSuggestion = suggestions[0];
+      handleSelect(firstSuggestion);
+      handleMovieSelect(firstSuggestion);
+    }
+  };
+
   return (
     <div className="relative w-96 mx-auto mt-4">
       {error && <div className="error-message">{error}</div>}
@@ -82,6 +90,7 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onFocus={() => query && suggestions.length > 0 && setShowDropdown(true)}
+        onKeyDown={handleKeyDown}
         className="w-full bg-white text-gray-900 rounded p-4 dark:bg-gray-500 dark:text-gray-50 border border-gray-400 outline-red-700"
       />
 
