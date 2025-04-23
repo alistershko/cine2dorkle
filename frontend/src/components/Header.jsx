@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { DoubleFeatureLogo } from "./DoubleFeatureLogo";
 import ThemeToggle from "./ThemeToggle";
+import SoundToggle from "./SoundToggle";
 import "../css/Header.css";
 
 function Header({ gameMode }) {
@@ -34,6 +35,7 @@ function Header({ gameMode }) {
 
       <div className="header-right">
         <ThemeToggle />
+        <SoundToggle />
         <br />
         {gameMode && (
           <div className={`game-mode-indicator ${gameMode}`}>
