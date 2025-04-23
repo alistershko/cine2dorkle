@@ -20,8 +20,8 @@ const ResultsModal = ({ isOpen, playAgain, leaveGame, score }) => {
   return (
     <div className={`modal-overlay open-modal ${isVisible ? "visible" : ""}`}>
       <div className={`modal-container ${isVisible ? "visible" : ""}`}>
-        <h2>Game Over</h2>
-        <p>Your Score: {score}</p>
+        <h2 className="modal-h2">Game Over</h2>
+        <p className="modal-score">Your Score: {score}</p>
         <PlayAgainButton onClick={playAgain} />
         <LeaveGameButton onClick={leaveGame} />
         <button

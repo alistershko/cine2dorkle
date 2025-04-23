@@ -63,6 +63,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-family: 'Limelight';
 }
 
 .modal-close-button:hover {
@@ -89,15 +90,6 @@
   border-color: #c0aa6c;
 }
 
-/* Optional heading style for dramatic effect */
-.modal-container h2 {
-  font-size: 2rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  color: var(--film-text-color);
-}
-
 .modal-container p {
   font-size: 1.5rem;
   margin: 1rem 0;
@@ -121,4 +113,24 @@
   background: url("/path-to-grain-texture.png");
   opacity: 0.08;
   pointer-events: none;
+}
+
+.modal-h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  color:#9a3c25;
+  /* color: #c0aa6c; */
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px #000;
+  font-family: 'Limelight';
+}
+
+.modal-score {
+  font-size: 2rem;
+  font-weight: bold;
+  /* color: #c0aa6c;  */
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px #000;
+  font-family: 'Limelight';
+  font-weight: bold;
 }

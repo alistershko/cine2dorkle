@@ -1,0 +1,20 @@
+.playagain-btn {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    color: #9a3c25;
+    background-color: #c0aa6c; 
+    border: 2px solid #9a3c25;
+    padding: 0.75rem 1.5rem;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Limelight';
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .playagain-btn:hover {
+    background-color: #d4bc7a;
+    box-shadow: 0 0 10px rgba(192, 170, 108, 0.5);
+  }
+  
