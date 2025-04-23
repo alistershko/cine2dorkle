@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/Timer.css";
 
-// Need to add code so timer is triggered by:
-//      1. playButton (DONE)
-//      2. Successful go when playing (timer resets)
-
 function Timer({ onTimeUp, resetTrigger }) {
   const [seconds, setSeconds] = useState(15);
 
