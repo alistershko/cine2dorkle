@@ -26,6 +26,7 @@ const GamePage = () => {
   const [score, setScore] = useState(0); // Example score (need to reset this once we have score logic)
   const [timerResetTrigger, setTimerResetTrigger] = useState(0); 
   const [input, setInput] = useState("");
+  
 
 //     // Function to fetch the initial movie
 //     const fetchInitialMovie = async () => {
@@ -94,6 +95,9 @@ const GamePage = () => {
     setTimerResetTrigger((prev) => prev + 1); // trigger timer reset
   };
   
+
+
+
   // Function called when 'Play Again' button is clicked on ResultsModal
   const playAgain = () => {
     console.log("play again button clicked");
