@@ -1,90 +1,44 @@
-.timer-container {
-  background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 100%);
-  border: 3px solid #c0aa6c;
-  border-radius: 6px;
-  padding: 1rem;
-  box-shadow: 0 0 15px rgba(192, 170, 108, 0.8),
-    0 0 30px rgba(192, 170, 108, 0.6);
-  filter: contrast(120%) sepia(30%);
-  animation: flicker 1.5s infinite;
-  width: 140px;
-  margin: 0 auto;
-  position: relative;
+@keyframes countdownBounce {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.15);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-/* Add a gold overlay */
-.timer-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(192, 170, 108, 0.1) 0%,
-    rgba(0, 0, 0, 0) 70%
-  );
-  pointer-events: none;
+.timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7rem;
 }
 
 .timer-text {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 6rem;
-  color: #f0e6c9; /* Changed to a gold-tinted white */
-  text-shadow: 0 0 8px rgba(192, 170, 108, 0.9), 0 0 12px rgba(255, 215, 0, 0.5);
-  letter-spacing: 4px;
-  filter: blur(0.5px);
-  position: relative;
-  z-index: 1;
+  background-color: #9a3c25;
+  border: 2px solid #c0aa6c;
+  padding: 0.75rem 1.5rem;
+  width: 120px;
+  text-align: center;
+  font-size: 55px;
+  font-family: 'Limelight';
+  color: #c0aa6c;
+  border-radius: 8px;
+  animation: pulse 1s infinite;
+  transition: all 0.3s ease;
 }
 
-/* Flicker effect - adjusted to be gold-colored */
-@keyframes flicker {
-  0%,
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 15px rgba(192, 170, 108, 0.8),
-      0 0 30px rgba(192, 170, 108, 0.6);
-  }
-  20% {
-    opacity: 0.95;
-    box-shadow: 0 0 12px rgba(192, 170, 108, 0.7),
-      0 0 24px rgba(192, 170, 108, 0.5);
-  }
-  22% {
-    opacity: 1;
-    box-shadow: 0 0 15px rgba(192, 170, 108, 0.8),
-      0 0 30px rgba(192, 170, 108, 0.6);
-  }
-  40% {
-    opacity: 0.92;
-    box-shadow: 0 0 10px rgba(192, 170, 108, 0.7),
-      0 0 20px rgba(192, 170, 108, 0.5);
-  }
-  42% {
-    opacity: 1;
-    box-shadow: 0 0 15px rgba(192, 170, 108, 0.8),
-      0 0 30px rgba(192, 170, 108, 0.6);
-  }
-  60% {
-    opacity: 0.94;
-    box-shadow: 0 0 12px rgba(192, 170, 108, 0.7),
-      0 0 26px rgba(192, 170, 108, 0.5);
-  }
-  62% {
-    opacity: 1;
-    box-shadow: 0 0 15px rgba(192, 170, 108, 0.8),
-      0 0 30px rgba(192, 170, 108, 0.6);
-  }
-  80% {
-    opacity: 0.96;
-    box-shadow: 0 0 13px rgba(192, 170, 108, 0.7),
-      0 0 28px rgba(192, 170, 108, 0.5);
-  }
-  82% {
-    opacity: 1;
-    box-shadow: 0 0 15px rgba(192, 170, 108, 0.8),
-      0 0 30px rgba(192, 170, 108, 0.6);
-  }
+.final-countdown .timer-text {
+  background-color: #c0392b; /* brighter red */
+  color: #fff2d5;
+  animation: pulse 1s infinite; /* faster pulse */
 }
