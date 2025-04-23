@@ -27,7 +27,6 @@ const GamePage = () => {
   const [input, setInput] = useState("");
   let [gameID, setGameID] = useState(0);
   let [moviesPlayed, setMoviesPlayed] = useState([]);
-  let [overlappingActors, setOverlappingActors] = useState([]);
   let [searchParams] = useSearchParams();
   const gameMode = searchParams.get("mode") || "easy";
 
@@ -116,11 +115,11 @@ const GamePage = () => {
             <>
               {index === moviesPlayed.length ||
                 <div>
-                  {(!overlappingActors || overlappingActors.length === 0) || overlappingActors.map((actorName) => (
+                  {(!overlappingActors || overlappingActors.length === 0) || overlappingActors.map((actor) => (
                     <div className="link-box">
-                      <div className="link-box-item left">{actorName}</div>
+                      <div className="link-box-item left">{actor.name}</div>
                       <div className="link-box-item middle"><img src={slide} alt="slide" className="slide"></img></div>
-                      <div className="link-box-item right">PUT X X X HERE</div>
+                      <div className="link-box-item right">{"x".repeat(actor.usageCount)}</div>
                     </div>
                   ))}
                 </div>
