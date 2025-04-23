@@ -45,7 +45,6 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
     }
 
     const result = await guessMovie(movie.title, targetMovie.id);
-
     if (result.error) {
       setError(result.error);
       setQuery("");
@@ -58,8 +57,10 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
     onGuessMade(movie.title);
 
     onSuccessfulGuess(
+      // console.log(guessedMovie),
+      // console.log(matchingCast),
       guessedMovie,
-      matchingCast.map((actor) => actor.name)
+      matchingCast.map((actor) => ({ name: actor.name, usageCount: actor.usageCount }))
     );
 
     setQuery("");

@@ -27,6 +27,7 @@ const GamePage = () => {
   const [input, setInput] = useState("");
   let [gameID, setGameID] = useState(0);
   let [moviesPlayed, setMoviesPlayed] = useState([]);
+  let [overlappingActors, setOverlappingActors] = useState([]);
   let [searchParams] = useSearchParams();
   const gameMode = searchParams.get("mode") || "easy";
 
@@ -65,6 +66,8 @@ const GamePage = () => {
     console.log("onSuccessfulGuess");
     setMoviesPlayed((prev) => [...prev, { movie, overlappingActors }]);
     setScore((prevScore) => prevScore + 1);
+    // console.log(moviesPlayed);
+    console.log(overlappingActors);
     console.log("score: " + (score + 1));
   };
 
