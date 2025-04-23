@@ -1,16 +1,41 @@
 .footer {
-  width: 100vw;
+  width: 100%;
   background-color: #c0aa6c;
-  color: white;
+  color: #173038;
   text-align: center;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
   margin-top: 8px;
-  height: 48px;
+  padding: 12px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  max-width: 90%;
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
 .tmdbLogo-image {
-  height: 15px;
+  height: 20px;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer {
+    padding: 8px 0;
+  }
 }
