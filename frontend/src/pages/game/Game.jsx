@@ -111,6 +111,17 @@ const GamePage = () => {
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
             <>
+              {index === moviesPlayed.length ||
+                <div>
+                  {(!overlappingActors || overlappingActors.length === 0) || overlappingActors.map((actorName) => (
+                    <div className="link-box">
+                      <div className="link-box-item">{actorName}</div>
+                      <div className="link-box-item"><img src={slide} alt="slide" className="slide"></img></div>
+                      <div className="link-box-item">PUT X X X HERE</div>
+                    </div>
+                  ))}
+                </div>
+              }
               <InitialFilmBox
                 key={index}
                 movie={movie}
@@ -118,7 +129,7 @@ const GamePage = () => {
                 gameMode={gameMode}
                 isInitialFilm={index === 0}
               />
-              {index === moviesPlayed.length - 1 || <div>{slides}</div>}
+              
             </>
           ))}
         </div>

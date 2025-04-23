@@ -46,3 +46,12 @@
   height: 4rem;
   z-index: 2;
 }
+
+.link-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.link-box-item {
+  width: 10rem;
+}
