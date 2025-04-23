@@ -3,7 +3,7 @@ import { playSound } from "../services/sound";
 import countdownSound from "../assets/Audio/countdown.mp3";
 import "../css/Timer.css";
 
-function Timer({ onTimeUp, resetTrigger }) {
+function Timer({ onTimeUp, resetTrigger, onTimerUpdate }) {
   const MAXTIME = 20;
   const [seconds, setSeconds] = useState(MAXTIME);
   const [isFinalCountdown, setIsFinalCountdown] = useState(false);
@@ -34,6 +34,11 @@ function Timer({ onTimeUp, resetTrigger }) {
       return;
     }
 
+    // Notify parent component about timer updates
+    if (onTimerUpdate) {
+      onTimerUpdate(seconds);
+    }
+
     // Start countdown effect and sound at 5 seconds
     if (seconds === 5 && !isFinalCountdown) {
       setIsFinalCountdown(true);
@@ -48,7 +53,7 @@ function Timer({ onTimeUp, resetTrigger }) {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [seconds, onTimeUp, isFinalCountdown]);
+  }, [seconds, onTimeUp, isFinalCountdown, onTimerUpdate]);
 
   return (
     <div

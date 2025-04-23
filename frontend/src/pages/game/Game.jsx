@@ -1,7 +1,6 @@
 // dependencies to import
 import React from "react";
-import { useState, useEffect, useMemo } from "react";
-
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import slideLight from "../../assets/slide-trans-light.png";
@@ -9,8 +8,9 @@ import slide from "../../assets/slide-trans.png";
 
 // services to import
 import { startNewGame } from "../../services/game";
-import { playSound } from "../../services/sound"; // Add these imports
+import { playSound, isSoundEnabled } from "../../services/sound";
 import drumroll from "../../assets/Audio/drumroll.mp3";
+import quirkyJazz from "../../assets/Audio/QuirkyJazz.mp3"; // Import the jazz audio
 
 // components to import
 import InitialFilmBox from "../../components/InitialFilmBox";
@@ -36,6 +36,65 @@ const GamePage = () => {
   let [moviesPlayed, setMoviesPlayed] = useState([]);
   let [searchParams] = useSearchParams();
   const gameMode = searchParams.get("mode") || "easy";
+  const backgroundMusicRef = useRef(null);
+  const [seconds, setSeconds] = useState(gameMode === "easy" ? 30 : 20); // Track time for fading music
+
+  // Initialize background music when component mounts
+  useEffect(() => {
+    if (isSoundEnabled()) {
+      backgroundMusicRef.current = new Audio(quirkyJazz);
+      backgroundMusicRef.current.loop = true;
+      backgroundMusicRef.current.volume = 0.4; // Start at 40% volume
+      backgroundMusicRef.current
+        .play()
+        .catch((e) => console.log("Background music autoplay prevented:", e));
+    }
+
+    // Event listener for sound toggle changes
+    const handleSoundToggle = (event) => {
+      const soundEnabled = event.detail?.soundEnabled ?? isSoundEnabled();
+
+      if (soundEnabled && backgroundMusicRef.current) {
+        backgroundMusicRef.current
+          .play()
+          .catch((e) => console.log("Play prevented:", e));
+      } else if (backgroundMusicRef.current) {
+        backgroundMusicRef.current.pause();
+      }
+    };
+
+    document.addEventListener("soundSettingChanged", handleSoundToggle);
+
+    // Clean up when component unmounts
+    return () => {
+      if (backgroundMusicRef.current) {
+        backgroundMusicRef.current.pause();
+        backgroundMusicRef.current = null;
+      }
+      document.removeEventListener("soundSettingChanged", handleSoundToggle);
+    };
+  }, []);
+
+  // Handle timer updates for fading music
+  const handleTimerUpdate = (currentSeconds) => {
+    setSeconds(currentSeconds);
+
+    // When countdown reaches 5 seconds, reduce volume to 50%
+    if (currentSeconds === 5 && backgroundMusicRef.current) {
+      // Reduce volume to 50% instead of gradually fading out
+      backgroundMusicRef.current.volume = 0.2; // Half of your initial 0.4 volume
+    }
+
+    // For 8-6 seconds, maintain normal volume
+    else if (
+      currentSeconds <= 8 &&
+      currentSeconds > 5 &&
+      backgroundMusicRef.current
+    ) {
+      // Keep normal volume
+      backgroundMusicRef.current.volume = 0.4;
+    }
+  };
 
   useEffect(() => {
     let isMounted = true; // Flag to track if the component is mounted
@@ -94,6 +153,11 @@ const GamePage = () => {
       // First, set timer as finished to disable input
       setTimerFinished(true);
 
+      // Make sure background music is stopped
+      if (backgroundMusicRef.current) {
+        backgroundMusicRef.current.pause();
+      }
+
       // Play drumroll sound when game ends
       playSound(drumroll);
       setSoundPlayed(true);
@@ -122,7 +186,11 @@ const GamePage = () => {
         />
       </div>
       <ControlsHeader gameMode={gameMode} />
-      <Timer resetTrigger={timerResetTrigger} onTimeUp={handleTimeUp} />
+      <Timer
+        resetTrigger={timerResetTrigger}
+        onTimeUp={handleTimeUp}
+        onTimerUpdate={handleTimerUpdate} // New prop for time updates
+      />
       <div className="game-content">
         {/* Only show InputBox if game is not over AND timer is not finished */}
         {!isGameOver && !timerFinished && (
