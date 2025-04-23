@@ -1,4 +1,5 @@
 // dependencies to import
+import React from "react";
 import { useState, useEffect, useMemo } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -133,22 +134,24 @@ const GamePage = () => {
         {timerFinished && !isGameOver}
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
-            <>
+            <React.Fragment key={index}>
               {index === moviesPlayed.length || (
                 <div>
                   {!overlappingActors ||
                     overlappingActors.length === 0 ||
-                    overlappingActors.map((actor) => (
-                      <div className="link-box">
-                        <div className="link-box-item left">{actor.name}</div>
-                        <div className="link-box-item middle">
-                          <img src={slide} alt="slide" className="slide"></img>
+                    [...overlappingActors]
+                      .sort((a, b) => b.usageCount - a.usageCount) // Sort in descending order
+                      .map((actor, actorIndex) => (
+                        <div className="link-box" key={actorIndex}>
+                          <div className="link-box-item left">{actor.name}</div>
+                          <div className="link-box-item middle">
+                            <img src={slide} alt="slide" className="slide" />
+                          </div>
+                          <div className="link-box-item right">
+                            {"x".repeat(actor.usageCount)}
+                          </div>
                         </div>
-                        <div className="link-box-item right">
-                          {"x".repeat(actor.usageCount)}
-                        </div>
-                      </div>
-                    ))}
+                      ))}
                 </div>
               )}
               <InitialFilmBox
@@ -158,7 +161,7 @@ const GamePage = () => {
                 gameMode={gameMode}
                 isInitialFilm={index === 0}
               />
-            </>
+            </React.Fragment>
           ))}
         </div>
       </div>

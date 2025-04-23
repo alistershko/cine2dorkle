@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
 import mutedPath from "../assets/muted-red-gold.png";
 import unmutedPath from "../assets/on-red-gold.png";
+import React, { useState, useEffect, useCallback } from "react";
+
 
 const SoundToggle = () => {
   const [soundEnabled, setSoundEnabled] = useState(
@@ -10,11 +11,18 @@ const SoundToggle = () => {
   useEffect(() => {
     localStorage.setItem("soundEnabled", soundEnabled);
     document.documentElement.setAttribute("data-sound-enabled", soundEnabled);
+
+    // Dispatch custom event outside of the state update
+    const event = new CustomEvent("soundSettingChanged", {
+      detail: { soundEnabled },
+    });
+    document.dispatchEvent(event);
   }, [soundEnabled]);
 
-  const toggleSound = () => {
+  // Use useCallback to prevent unnecessary re-creation
+  const toggleSound = useCallback(() => {
     setSoundEnabled((prevState) => !prevState);
-  };
+  }, []);
 
   return (
     <>

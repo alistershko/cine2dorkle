@@ -1,20 +1,30 @@
-import React, { useState, useEffect } from "react";
 import sunPath from "../assets/sun-red-gold-lrg.png";
 import moonPath from "../assets/moon-red-gold-lrg.png";
+import React, { useState, useEffect, useCallback } from "react";
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState(localStorage.theme || "dark");
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark";
+  });
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
 
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    } else {
+      document.documentElement.classList.add("light");
+      document.documentElement.classList.remove("dark");
+    }
+
     localStorage.setItem("theme", theme);
-    document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
-  const toggleTheme = () => {
+  // Use useCallback to prevent unnecessary re-creation
+  const toggleTheme = useCallback(() => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
-  };
+  }, []);
 
   return (
     <button
