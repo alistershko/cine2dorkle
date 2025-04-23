@@ -11,6 +11,7 @@
   transition: all 0.3s linear;
   visibility: hidden;
   z-index: -10;
+  opacity: 0;
 }
 
 .open-modal {
@@ -18,40 +19,55 @@
   z-index: 10;
 }
 
-/* Container - vintage film style */
+.modal-overlay.visible {
+  opacity: 1;
+}
+
+/* Container - theme-compatible styling */
 .modal-container {
-  background: #111; /* deep black background for cinema look */
-  border: 5px solid #c0aa6c; /* gold border for vintage glam */
+  background-color: var(--film-background-color);
+  border: 5px solid #c0aa6c; /* gold border consistent across themes */
   border-radius: 0.75rem;
   width: 90vw;
   max-width: 620px;
   height: auto;
   padding: 2rem;
   text-align: center;
-  color: #fff; /* white text */
-  font-family: "Cinzel", serif; /* vintage font */
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3); /* soft gold glow */
+  color: var(--film-text-color);
+  font-family: "Cinzel", serif;
+  box-shadow: 0 0 30px rgba(192, 170, 108, 0.3); /* soft gold glow */
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   position: relative;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.modal-container.visible {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* Close Button – stylized like an old cinema "X" light */
-.close-btn {
+.modal-close-button {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  font-size: 2rem;
-  background: transparent;
-  border: none;
-  color: #c0aa6c;
+  font-size: 1.5rem;
+  background-color: #c0aa6c;
+  color: #111;
+  border: 2px solid var(--film-border-color);
+  padding: 0.15rem 0.75rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
-.close-btn:hover {
-  color: #fff8dc;
-  transform: scale(1.3);
+
+.modal-close-button:hover {
+  background-color: #d4bc7a;
+  transform: scale(1.05);
 }
 
 /* Buttons – like classic theater buttons */
@@ -79,7 +95,22 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 1rem;
-  color: #fff;
+  color: var(--film-text-color);
+}
+
+.modal-container p {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  font-weight: bold;
+  color: #c0aa6c;
+}
+
+/* Buttons Row */
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 /* Subtle grainy background or film frame effect using a background image */
@@ -87,8 +118,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url('/path-to-grain-texture.png');
+  background: url("/path-to-grain-texture.png");
   opacity: 0.08;
   pointer-events: none;
 }
-
