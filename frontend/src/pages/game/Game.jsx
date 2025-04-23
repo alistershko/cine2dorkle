@@ -8,6 +8,8 @@ import slide from "../../assets/slide-trans.png";
 
 // services to import
 import { startNewGame } from "../../services/game";
+import { playSound } from "../../services/sound"; // Add these imports
+import drumroll from "../../assets/Audio/drumroll.mp3";
 
 // components to import
 import InitialFilmBox from "../../components/InitialFilmBox";
@@ -26,7 +28,7 @@ const GamePage = () => {
   const [score, setScore] = useState(0); // Example score (need to reset this once we have score logic)
   const [timerResetTrigger, setTimerResetTrigger] = useState(0);
   const [input, setInput] = useState("");
-
+  const [soundPlayed, setSoundPlayed] = useState(false);
   let [gameID, setGameID] = useState(0);
   let [moviesPlayed, setMoviesPlayed] = useState([]);
   let [searchParams] = useSearchParams();
@@ -89,7 +91,16 @@ const GamePage = () => {
   };
 
   const handleTimeUp = () => {
-    setIsGameOver(true); // Change to ResultsModal later
+    if (!soundPlayed) {
+      // Play drumroll sound when game ends
+      playSound(drumroll);
+      setSoundPlayed(true);
+
+      // Short delay to let drumroll play before showing results
+      setTimeout(() => {
+        setIsGameOver(true);
+      }, 2000); // 1 second delay - adjust based on your drumroll sound length
+    }
   };
 
   const slides = [];
@@ -100,10 +111,11 @@ const GamePage = () => {
   return (
     <div className="page-container">
       <Header />
-      <ControlsHeader />
+      <div className="controls-header-container">
+        <ControlsHeader gameMode={gameMode} />
+      </div>
       <br />
       <Timer resetTrigger={timerResetTrigger} onTimeUp={handleTimeUp} />
-      <Header gameMode={gameMode} />
       <div className="game-content">
         {!isGameOver && (
           <InputBox
