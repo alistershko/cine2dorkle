@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../css/Timer.css";
 
 function Timer({ onTimeUp, resetTrigger }) {
-  const MAXTIME = 999;
+  const MAXTIME = 20;
   const [seconds, setSeconds] = useState(MAXTIME);
 
   // Resets timer when resetTrigger changes
