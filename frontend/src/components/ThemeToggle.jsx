@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
+import sunPath from "../assets/sun-red-gold-lrg.png";
+import moonPath from "../assets/moon-red-gold-lrg.png";
+import React, { useState, useEffect, useCallback } from "react";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState(() => {
-    // Get the initial theme from localStorage or use 'dark' as default
     return localStorage.getItem("theme") || "dark";
   });
 
   useEffect(() => {
-    // Set the theme attribute on the document element
     document.documentElement.setAttribute("data-theme", theme);
 
-    // Update the class on the HTML element for Tailwind dark mode
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
       document.documentElement.classList.remove("light");
@@ -19,22 +18,21 @@ const ThemeToggle = () => {
       document.documentElement.classList.remove("dark");
     }
 
-    // Store the theme preference in localStorage
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
+  // Use useCallback to prevent unnecessary re-creation
+  const toggleTheme = useCallback(() => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
-  };
+  }, []);
 
   return (
     <button
       onClick={toggleTheme}
       aria-label="Toggle Theme"
-      className="bg-gray-100 dark:bg-gray-700 rounded px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
-      title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      className="toggle-btn"
     >
-      {theme === "dark" ? "🌞" : "🌙"}
+      {theme === "dark" ? <img src={moonPath}></img> : <img src={sunPath}></img>}
     </button>
   );
 };

@@ -4,6 +4,7 @@ import Footer from "../../components/Footer";
 import "./HomePage.css";
 import PlayButton from "../../components/PlayButton";
 import ModeToggle from "../../components/ModeToggle";
+import { DoubleFeatureLogo } from "../../components/DoubleFeatureLogo";
 import ControlsHeader from "../../components/ControlsHeader";
 import HowTo from "../../components/HowTo";
 import jazz from "../../assets/Audio/Jazz.mp3";
@@ -50,14 +51,14 @@ export const HomePage = () => {
 
   return (
     <div className="page-container">
-      <Header />
       <ControlsHeader />
       <div className="home-content">
-        <h1>Welcome to Double Feature!</h1>
-        <p>Make connections between movies to win!</p>
+        <h1 className="home-title">Welcome to</h1>
+        <DoubleFeatureLogo />
+        <p className="home-p">🎬 Make connections between movies to win 🍿</p>
         <PlayButton />
-        <HowTo />
         <ModeToggle />
+        <HowTo />
       </div>
       <Footer />
     </div>
