@@ -12,15 +12,14 @@ export const HomePage = () => {
 
   return (
     <div className="page-container">
-      <Header />
       <ControlsHeader />
       <div className="home-content">
         <h1 className="home-title">Welcome to</h1>
         <DoubleFeatureLogo />
-        <p>Make connections between movies to win!</p>
+        <p className="home-p">🎬 Make connections between movies to win 🍿</p>
         <PlayButton />
-        <HowTo />
         <ModeToggle />
+        <HowTo />
       </div>
       <Footer />
     </div>

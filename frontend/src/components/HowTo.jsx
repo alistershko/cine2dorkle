@@ -37,7 +37,7 @@ Then it’s game over! But don’t worry, you can play again, and try to beat yo
   return (
     <div>
       <button className="modal-howto-btn" onClick={openModal}>
-        How to Play
+        how to play
       </button>
 
       {isModalOpen && (
