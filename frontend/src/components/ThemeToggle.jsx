@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState(() => {
-    // Get the initial theme from localStorage or use 'dark' as default
     return localStorage.getItem("theme") || "dark";
   });
 
   useEffect(() => {
-    // Set the theme attribute on the document element
     document.documentElement.setAttribute("data-theme", theme);
 
-    // Update the class on the HTML element for Tailwind dark mode
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
       document.documentElement.classList.remove("light");
@@ -19,13 +16,13 @@ const ThemeToggle = () => {
       document.documentElement.classList.remove("dark");
     }
 
-    // Store the theme preference in localStorage
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
+  // Use useCallback to prevent unnecessary re-creation
+  const toggleTheme = useCallback(() => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
-  };
+  }, []);
 
   return (
     <button
