@@ -115,11 +115,7 @@ const GamePage = () => {
 
   return (
     <div className="page-container">
-      <Header />
-      <div className="controls-header-container">
-        <ControlsHeader gameMode={gameMode} />
-      </div>
-      <br />
+      <ControlsHeader gameMode={gameMode} />
       <Timer resetTrigger={timerResetTrigger} onTimeUp={handleTimeUp} />
       <div className="game-content">
         {/* Only show InputBox if game is not over AND timer is not finished */}
