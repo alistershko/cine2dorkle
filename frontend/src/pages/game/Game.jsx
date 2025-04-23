@@ -207,7 +207,8 @@ const GamePage = () => {
       <Timer
         resetTrigger={timerResetTrigger}
         onTimeUp={handleTimeUp}
-        onTimerUpdate={handleTimerUpdate} // New prop for time updates
+        onTimerUpdate={handleTimerUpdate}
+        gameMode={gameMode} // Pass the game mode to Timer
       />
       <div className="game-content">
         {/* Only show InputBox if game is not over AND timer is not finished */}
