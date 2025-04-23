@@ -112,7 +112,15 @@ const GamePage = () => {
 
   return (
     <div className="page-container">
-      <div className="temp-header"><img src={tempHeaderPath}></img></div>
+      <div className="temp-header">
+        <img
+          src={tempHeaderPath}
+          alt="Double Feature Logo"
+          className="temp-header-img"
+          onClick={() => navigate("/")}
+          style={{ cursor: "pointer" }}
+        />
+      </div>
       <ControlsHeader gameMode={gameMode} />
       <Timer resetTrigger={timerResetTrigger} onTimeUp={handleTimeUp} />
       <div className="game-content">
