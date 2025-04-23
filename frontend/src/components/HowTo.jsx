@@ -31,7 +31,8 @@ But what if I guess it wrong / time runs out?
 Then it’s game over! But don’t worry, you can play again, and try to beat your score!
 
 
-** insert movie quote / good luck message **
+"You know what your problem is, it's that you haven't seen enough movies - all of life's riddles are answered in the movies."
+Steve Martin
 `
 
   return (
@@ -47,7 +48,7 @@ Then it’s game over! But don’t worry, you can play again, and try to beat yo
             <h2 className="howto-h2">🎥 How well do you know your films? 🎥</h2>
             {/* <p>In this single player game, race against the clock to name as many films as you can that each link to another...</p> */}
             {/* <p>{howToInfo}</p> */}
-            <p>
+            <p className="howto-text">
               {howToInfo.split('\n').map((line, index) => (
                 <React.Fragment key={index}>
                   {line}
@@ -56,7 +57,7 @@ Then it’s game over! But don’t worry, you can play again, and try to beat yo
               ))}
             </p>
             <button className="close-howto-btn" onClick={closeModal}>
-              &times; {/* "×" for close button */}
+              X
             </button>
           </div>
         </div>

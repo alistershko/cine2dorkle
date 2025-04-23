@@ -71,7 +71,7 @@ open modal (toggle visibility)
   position: absolute;
   top: 1rem;
   right: 1rem;
-  font-size: 2em;
+  font-size: 1.5rem;
   background-color: #c0aa6c;
   color: #111;
   border: 2px solid var(--film-border-color);
@@ -79,6 +79,7 @@ open modal (toggle visibility)
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-family: 'Limelight' !important;
 }
 
 .close-howto-btn:hover {
@@ -93,21 +94,20 @@ text styling
   font-size: 40px;
   color: var(--film-text-color);
   margin-bottom: 0.5rem;
+  font-family: 'Limelight';
 }
 
 .howto-h2 {
-  font-size: 30px;
+  font-size: 25px;
   color: var(--film-text-color);
   margin-top: 0.5rem;
+  font-family: 'Limelight';
 }
 
-/* Content text */
-.modal-howto-container p {
-  color: var(--film-secondary-text-color);
-  line-height: 1.6;
-  font-family: "Arial", sans-serif;
-  text-align: left;
-  padding: 0 1rem;
+.howto-text {
+  font-family: 'Federo', sans-serif;
+  /* font-family: 'Limelight'; */
+  /* font-family: "Arial", sans-serif; */
 }
 
 /* Scrollbar styling */
@@ -123,3 +123,13 @@ text styling
   background: #c0aa6c;
   border-radius: 3px;
 }
+
+
+/* Content text */
+/* .modal-howto-container {
+  color: var(--film-secondary-text-color);
+  line-height: 1.6;
+  font-family: "Arial", sans-serif;
+  /* text-align: left; */
+  /* padding: 0 1rem; */
+/* } */
