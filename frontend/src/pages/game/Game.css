@@ -113,6 +113,12 @@
   animation: fadeIn 0.5s ease-in;
 }
 
+.temp-header img {
+  margin: 2rem;
+  height: 10rem;
+  position: fixed;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
