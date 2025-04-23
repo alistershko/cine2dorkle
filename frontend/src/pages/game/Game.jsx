@@ -153,19 +153,37 @@ const GamePage = () => {
       // First, set timer as finished to disable input
       setTimerFinished(true);
 
-      // Make sure background music is stopped
+      // Temporarily pause background music
       if (backgroundMusicRef.current) {
         backgroundMusicRef.current.pause();
+
+        // Play drumroll sound when game ends
+        const drumrollSound = new Audio(drumroll);
+
+        // Play the drumroll if sound is enabled
+        if (isSoundEnabled()) {
+          drumrollSound
+            .play()
+            .catch((e) => console.log("Drumroll play prevented:", e));
+        }
+
+        setSoundPlayed(true);
+
+        // Short delay to let drumroll play before showing results
+        setTimeout(() => {
+          setIsGameOver(true);
+
+          // Restart background music immediately when results modal appears
+          if (isSoundEnabled() && backgroundMusicRef.current) {
+            // Reset to beginning of track
+            backgroundMusicRef.current.currentTime = 0;
+            backgroundMusicRef.current.volume = 0.3; // Lower volume for results screen
+            backgroundMusicRef.current
+              .play()
+              .catch((e) => console.log("Restart music prevented:", e));
+          }
+        }, 2000); // 2 second delay for the drumroll
       }
-
-      // Play drumroll sound when game ends
-      playSound(drumroll);
-      setSoundPlayed(true);
-
-      // Short delay to let drumroll play before showing results
-      setTimeout(() => {
-        setIsGameOver(true);
-      }, 2000); // 2 second delay for the drumroll
     }
   };
 
