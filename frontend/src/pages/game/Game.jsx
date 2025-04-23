@@ -29,6 +29,7 @@ const GamePage = () => {
   const [timerResetTrigger, setTimerResetTrigger] = useState(0);
   const [input, setInput] = useState("");
   const [soundPlayed, setSoundPlayed] = useState(false);
+  const [timerFinished, setTimerFinished] = useState(false);
   let [gameID, setGameID] = useState(0);
   let [moviesPlayed, setMoviesPlayed] = useState([]);
   let [searchParams] = useSearchParams();
@@ -92,6 +93,9 @@ const GamePage = () => {
 
   const handleTimeUp = () => {
     if (!soundPlayed) {
+      // First, set timer as finished to disable input
+      setTimerFinished(true);
+
       // Play drumroll sound when game ends
       playSound(drumroll);
       setSoundPlayed(true);
@@ -99,7 +103,7 @@ const GamePage = () => {
       // Short delay to let drumroll play before showing results
       setTimeout(() => {
         setIsGameOver(true);
-      }, 2000); // 1 second delay - adjust based on your drumroll sound length
+      }, 2000); // 2 second delay for the drumroll
     }
   };
 
@@ -117,13 +121,16 @@ const GamePage = () => {
       <br />
       <Timer resetTrigger={timerResetTrigger} onTimeUp={handleTimeUp} />
       <div className="game-content">
-        {!isGameOver && (
+        {/* Only show InputBox if game is not over AND timer is not finished */}
+        {!isGameOver && !timerFinished && (
           <InputBox
             targetMovie={targetMovie}
             onSuccessfulGuess={onSuccessfulGuess}
             onGuessMade={handleGuessMade}
           />
         )}
+        {/* Show a message when timer is finished but results aren't shown yet */}
+        {timerFinished && !isGameOver}
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
             <>
