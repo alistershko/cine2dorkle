@@ -66,12 +66,12 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
     setShowDropdown(false);
     setError("");
   };
-
+  //This formats the date of the movie's release to only show the year
   const formatReleaseYear = (dateString) => {
     if (!dateString) return "Unknown year";
     return new Date(dateString).getFullYear();
   };
-
+  //This adds the ability to select a guess by pressing enter - but only does the first guess
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && suggestions.length > 0) {
       const firstSuggestion = suggestions[0];
