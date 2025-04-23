@@ -1,15 +1,11 @@
-/* /*
-=============== 
-Modal
-===============
-*/
-.hero {
-  min-height: 100vh;
+
+/* .hero {
+  min-height: 100vh; */
   /* background: url("./hero.jpeg") center/cover no-repeat; */
-  display: grid;
+  /* display: grid;
   place-items: center;
-}
-.banner {
+} */
+/* .banner {
   background: #fff;
   padding: 4rem 0;
   border-radius: 0.5rem;
@@ -17,8 +13,8 @@ Modal
   text-align: center;
   width: 90vw;
   max-width: 620px;
-}
-.modal-btn {
+} */
+/* .modal-btn {
   background-color: #007bff;
   color: white;
   border: none;
@@ -26,11 +22,11 @@ Modal
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
-}
+} */
 
-.modal-btn:hover {
+/* .modal-btn:hover {
   background-color: #0056b3;
-}
+} */
 /* .modal-btn {
   margin-top: 2rem;
   background: hsl(210, 22%, 49%);
@@ -41,7 +37,7 @@ Modal
   background: transparent;
   color: hsl(210, 22%, 49%);
 } */
-.modal-overlay {
+/* .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -53,11 +49,11 @@ Modal
   transition: all 0.3s linear;
   visibility: hidden;
   z-index: -10;
-}
+} */
 
 
 /* OPEN/CLOSE MODAL */
-.open-modal {
+/* .open-modal {
   visibility: visible;
   z-index: 10;
 }
@@ -72,8 +68,8 @@ Modal
   place-items: center;
   position: relative;
   color: #000;
-}
-.close-btn {
+} */
+/* .close-btn {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -87,4 +83,98 @@ Modal
 .close-btn:hover {
   color: hsl(360, 71%, 66%);
   transform: scale(1.3);
+} */
+
+/* Modal Overlay - stays mostly the same, just slightly dimmer for cinematic effect */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.85); /* darker overlay */
+  display: grid;
+  place-items: center;
+  transition: all 0.3s linear;
+  visibility: hidden;
+  z-index: -10;
+}
+
+.open-modal {
+  visibility: visible;
+  z-index: 10;
+}
+
+/* Container with vintage film style */
+.modal-container {
+  background: #111; /* deep black background for cinema look */
+  border: 5px solid #c0aa6c; /* gold border for vintage glam */
+  border-radius: 0.75rem;
+  width: 90vw;
+  max-width: 620px;
+  height: auto;
+  padding: 2rem;
+  text-align: center;
+  color: #fff; /* white text */
+  font-family: "Cinzel", serif; /* dramatic vintage font */
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3); /* soft gold glow */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+}
+
+/* Close Button – stylized like an old cinema "X" light */
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  color: #c0aa6c;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.close-btn:hover {
+  color: #fff8dc;
+  transform: scale(1.3);
+}
+
+/* Buttons – stylized like classic theater buttons */
+.modal-btn {
+  background-color: #c0aa6c; /* old gold */
+  color: #111;
+  border: 2px solid #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 18px;
+  font-family: "Cinzel", serif;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.modal-btn:hover {
+  background-color: #fff;
+  color: #111;
+  border-color: #c0aa6c;
+}
+
+/* Optional heading style for dramatic effect */
+.modal-container h2 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+/* Add a subtle grainy background or film frame effect using a background image */
+.modal-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('/path-to-grain-texture.png');
+  opacity: 0.08;
+  pointer-events: none;
 }
