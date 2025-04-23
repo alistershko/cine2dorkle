@@ -23,7 +23,7 @@ const GamePage = () => {
   const navigate = useNavigate(); // Using to navigate from game to home with leave game button
   const [isGameOver, setIsGameOver] = useState(false); // Tracks timer state
   const [score, setScore] = useState(0); // Example score (need to reset this once we have score logic)
-  const [timerResetTrigger, setTimerResetTrigger] = useState(0); 
+  const [timerResetTrigger, setTimerResetTrigger] = useState(0);
   const [input, setInput] = useState("");
   let [gameID, setGameID] = useState(0);
   let [moviesPlayed, setMoviesPlayed] = useState([]);
@@ -36,11 +36,11 @@ const GamePage = () => {
     const startGame = async () => {
       try {
         const data = await startNewGame();
-        const initialMovie = data.targetMovie
+        const initialMovie = data.targetMovie;
         if (isMounted) {
           if (data && data.id) {
             setGameID(data.id);
-            setMoviesPlayed(prev => [...prev, { movie: initialMovie }]);
+            setMoviesPlayed((prev) => [...prev, { movie: initialMovie }]);
           } else {
             console.error("Invalid movie data:", data);
           }
@@ -73,16 +73,16 @@ const GamePage = () => {
     setInput(guess); // store the guess
     setTimerResetTrigger((prev) => prev + 1); // trigger timer reset
   };
-  
+
   // Function called when 'Play Again' button is clicked on ResultsModal
   const playAgain = () => {
     console.log("play again button clicked");
     window.location.reload();
-  }
-    // Function called when 'Leave Game' button is clicked on ResultsModal
-    const leaveGame = () => {
-      navigate("/");
-    }
+  };
+  // Function called when 'Leave Game' button is clicked on ResultsModal
+  const leaveGame = () => {
+    navigate("/");
+  };
 
   const handleTimeUp = () => {
     setIsGameOver(true); // Change to ResultsModal later
@@ -96,11 +96,8 @@ const GamePage = () => {
   return (
     <div className="page-container">
       <Header />
-      <h1>Enter your guess here</h1>
-      <Timer
-          resetTrigger={timerResetTrigger}
-          onTimeUp={handleTimeUp}
-        />
+      <br />
+      <Timer resetTrigger={timerResetTrigger} onTimeUp={handleTimeUp} />
       <Header gameMode={gameMode} />
       <div className="game-content">
         <InputBox
@@ -124,12 +121,12 @@ const GamePage = () => {
         </div>
       </div>
       <Footer />
-      <ResultsModal 
-          isOpen={isGameOver}
-          playAgain={playAgain}
-          leaveGame={leaveGame}
-          score={score}
-        />
+      <ResultsModal
+        isOpen={isGameOver}
+        playAgain={playAgain}
+        leaveGame={leaveGame}
+        score={score}
+      />
     </div>
   );
 };

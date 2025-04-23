@@ -1,13 +1,13 @@
 .playButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 100px;
-    background-color: #173038;
-    border-radius: 25%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-color: white;
-    filter: drop-shadow(0 0 0.2rem #fcfcfc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  background-color: #c0aa6c;
+  border-radius: 25%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-color: white;
+  filter: drop-shadow(0 0 0.2rem #fcfcfc);
 }

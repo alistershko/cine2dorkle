@@ -1,6 +1,6 @@
 .footer {
   width: 100vw;
-  background-color: #173038;
+  background-color: #c0aa6c;
   color: white;
   text-align: center;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
@@ -14,4 +14,3 @@
 .tmdbLogo-image {
   height: 15px;
 }
-
