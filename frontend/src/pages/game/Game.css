@@ -33,7 +33,7 @@
 }
 
 .game-mode-indicator.easy {
-  background-color: #173038;
+  background-color: #c0aa6c;
   color: white;
 }
 
@@ -45,4 +45,43 @@
 .slide {
   height: 4rem;
   z-index: 2;
+}
+
+.link-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.link-box-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 10rem;
+}
+
+.link-box-item img {
+  align-self: center;
+  margin: auto;
+}
+
+.left {
+  text-align: right;
+  justify-content: right;
+  margin-right: 0;
+}
+
+.right {
+  margin-left: 0;
+}
+
+.middle {
+  width: 6rem;
+}
+
+.controls-header-container {
+  position: absolute;
+  top: 5px;
+  right: 25px;
+  z-index: 1000;
 }
