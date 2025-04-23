@@ -5,7 +5,7 @@
   padding: 1rem;
   box-shadow: 0 0 15px rgba(192, 170, 108, 0.8),
     0 0 30px rgba(192, 170, 108, 0.6);
-  filter: contrast(120%) sepia(30%); /* Removed grayscale, added sepia for gold tone */
+  filter: contrast(120%) sepia(30%);
   animation: flicker 1.5s infinite;
   width: 140px;
   margin: 0 auto;
@@ -39,7 +39,7 @@
   z-index: 1;
 }
 
-/* Flicker effect - adjusted to be more subtle and gold-colored */
+/* Flicker effect - adjusted to be gold-colored */
 @keyframes flicker {
   0%,
   100% {
