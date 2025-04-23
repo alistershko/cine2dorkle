@@ -1,91 +1,4 @@
-
-/* .hero {
-  min-height: 100vh; */
-  /* background: url("./hero.jpeg") center/cover no-repeat; */
-  /* display: grid;
-  place-items: center;
-} */
-/* .banner {
-  background: #fff;
-  padding: 4rem 0;
-  border-radius: 0.5rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 90vw;
-  max-width: 620px;
-} */
-/* .modal-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-} */
-
-/* .modal-btn:hover {
-  background-color: #0056b3;
-} */
-/* .modal-btn {
-  margin-top: 2rem;
-  background: hsl(210, 22%, 49%);
-  border-color: hsl(210, 22%, 49%);
-  color: #fff;
-}
-.modal-btn:hover {
-  background: transparent;
-  color: hsl(210, 22%, 49%);
-} */
-/* .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(1, 22, 38, 0.5);
-  display: grid;
-  place-items: center;
-  transition: all 0.3s linear;
-  visibility: hidden;
-  z-index: -10;
-} */
-
-
-/* OPEN/CLOSE MODAL */
-/* .open-modal {
-  visibility: visible;
-  z-index: 10;
-}
-.modal-container {
-  background: #fff;
-  border-radius: 0.5rem;
-  width: 90vw;
-  height: 30vh;
-  max-width: 620px;
-  text-align: center;
-  display: grid;
-  place-items: center;
-  position: relative;
-  color: #000;
-} */
-/* .close-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 2rem;
-  background: transparent;
-  border-color: transparent;
-  color: hsl(360, 67%, 44%);
-  cursor: pointer;
-  transition: all 0.3s linear;
-}
-.close-btn:hover {
-  color: hsl(360, 71%, 66%);
-  transform: scale(1.3);
-} */
-
-/* Modal Overlay - stays mostly the same, just slightly dimmer for cinematic effect */
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -105,7 +18,7 @@
   z-index: 10;
 }
 
-/* Container with vintage film style */
+/* Container - vintage film style */
 .modal-container {
   background: #111; /* deep black background for cinema look */
   border: 5px solid #c0aa6c; /* gold border for vintage glam */
@@ -116,7 +29,7 @@
   padding: 2rem;
   text-align: center;
   color: #fff; /* white text */
-  font-family: "Cinzel", serif; /* dramatic vintage font */
+  font-family: "Cinzel", serif; /* vintage font */
   box-shadow: 0 0 30px rgba(255, 215, 0, 0.3); /* soft gold glow */
   display: flex;
   flex-direction: column;
@@ -141,7 +54,7 @@
   transform: scale(1.3);
 }
 
-/* Buttons – stylized like classic theater buttons */
+/* Buttons – like classic theater buttons */
 .modal-btn {
   background-color: #c0aa6c; /* old gold */
   color: #111;
@@ -169,7 +82,7 @@
   color: #fff;
 }
 
-/* Add a subtle grainy background or film frame effect using a background image */
+/* Subtle grainy background or film frame effect using a background image */
 .modal-container::before {
   content: "";
   position: absolute;
