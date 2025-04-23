@@ -3,8 +3,9 @@ import { playSound } from "../services/sound";
 import countdownSound from "../assets/Audio/countdown.mp3";
 import "../css/Timer.css";
 
-function Timer({ onTimeUp, resetTrigger }) {
-  const MAXTIME = 20;
+function Timer({ onTimeUp, resetTrigger, onTimerUpdate, gameMode }) {
+  // Set max time based on game mode
+  const MAXTIME = gameMode === "easy" ? 30 : 20;
   const [seconds, setSeconds] = useState(MAXTIME);
   const [isFinalCountdown, setIsFinalCountdown] = useState(false);
   const countdownAudioRef = useRef(null);
@@ -19,7 +20,7 @@ function Timer({ onTimeUp, resetTrigger }) {
       countdownAudioRef.current.pause();
       countdownAudioRef.current.currentTime = 0;
     }
-  }, [resetTrigger]);
+  }, [resetTrigger, MAXTIME]);
 
   // Handle the countdown effect and sound
   useEffect(() => {
@@ -32,6 +33,11 @@ function Timer({ onTimeUp, resetTrigger }) {
 
       onTimeUp();
       return;
+    }
+
+    // Notify parent component about timer updates
+    if (onTimerUpdate) {
+      onTimerUpdate(seconds);
     }
 
     // Start countdown effect and sound at 5 seconds
@@ -48,7 +54,7 @@ function Timer({ onTimeUp, resetTrigger }) {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [seconds, onTimeUp, isFinalCountdown]);
+  }, [seconds, onTimeUp, isFinalCountdown, onTimerUpdate]);
 
   return (
     <div
