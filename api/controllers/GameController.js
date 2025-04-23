@@ -70,7 +70,7 @@ const processGuess = async (req, res) => {
     const targetCastIds = new Set(targetCast.map((actor) => actor.id));
 
     for (const guessedMovie of searchResults) {
-      console.log("Checking movie:", guessedMovie);
+      // console.log("Checking movie:", guessedMovie);
       // Use the service function directly
       const guessedMovieId = guessedMovie.id;
       const guessedCast = await fetchCastFromMovieId(guessedMovie.id);
@@ -126,6 +126,7 @@ const processGuess = async (req, res) => {
           })),
         };
 
+        console.log(response);
         return res.status(200).json(response);
       }
     }

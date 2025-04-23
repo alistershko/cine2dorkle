@@ -8,7 +8,6 @@
   background-color: var(--film-background-color);
   box-shadow: 0 4px 12px var(--film-box-shadow-color); /* Use variable for box-shadow */
   max-width: 450px; /* Reduce the overall width */
-  margin: 1.5rem auto; /* Adjust vertical spacing */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   color: var(--film-text-color);
@@ -19,7 +18,7 @@
   width: 120px; /* Reduce the width of the poster */
   height: auto; /* Maintain aspect ratio */
   border-radius: 8px; /* Slightly smaller border radius */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px #c0aa6c;
 }
 
 .Film-Details {
@@ -57,7 +56,7 @@
 }
 
 .Error-Message {
-  color: red;
+  color: rgb(135, 5, 5);
   text-align: center;
   margin-top: 2rem;
 }

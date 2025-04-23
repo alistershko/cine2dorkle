@@ -78,9 +78,9 @@ const InitialFilmBox = ({
             <>
               <h3 className="Film-Cast">Matching Cast:</h3>
               <div className="Film-Cast-Grid">
-                {overlappingActors.map((actorName, index) => (
+                {overlappingActors.map((actor, index) => (
                   <div key={index} className="Film-Cast-Card">
-                    <div className="Actor-Name matching-actor">{actorName}</div>
+                    <div className="Actor-Name matching-actor">{actor.name}</div>
                   </div>
                 ))}
               </div>

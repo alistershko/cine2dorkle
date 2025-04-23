@@ -8,6 +8,7 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [error, setError] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(0); // Track the currently selected suggestion
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
@@ -20,6 +21,11 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
 
     return () => clearTimeout(delayDebounce);
   }, [query]);
+
+  // Reset selected index when suggestions change
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [suggestions]);
 
   const fetchSuggestions = async (input) => {
     try {
@@ -45,7 +51,6 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
     }
 
     const result = await guessMovie(movie.title, targetMovie.id);
-
     if (result.error) {
       setError(result.error);
       setQuery("");
@@ -59,24 +64,51 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
 
     onSuccessfulGuess(
       guessedMovie,
-      matchingCast.map((actor) => actor.name)
+      matchingCast.map((actor) => ({
+        name: actor.name,
+        usageCount: actor.usageCount,
+      }))
     );
 
     setQuery("");
     setShowDropdown(false);
     setError("");
   };
-  //This formats the date of the movie's release to only show the year
+
+  // Format the date of the movie's release to only show the year
   const formatReleaseYear = (dateString) => {
     if (!dateString) return "Unknown year";
     return new Date(dateString).getFullYear();
   };
-  //This adds the ability to select a guess by pressing enter - but only does the first guess
+
+  // Enhanced keyboard navigation
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" && suggestions.length > 0) {
-      const firstSuggestion = suggestions[0];
-      handleSelect(firstSuggestion);
-      handleMovieSelect(firstSuggestion);
+    if (!showDropdown || suggestions.length === 0) return;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault(); // Prevent scrolling
+        setSelectedIndex((prevIndex) =>
+          prevIndex < suggestions.length - 1 ? prevIndex + 1 : prevIndex
+        );
+        break;
+      case "ArrowUp":
+        e.preventDefault(); // Prevent scrolling
+        setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
+        break;
+      case "Enter":
+        e.preventDefault();
+        if (selectedIndex >= 0 && selectedIndex < suggestions.length) {
+          const selectedMovie = suggestions[selectedIndex];
+          handleSelect(selectedMovie);
+          handleMovieSelect(selectedMovie);
+        }
+        break;
+      case "Escape":
+        setShowDropdown(false);
+        break;
+      default:
+        break;
     }
   };
 
@@ -95,7 +127,7 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
       />
 
       {showDropdown && suggestions.length > 0 && (
-        <div className="absolute z-10 bg-white border border-gray-300 rounded shadow-md top-full left-0 right-0">
+        <div className="absolute z-10 bg-white border border-gray-300 rounded shadow-md top-full left-0 right-0 max-h-60 overflow-y-auto">
           <ul>
             {suggestions.map((movie, index) => (
               <li
@@ -104,7 +136,9 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
                   handleSelect(movie);
                   handleMovieSelect(movie);
                 }}
-                className="text-gray-900 cursor-pointer hover:bg-gray-200 p-2 flex justify-between"
+                className={`text-gray-900 cursor-pointer hover:bg-gray-200 p-2 flex justify-between ${
+                  index === selectedIndex ? "bg-gray-200" : ""
+                }`}
               >
                 <span className="movie-title">{movie.title}</span>
                 <span className="movie-year text-gray-500">

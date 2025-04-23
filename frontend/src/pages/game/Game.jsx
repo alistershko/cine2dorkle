@@ -8,6 +8,8 @@ import slide from "../../assets/slide-trans.png";
 
 // services to import
 import { startNewGame } from "../../services/game";
+import { playSound } from "../../services/sound"; // Add these imports
+import drumroll from "../../assets/Audio/drumroll.mp3";
 
 // components to import
 import InitialFilmBox from "../../components/InitialFilmBox";
@@ -16,6 +18,7 @@ import Footer from "../../components/Footer";
 import InputBox from "../../components/InputBox";
 import Timer from "../../components/Timer";
 import ResultsModal from "../../components/ResultsModal";
+import ControlsHeader from "../../components/ControlsHeader";
 
 import "./Game.css";
 
@@ -23,9 +26,10 @@ const GamePage = () => {
   const navigate = useNavigate(); // Using to navigate from game to home with leave game button
   const [isGameOver, setIsGameOver] = useState(false); // Tracks timer state
   const [score, setScore] = useState(0); // Example score (need to reset this once we have score logic)
-  const [timerResetTrigger, setTimerResetTrigger] = useState(0); 
+  const [timerResetTrigger, setTimerResetTrigger] = useState(0);
   const [input, setInput] = useState("");
-
+  const [soundPlayed, setSoundPlayed] = useState(false);
+  const [timerFinished, setTimerFinished] = useState(false);
   let [gameID, setGameID] = useState(0);
   let [moviesPlayed, setMoviesPlayed] = useState([]);
   let [searchParams] = useSearchParams();
@@ -37,11 +41,11 @@ const GamePage = () => {
     const startGame = async () => {
       try {
         const data = await startNewGame();
-        const initialMovie = data.targetMovie
+        const initialMovie = data.targetMovie;
         if (isMounted) {
           if (data && data.id) {
             setGameID(data.id);
-            setMoviesPlayed(prev => [...prev, { movie: initialMovie }]);
+            setMoviesPlayed((prev) => [...prev, { movie: initialMovie }]);
           } else {
             console.error("Invalid movie data:", data);
           }
@@ -66,6 +70,8 @@ const GamePage = () => {
     console.log("onSuccessfulGuess");
     setMoviesPlayed((prev) => [...prev, { movie, overlappingActors }]);
     setScore((prevScore) => prevScore + 1);
+    // console.log(moviesPlayed);
+    console.log(overlappingActors);
     console.log("score: " + (score + 1));
   };
 
@@ -74,22 +80,31 @@ const GamePage = () => {
     setInput(guess); // store the guess
     setTimerResetTrigger((prev) => prev + 1); // trigger timer reset
   };
-  
-
-
 
   // Function called when 'Play Again' button is clicked on ResultsModal
   const playAgain = () => {
     console.log("play again button clicked");
     window.location.reload();
-  }
-    // Function called when 'Leave Game' button is clicked on ResultsModal
-    const leaveGame = () => {
-      navigate("/");
-    }
+  };
+  // Function called when 'Leave Game' button is clicked on ResultsModal
+  const leaveGame = () => {
+    navigate("/");
+  };
 
   const handleTimeUp = () => {
-    setIsGameOver(true); // Change to ResultsModal later
+    if (!soundPlayed) {
+      // First, set timer as finished to disable input
+      setTimerFinished(true);
+
+      // Play drumroll sound when game ends
+      playSound(drumroll);
+      setSoundPlayed(true);
+
+      // Short delay to let drumroll play before showing results
+      setTimeout(() => {
+        setIsGameOver(true);
+      }, 2000); // 2 second delay for the drumroll
+    }
   };
 
   const slides = [];
@@ -100,23 +115,42 @@ const GamePage = () => {
   return (
     <div className="page-container">
       <Header />
-      <h1>Enter your guess here</h1>
-      <Timer
-          resetTrigger={timerResetTrigger}
-          onTimeUp={handleTimeUp}
-        />
-      <Header gameMode={gameMode} />
+      <div className="controls-header-container">
+        <ControlsHeader gameMode={gameMode} />
+      </div>
+      <br />
+      <Timer resetTrigger={timerResetTrigger} onTimeUp={handleTimeUp} />
       <div className="game-content">
-        {!isGameOver && (
-        <InputBox
-          targetMovie={targetMovie}
-          onSuccessfulGuess={onSuccessfulGuess}
-          onGuessMade={handleGuessMade}
-        />
-      )}
+        {/* Only show InputBox if game is not over AND timer is not finished */}
+        {!isGameOver && !timerFinished && (
+          <InputBox
+            targetMovie={targetMovie}
+            onSuccessfulGuess={onSuccessfulGuess}
+            onGuessMade={handleGuessMade}
+          />
+        )}
+        {/* Show a message when timer is finished but results aren't shown yet */}
+        {timerFinished && !isGameOver}
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
             <>
+              {index === moviesPlayed.length || (
+                <div>
+                  {!overlappingActors ||
+                    overlappingActors.length === 0 ||
+                    overlappingActors.map((actor) => (
+                      <div className="link-box">
+                        <div className="link-box-item left">{actor.name}</div>
+                        <div className="link-box-item middle">
+                          <img src={slide} alt="slide" className="slide"></img>
+                        </div>
+                        <div className="link-box-item right">
+                          {"x".repeat(actor.usageCount)}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              )}
               <InitialFilmBox
                 key={index}
                 movie={movie}
@@ -124,18 +158,17 @@ const GamePage = () => {
                 gameMode={gameMode}
                 isInitialFilm={index === 0}
               />
-              {index === moviesPlayed.length - 1 || <div>{slides}</div>}
             </>
           ))}
         </div>
       </div>
       <Footer />
-      <ResultsModal 
-          isOpen={isGameOver}
-          playAgain={playAgain}
-          leaveGame={leaveGame}
-          score={score}
-        />
+      <ResultsModal
+        isOpen={isGameOver}
+        playAgain={playAgain}
+        leaveGame={leaveGame}
+        score={score}
+      />
     </div>
   );
 };
