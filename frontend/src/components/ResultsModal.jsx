@@ -1,32 +1,36 @@
+import React, { useState, useEffect } from "react";
 import PlayAgainButton from "./PlayAgainButton";
 import LeaveGameButton from "./LeaveGameButton";
 import "../css/ResultsModal.css";
-import React, { useState, useEffect } from "react";
 
 const ResultsModal = ({ isOpen, playAgain, leaveGame, score }) => {
-  const [isModalOpen, setIsModalOpen] = useState(isOpen);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsModalOpen(isOpen);
+    if (isOpen) {
+      // Short delay to sync with drumroll
+      setTimeout(() => setIsVisible(true), 300);
+    } else {
+      setIsVisible(false);
+    }
   }, [isOpen]);
 
-  const closeModal = () => setIsModalOpen(false); 
+  if (!isOpen) return null;
 
   return (
-    <div>
-      {isModalOpen && (
-        <div className="modal-overlay open-modal">
-          <div className="modal-container">
-            <h2>Game Over</h2>
-            <p>Your Score: {score}</p>
-            <PlayAgainButton onClick={playAgain} />
-            <LeaveGameButton onClick={leaveGame} />
-            <button className="modal-close-button" onClick={closeModal}>
-              X
-            </button>
-          </div>
-        </div>
-      )}
+    <div className={`modal-overlay open-modal ${isVisible ? "visible" : ""}`}>
+      <div className={`modal-container ${isVisible ? "visible" : ""}`}>
+        <h2>Game Over</h2>
+        <p>Your Score: {score}</p>
+        <PlayAgainButton onClick={playAgain} />
+        <LeaveGameButton onClick={leaveGame} />
+        <button
+          className="modal-close-button"
+          onClick={() => setIsVisible(false)}
+        >
+          X
+        </button>
+      </div>
     </div>
   );
 };
