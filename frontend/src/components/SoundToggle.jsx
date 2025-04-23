@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import mutedPath from "../assets/muted-red-gold.png";
+import unmutedPath from "../assets/on-red-gold.png";
 
 const SoundToggle = () => {
   const [soundEnabled, setSoundEnabled] = useState(
@@ -22,7 +24,7 @@ const SoundToggle = () => {
         className="bg-gray-100 dark:bg-gray-700 rounded px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
         title={soundEnabled ? "Sound On" : "Sound Off"}
       >
-        {soundEnabled ? "🔊" : "🔇"}
+        {soundEnabled ? <img src={unmutedPath}></img> : <img src={mutedPath}></img>}
       </button>
     </>
   );
