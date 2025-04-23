@@ -4,6 +4,7 @@ import "./HomePage.css";
 import PlayButton from "../../components/PlayButton";
 import ModeToggle from "../../components/ModeToggle";
 import ControlsHeader from "../../components/ControlsHeader";
+import HowTo from "../../components/HowTo";
 
 export const HomePage = () => {
   console.log("Rendering HomePage");
@@ -16,6 +17,7 @@ export const HomePage = () => {
         <h1>Welcome to Double Feature!</h1>
         <p>Make connections between movies to win!</p>
         <PlayButton />
+        <HowTo />
         <ModeToggle />
       </div>
       <Footer />
