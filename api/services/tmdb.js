@@ -38,8 +38,8 @@ const getRandomMovieLogic = async () => {
   return { title, release_date, id, poster_path };
 };
 
-const fetchMoviesByName = async (movieName) => {
-  const url = `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=1`;
+const fetchMoviesByNameAndReleaseYear = async (movieName, movieReleaseYear) => {
+  const url = `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=1&year=${movieReleaseYear}`;
   const options = {
     method: "GET",
     headers: {
@@ -99,6 +99,6 @@ const fetchCastFromMovieId = async (movieId) => {
 
 module.exports = {
   getRandomMovieLogic,
-  fetchMoviesByName,
+  fetchMoviesByNameAndReleaseYear,
   fetchCastFromMovieId,
 };

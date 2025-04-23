@@ -1,6 +1,6 @@
 const {
   getRandomMovieLogic,
-  fetchMoviesByName,
+  fetchMoviesByNameAndReleaseYear,
   fetchCastFromMovieId,
 } = require("../services/tmdb");
 
@@ -40,7 +40,7 @@ const getSearchResults = async (req, res) => {
   const movieName = req.params.name;
 
   try {
-    const movies = await fetchMoviesByName(movieName); // Use the new method
+    const movies = await fetchMoviesByNameAndReleaseYear(movieName); // Use the new method
     console.log(movies.length);
 
     const sanitisedMovieList = movies

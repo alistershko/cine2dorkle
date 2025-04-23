@@ -1,5 +1,5 @@
 const { getRandomMovieLogic } = require("./tmdb.js");
-const { fetchMoviesByName, fetchCastFromMovieId } = require("../services/tmdb");
+const { fetchMoviesByNameAndReleaseYear, fetchCastFromMovieId } = require("../services/tmdb");
 
 const activeGames = new Map(); // Store active games in memory
 
@@ -56,10 +56,10 @@ const getGameObject = (req, res) => {
 };
 
 const processGuess = async (req, res) => {
-  const { movie_title, target_movie_id } = req.body;
+  const { movie_title, movie_release_year, target_movie_id } = req.body;
 
   try {
-    const searchResults = await fetchMoviesByName(movie_title);
+    const searchResults = await fetchMoviesByNameAndReleaseYear(movie_title, movie_release_year);
 
     if (searchResults.length === 0) {
       console.error("Movie not found:", movie_title);
@@ -70,7 +70,6 @@ const processGuess = async (req, res) => {
     const targetCastIds = new Set(targetCast.map((actor) => actor.id));
 
     for (const guessedMovie of searchResults) {
-      // console.log("Checking movie:", guessedMovie);
       // Use the service function directly
       const guessedMovieId = guessedMovie.id;
       const guessedCast = await fetchCastFromMovieId(guessedMovie.id);
@@ -126,7 +125,6 @@ const processGuess = async (req, res) => {
           })),
         };
 
-        console.log(response);
         return res.status(200).json(response);
       }
     }
