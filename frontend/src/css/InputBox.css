@@ -79,7 +79,7 @@ input {
 
 .absolute li.bg-gray-200 {
   background-color: #e5e7eb; /* Gray-200 color */
-  border-left: 3px solid #c0aa6c; /* Gold accent for the selected item */
+  border-left: 3px solid #c5ab66; /* Gold accent for the selected item */
 }
 
 /* Make the dropdown scrollable if there are many options */
@@ -92,7 +92,6 @@ input {
   scrollbar-width: thin;
 }
 
-/* For WebKit browsers (Chrome, Safari) */
 .overflow-y-auto::-webkit-scrollbar {
   width: 6px;
 }
