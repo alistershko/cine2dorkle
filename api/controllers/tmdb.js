@@ -26,9 +26,6 @@ const getCastFromMovieId = async (req, res) => {
       return res.status(404).json({ error: "No cast found" });
     }
 
-    console.log(
-      `Found ${sanitisedCast.length} cast members for movie ID: ${movieId}`
-    );
     res.json(sanitisedCast);
   } catch (err) {
     console.error(`Error in getCastFromMovieId controller:`, err);
@@ -41,7 +38,6 @@ const getSearchResults = async (req, res) => {
 
   try {
     const movies = await fetchMoviesByNameAndReleaseYear(movieName); // Use the new method
-    console.log(movies.length);
 
     const sanitisedMovieList = movies
       .slice(0, 5)

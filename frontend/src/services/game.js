@@ -28,7 +28,6 @@ export const guessMovie = async (movie_title, movie_release_year, target_movie_i
     },
     body: JSON.stringify({ movie_title, movie_release_year, target_movie_id }),
   };
-  console.log("Request options:", requestOptions);
   const response = await fetch(`${BACKEND_URL}/game/guess`, requestOptions);
   if (!response.ok) {
     return response.json();

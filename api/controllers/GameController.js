@@ -43,8 +43,8 @@ const startNewGame = async (req, res) => {
 // Helper function to get a specific game
 const getGameObject = (req, res) => {
   const gameId = req.params.id;
-  console.log(`Looking for game with ID: ${gameId}`);
-  console.log(`Available games: ${Array.from(activeGames.keys())}`);
+  // console.log(`Looking for game with ID: ${gameId}`);
+  // console.log(`Available games: ${Array.from(activeGames.keys())}`);
 
   const game = activeGames.get(Number(gameId));
 
