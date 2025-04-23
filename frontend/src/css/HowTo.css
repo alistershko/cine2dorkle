@@ -69,12 +69,17 @@ open modal (toggle visibility)
   position: absolute;
   top: 1rem;
   right: 1rem;
-  font-size: 2rem;
+  font-size: 2em;
   background: transparent;
-  border-color: transparent;
-  color: hsl(360, 67%, 44%);
+  border: 2px solid #fff;
+  color: #111;
   cursor: pointer;
   transition: all 0.3s linear;
+  
+  background-color: #c0aa6c; /* old gold */
+  padding: 0.15rem 0.75rem;
+  border-radius: 8px;
+
 }
 
 
