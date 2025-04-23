@@ -1,3 +1,5 @@
+import sunPath from "../assets/sun-red-gold-lrg.png";
+import moonPath from "../assets/moon-red-gold-lrg.png";
 import React, { useState, useEffect, useCallback } from "react";
 
 const ThemeToggle = () => {
@@ -28,10 +30,9 @@ const ThemeToggle = () => {
     <button
       onClick={toggleTheme}
       aria-label="Toggle Theme"
-      className="bg-gray-100 dark:bg-gray-700 rounded px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
-      title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      className="toggle-btn"
     >
-      {theme === "dark" ? "🌞" : "🌙"}
+      {theme === "dark" ? <img src={moonPath}></img> : <img src={sunPath}></img>}
     </button>
   );
 };

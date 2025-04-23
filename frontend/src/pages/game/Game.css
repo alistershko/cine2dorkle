@@ -85,3 +85,13 @@
   right: 25px;
   z-index: 1000;
 }
+
+.toggle-btn img {
+  height: 3rem;
+  border-radius: 3rem;
+  transition-duration: 0.3s;
+}
+
+.toggle-btn img:hover {
+  box-shadow: 0 0 0.3rem 0.2rem #f3b95c;
+}

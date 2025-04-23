@@ -1,4 +1,7 @@
+import mutedPath from "../assets/muted-red-gold.png";
+import unmutedPath from "../assets/on-red-gold.png";
 import React, { useState, useEffect, useCallback } from "react";
+
 
 const SoundToggle = () => {
   const [soundEnabled, setSoundEnabled] = useState(
@@ -22,14 +25,16 @@ const SoundToggle = () => {
   }, []);
 
   return (
-    <button
-      onClick={toggleSound}
-      aria-label={soundEnabled ? "Mute Sound" : "Enable Sound"}
-      className="bg-gray-100 dark:bg-gray-700 rounded px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
-      title={soundEnabled ? "Sound On" : "Sound Off"}
-    >
-      {soundEnabled ? "🔊" : "🔇"}
-    </button>
+    <>
+      <button
+        onClick={toggleSound}
+        aria-label={soundEnabled ? "Mute Sound" : "Enable Sound"}
+        className="toggle-btn"
+        title={soundEnabled ? "Sound On" : "Sound Off"}
+      >
+        {soundEnabled ? <img src={unmutedPath}></img> : <img src={mutedPath}></img>}
+      </button>
+    </>
   );
 };
 
