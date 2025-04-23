@@ -7,6 +7,11 @@
   flex-direction: column;
 }
 
+input::placeholder {
+  /* font-family: 'Limelight'; */
+  font-family: 'Federo', sans-serif;
+}
+
 .error-message {
   background-color: rgba(255, 0, 0, 0.1);
   color: #913838;
@@ -17,6 +22,7 @@
   text-align: center;
   animation: fadeIn 0.3s ease-in-out;
   font-weight: bold;
+  font-family: 'Federo', sans-serif;
 }
 
 @keyframes fadeIn {

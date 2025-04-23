@@ -126,7 +126,7 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
         onChange={(e) => setQuery(e.target.value)}
         onFocus={() => query && suggestions.length > 0 && setShowDropdown(true)}
         onKeyDown={handleKeyDown}
-        className="w-full bg-white text-gray-900 rounded p-4 dark:bg-gray-500 dark:text-gray-50 border border-gray-400 outline-red-700"
+        className="w-full bg-white text-gray-900 rounded p-4 dark:bg-gray-500 dark:text-gray-50 border border-gray-400 outline-red-700 placeholder:font-limelight"
       />
 
       {showDropdown && suggestions.length > 0 && (
