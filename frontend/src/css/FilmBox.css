@@ -19,7 +19,7 @@
   width: 120px; /* Reduce the width of the poster */
   height: auto; /* Maintain aspect ratio */
   border-radius: 8px; /* Slightly smaller border radius */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px #c0aa6c;
 }
 
 .Film-Details {
@@ -57,7 +57,7 @@
 }
 
 .Error-Message {
-  color: red;
+  color: rgb(135, 5, 5);
   text-align: center;
   margin-top: 2rem;
 }
