@@ -16,6 +16,7 @@ import Footer from "../../components/Footer";
 import InputBox from "../../components/InputBox";
 import Timer from "../../components/Timer";
 import ResultsModal from "../../components/ResultsModal";
+import ControlsHeader from "../../components/ControlsHeader";
 
 import "./Game.css";
 
@@ -99,31 +100,38 @@ const GamePage = () => {
   return (
     <div className="page-container">
       <Header />
+      <ControlsHeader />
       <br />
       <Timer resetTrigger={timerResetTrigger} onTimeUp={handleTimeUp} />
       <Header gameMode={gameMode} />
       <div className="game-content">
         {!isGameOver && (
-        <InputBox
-          targetMovie={targetMovie}
-          onSuccessfulGuess={onSuccessfulGuess}
-          onGuessMade={handleGuessMade}
-        />
-      )}
+          <InputBox
+            targetMovie={targetMovie}
+            onSuccessfulGuess={onSuccessfulGuess}
+            onGuessMade={handleGuessMade}
+          />
+        )}
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
             <>
-              {index === moviesPlayed.length ||
+              {index === moviesPlayed.length || (
                 <div>
-                  {(!overlappingActors || overlappingActors.length === 0) || overlappingActors.map((actor) => (
-                    <div className="link-box">
-                      <div className="link-box-item left">{actor.name}</div>
-                      <div className="link-box-item middle"><img src={slide} alt="slide" className="slide"></img></div>
-                      <div className="link-box-item right">{"x".repeat(actor.usageCount)}</div>
-                    </div>
-                  ))}
+                  {!overlappingActors ||
+                    overlappingActors.length === 0 ||
+                    overlappingActors.map((actor) => (
+                      <div className="link-box">
+                        <div className="link-box-item left">{actor.name}</div>
+                        <div className="link-box-item middle">
+                          <img src={slide} alt="slide" className="slide"></img>
+                        </div>
+                        <div className="link-box-item right">
+                          {"x".repeat(actor.usageCount)}
+                        </div>
+                      </div>
+                    ))}
                 </div>
-              }
+              )}
               <InitialFilmBox
                 key={index}
                 movie={movie}
@@ -131,7 +139,6 @@ const GamePage = () => {
                 gameMode={gameMode}
                 isInitialFilm={index === 0}
               />
-              
             </>
           ))}
         </div>
