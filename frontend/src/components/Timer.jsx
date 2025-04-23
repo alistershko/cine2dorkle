@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import "../css/Timer.css";
 
 function Timer({ onTimeUp, resetTrigger }) {
-  const [seconds, setSeconds] = useState(15);
+  const MAXTIME = 999;
+  const [seconds, setSeconds] = useState(MAXTIME);
 
   // Resets timer when resetTrigger changes
   useEffect(() => {
-    setSeconds(15); // Set back to full time 
+    setSeconds(MAXTIME); // Set back to full time 
   }, [resetTrigger]);
 
   // This runs when component shows & whenever 'seconds' changes
