@@ -20,9 +20,9 @@ const ThemeToggle = () => {
     <button
       onClick={toggleTheme}
       aria-label="Toggle Theme"
-      className="bg-gray-100 dark:bg-gray-700 rounded px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
+      className="toggle-btn"
     >
-      {theme === "dark" ? <img src={sunPath}></img> : <img src={moonPath}></img>}
+      {theme === "dark" ? <img src={moonPath}></img> : <img src={sunPath}></img>}
     </button>
   );
 };

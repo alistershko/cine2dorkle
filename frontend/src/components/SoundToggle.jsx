@@ -21,7 +21,7 @@ const SoundToggle = () => {
       <button
         onClick={toggleSound}
         aria-label={soundEnabled ? "Mute Sound" : "Enable Sound"}
-        className="bg-gray-100 dark:bg-gray-700 rounded px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
+        className="toggle-btn"
         title={soundEnabled ? "Sound On" : "Sound Off"}
       >
         {soundEnabled ? <img src={unmutedPath}></img> : <img src={mutedPath}></img>}
