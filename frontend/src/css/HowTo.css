@@ -1,0 +1,92 @@
+/* 
+'How to Play' Modal
+*/
+.modal-howto-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(1, 22, 38, 0.5); /* darker overlay */
+  display: grid;
+  place-items: center;
+  transition: all 0.3s linear;
+  visibility: hidden;
+  z-index: -10;
+}
+
+.modal-howto-container {
+  background: #111;
+  border: 5px solid #c0aa6c;
+  border-radius: 0.75rem;
+  width: 90vw;
+  height: 450px; /* don't make 'auto'! note, was: 35vh*/
+  max-width: 620px;
+  text-align: center;
+  display: grid; /* don't make 'flex'! */
+  position: relative;
+  color: #fff;
+  overflow-y: auto; 
+
+  padding: 2rem;
+  font-family: "Cinzel", serif; /* vintage font */
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  gap: 1.5rem;
+}
+
+
+/* 
+'How to Play' Button
+*/
+.modal-howto-btn {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  color: #111;
+  background-color: #c0aa6c; /* old gold */
+  border: 2px solid #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 18px;
+  font-family: "Cinzel", serif;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+
+/* 
+open modal (toggle visibility)
+*/
+.open-modal-howto {
+  visibility: visible;
+  z-index: 10;
+}
+
+
+/* 
+'Close' button for modal
+*/
+.close-howto-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  background: transparent;
+  border-color: transparent;
+  color: hsl(360, 67%, 44%);
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+
+/* 
+text
+*/
+.howto-h1 {
+  /* color: purple; */
+  font-size: 40px;
+}
+
+.howto-h2 {
+  /* color: blue; */
+  font-size: 30px;
+}
