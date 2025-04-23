@@ -50,8 +50,27 @@
 .link-box {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .link-box-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   width: 10rem;
+}
+
+.link-box-item img {
+  align-self: center;
+  margin: auto;
+}
+
+.left {
+  text-align: right;
+  justify-content: right;
+  margin-right: 0;
+}
+
+.right {
+  margin-left: 0;
 }

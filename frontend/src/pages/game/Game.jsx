@@ -115,9 +115,9 @@ const GamePage = () => {
                 <div>
                   {(!overlappingActors || overlappingActors.length === 0) || overlappingActors.map((actorName) => (
                     <div className="link-box">
-                      <div className="link-box-item">{actorName}</div>
+                      <div className="link-box-item left">{actorName}</div>
                       <div className="link-box-item"><img src={slide} alt="slide" className="slide"></img></div>
-                      <div className="link-box-item">PUT X X X HERE</div>
+                      <div className="link-box-item right">PUT X X X HERE</div>
                     </div>
                   ))}
                 </div>
