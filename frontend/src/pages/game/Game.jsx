@@ -25,6 +25,7 @@ const GamePage = () => {
   const [score, setScore] = useState(0); // Example score (need to reset this once we have score logic)
   const [timerResetTrigger, setTimerResetTrigger] = useState(0);
   const [input, setInput] = useState("");
+
   let [gameID, setGameID] = useState(0);
   let [moviesPlayed, setMoviesPlayed] = useState([]);
   let [searchParams] = useSearchParams();
@@ -100,11 +101,13 @@ const GamePage = () => {
       <Timer resetTrigger={timerResetTrigger} onTimeUp={handleTimeUp} />
       <Header gameMode={gameMode} />
       <div className="game-content">
+        {!isGameOver && (
         <InputBox
           targetMovie={targetMovie}
           onSuccessfulGuess={onSuccessfulGuess}
           onGuessMade={handleGuessMade}
         />
+      )}
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
             <>
