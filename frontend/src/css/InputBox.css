@@ -9,13 +9,14 @@
 
 .error-message {
   background-color: rgba(255, 0, 0, 0.1);
-  color: #8c0b0b;
+  color: #913838;
   padding: 8px 12px;
   border-radius: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
   font-size: 0.9rem;
   text-align: center;
   animation: fadeIn 0.3s ease-in-out;
+  font-weight: bold;
 }
 
 @keyframes fadeIn {
@@ -63,4 +64,43 @@ input {
   width: 100%;
   background-color: var(--film-background-color);
   color: var(--film-text-color);
+}
+
+/* Style for the keyboard navigation highlight */
+.absolute ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.absolute li {
+  transition: background-color 0.2s ease;
+}
+
+.absolute li.bg-gray-200 {
+  background-color: #e5e7eb; /* Gray-200 color */
+  border-left: 3px solid #c5ab66; /* Gold accent for the selected item */
+}
+
+/* Make the dropdown scrollable if there are many options */
+.max-h-60 {
+  max-height: 15rem;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #c0aa6c;
+  border-radius: 3px;
 }
