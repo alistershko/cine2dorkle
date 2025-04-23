@@ -1,8 +1,9 @@
 import React from "react";
+import "../css/PlayAgainButton.css";
 
 const PlayAgainButton = ({ onClick }) => {
   return (
-    <button className="modal-btn" onClick={onClick}>
+    <button className="playagain-btn" onClick={onClick}>
       Play Again
     </button>
   );
