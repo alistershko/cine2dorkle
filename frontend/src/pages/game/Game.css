@@ -78,3 +78,10 @@
 .middle {
   width: 6rem;
 }
+
+.controls-header-container {
+  position: absolute;
+  top: 5px;
+  right: 25px;
+  z-index: 1000;
+}
