@@ -68,12 +68,8 @@ const GamePage = () => {
   }, [moviesPlayed]);
 
   const onSuccessfulGuess = (movie, overlappingActors) => {
-    console.log("onSuccessfulGuess");
     setMoviesPlayed((prev) => [...prev, { movie, overlappingActors }]);
     setScore((prevScore) => prevScore + 1);
-    // console.log(moviesPlayed);
-    console.log(overlappingActors);
-    console.log("score: " + (score + 1));
   };
 
   // Resets timer when guess is made
@@ -115,11 +111,7 @@ const GamePage = () => {
 
   return (
     <div className="page-container">
-      <Header />
-      <div className="controls-header-container">
-        <ControlsHeader gameMode={gameMode} />
-      </div>
-      <br />
+      <ControlsHeader gameMode={gameMode} />
       <Timer resetTrigger={timerResetTrigger} onTimeUp={handleTimeUp} />
       <div className="game-content">
         {/* Only show InputBox if game is not over AND timer is not finished */}

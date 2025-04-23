@@ -2,7 +2,7 @@ import React from "react";
 import ThemeToggle from "./ThemeToggle";
 import SoundToggle from "./SoundToggle";
 
-const ControlsHeader = ({ gameMode, isMinimized }) => {
+const ControlsHeader = ({ gameMode }) => {
   return (
     <div className={`controls-header-container`}>
       <div className="toggles-container">

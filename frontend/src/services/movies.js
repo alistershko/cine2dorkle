@@ -97,7 +97,6 @@ export const getSearchResults = async (movie_title) => {
     }
 
     const data = await response.json();
-    console.log("Fetched data:", data);
     return data;
   } catch (err) {
     console.error("Fetch error in getSearchResult:", err);
