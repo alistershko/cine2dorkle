@@ -128,11 +128,13 @@ const GamePage = () => {
         />
       <Header gameMode={gameMode} />
       <div className="game-content">
+        {!isGameOver && (
         <InputBox
           targetMovie={targetMovie}
           onSuccessfulGuess={onSuccessfulGuess}
           onGuessMade={handleGuessMade}
         />
+      )}
         <div className="film-box-container">
           {moviesPlayed.map(({ movie, overlappingActors }, index) => (
             <>
