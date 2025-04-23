@@ -1,41 +1,66 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { playSound } from "../services/sound";
+import countdownSound from "../assets/Audio/countdown.mp3";
 import "../css/Timer.css";
 
 function Timer({ onTimeUp, resetTrigger }) {
   const MAXTIME = 20;
   const [seconds, setSeconds] = useState(MAXTIME);
+  const [isFinalCountdown, setIsFinalCountdown] = useState(false);
+  const countdownAudioRef = useRef(null);
 
-  // Resets timer when resetTrigger changes
+  // Reset timer when resetTrigger changes
   useEffect(() => {
-    setSeconds(MAXTIME); // Set back to full time 
+    setSeconds(MAXTIME);
+    setIsFinalCountdown(false);
+
+    // Stop countdown sound if it's playing during reset
+    if (countdownAudioRef.current) {
+      countdownAudioRef.current.pause();
+      countdownAudioRef.current.currentTime = 0;
+    }
   }, [resetTrigger]);
 
-  // This runs when component shows & whenever 'seconds' changes
+  // Handle the countdown effect and sound
   useEffect(() => {
     if (seconds === 0) {
-      onTimeUp(); // Function called when timer hits 0
-      return; // Return early (no need to keep counting)
+      // Stop countdown sound if it's playing
+      if (countdownAudioRef.current) {
+        countdownAudioRef.current.pause();
+        countdownAudioRef.current = null;
+      }
+
+      onTimeUp();
+      return;
     }
 
-    // If timer not at 0, start timer that runs every 1 seconds
-    // setInterval runs code at interval of 1000ms (1s)
+    // Start countdown effect and sound at 5 seconds
+    if (seconds === 5 && !isFinalCountdown) {
+      setIsFinalCountdown(true);
+
+      // Play countdown sound
+      countdownAudioRef.current = new Audio(countdownSound);
+      playSound(countdownAudioRef.current);
+    }
+
     const interval = setInterval(() => {
-      // Code run is callback function setSeconds which updates the countdown
       setSeconds((s) => s - 1);
     }, 1000);
 
-    // Clears old timer
     return () => clearInterval(interval);
-    // Tells react to re-run useEffect when seconds changes or onTimeUp function changes
-  }, [seconds, onTimeUp]);
+  }, [seconds, onTimeUp, isFinalCountdown]);
 
   return (
-    <div className="timer-container flex flex-col items-center justify-center">
-      <div className="timer-text">
+    <div
+      className={`timer-container ${isFinalCountdown ? "final-countdown" : ""}`}
+    >
+      <div
+        className={`timer-text ${isFinalCountdown ? "countdown-active" : ""}`}
+      >
         {seconds}
       </div>
     </div>
-  );  
-};
+  );
+}
 
 export default Timer;
