@@ -9,11 +9,13 @@ function Timer({ onTimeUp, resetTrigger, onTimerUpdate, gameMode }) {
   const [seconds, setSeconds] = useState(MAXTIME);
   const [isFinalCountdown, setIsFinalCountdown] = useState(false);
   const countdownAudioRef = useRef(null);
+  const timerFinishedRef = useRef(false); // Track if timer has finished
 
   // Reset timer when resetTrigger changes
   useEffect(() => {
     setSeconds(MAXTIME);
     setIsFinalCountdown(false);
+    timerFinishedRef.current = false; // Reset finished state
 
     // Stop countdown sound if it's playing during reset
     if (countdownAudioRef.current) {
@@ -24,19 +26,26 @@ function Timer({ onTimeUp, resetTrigger, onTimerUpdate, gameMode }) {
 
   // Handle the countdown effect and sound
   useEffect(() => {
-    if (seconds === 0) {
+    if (seconds === 0 && !timerFinishedRef.current) {
+      // Mark timer as finished to prevent multiple calls
+      timerFinishedRef.current = true;
+
       // Stop countdown sound if it's playing
       if (countdownAudioRef.current) {
         countdownAudioRef.current.pause();
         countdownAudioRef.current = null;
       }
 
-      onTimeUp();
+      // Call onTimeUp with a small delay to ensure it's not skipped
+      setTimeout(() => {
+        onTimeUp();
+      }, 50);
+
       return;
     }
 
     // Notify parent component about timer updates
-    if (onTimerUpdate) {
+    if (onTimerUpdate && !timerFinishedRef.current) {
       onTimerUpdate(seconds);
     }
 
@@ -49,11 +58,14 @@ function Timer({ onTimeUp, resetTrigger, onTimerUpdate, gameMode }) {
       playSound(countdownAudioRef.current);
     }
 
-    const interval = setInterval(() => {
-      setSeconds((s) => s - 1);
-    }, 1000);
+    // Only set up interval if timer hasn't finished
+    if (!timerFinishedRef.current) {
+      const interval = setInterval(() => {
+        setSeconds((s) => s - 1);
+      }, 1000);
 
-    return () => clearInterval(interval);
+      return () => clearInterval(interval);
+    }
   }, [seconds, onTimeUp, isFinalCountdown, onTimerUpdate]);
 
   return (

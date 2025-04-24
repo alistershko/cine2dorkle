@@ -148,42 +148,55 @@ const GamePage = () => {
   };
 
   const handleTimeUp = () => {
-    if (!soundPlayed) {
-      // First, set timer as finished to disable input
-      setTimerFinished(true);
+    // Immediately set timer finished to disable input
+    setTimerFinished(true);
 
-      // Temporarily pause background music
-      if (backgroundMusicRef.current) {
-        backgroundMusicRef.current.pause();
+    // If we've already played the sound, don't proceed
+    if (soundPlayed) return;
 
-        // Play drumroll sound when game ends
-        const drumrollSound = new Audio(drumroll);
+    // Set this flag to prevent multiple calls
+    setSoundPlayed(true);
+    console.log("Timer finished, preparing to show results");
 
-        // Play the drumroll if sound is enabled
-        if (isSoundEnabled()) {
-          drumrollSound
-            .play()
-            .catch((e) => console.log("Drumroll play prevented:", e));
-        }
-
-        setSoundPlayed(true);
-
-        // Short delay to let drumroll play before showing results
-        setTimeout(() => {
-          setIsGameOver(true);
-
-          // Restart background music immediately when results modal appears
-          if (isSoundEnabled() && backgroundMusicRef.current) {
-            // Reset to beginning of track
-            backgroundMusicRef.current.currentTime = 0;
-            backgroundMusicRef.current.volume = 0.3; // Lower volume for results screen
-            backgroundMusicRef.current
-              .play()
-              .catch((e) => console.log("Restart music prevented:", e));
-          }
-        }, 2000); // 2 second delay for the drumroll
-      }
+    // Pause background music regardless of whether we have a ref
+    if (backgroundMusicRef.current) {
+      backgroundMusicRef.current.pause();
     }
+
+    // Create and play drumroll outside of conditional
+    const drumrollSound = new Audio(drumroll);
+
+    // Play the drumroll if sound is enabled
+    if (isSoundEnabled()) {
+      drumrollSound
+        .play()
+        .catch((e) => console.log("Drumroll play prevented:", e));
+    }
+
+    // Explicitly set game over to false first
+    setIsGameOver(false);
+
+    console.log("Starting timeout for results modal");
+
+    // Short delay to let drumroll play before showing results
+    setTimeout(() => {
+      console.log("Timeout completed, setting game over to true");
+
+      // Set game over state directly, without requestAnimationFrame
+      setIsGameOver(true);
+
+      console.log("Game over set to true, results should show");
+
+      // Restart background music immediately when results modal appears
+      if (isSoundEnabled() && backgroundMusicRef.current) {
+        // Reset to beginning of track
+        backgroundMusicRef.current.currentTime = 0;
+        backgroundMusicRef.current.volume = 0.3; // Lower volume for results screen
+        backgroundMusicRef.current
+          .play()
+          .catch((e) => console.log("Restart music prevented:", e));
+      }
+    }, 2000); // 2 second delay for the drumroll
   };
 
   const slides = [];
