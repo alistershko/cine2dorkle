@@ -31,6 +31,7 @@ const ThemeToggle = () => {
       onClick={toggleTheme}
       aria-label="Toggle Theme"
       className="toggle-btn"
+      data-testid="theme-toggle"
     >
       {theme === "dark" ? <img src={moonPath}></img> : <img src={sunPath}></img>}
     </button>
