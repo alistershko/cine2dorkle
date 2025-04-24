@@ -10,7 +10,6 @@ describe("Footer", () => {
     const footerElement = screen.getByText(/this product uses the tmdb api/i);
     expect(footerElement).toBeInTheDocument();
   });
-});
 
   // TMDB logo appears with correct alt text
   it("displays the TMDB logo with alt text", () => {
@@ -24,6 +23,7 @@ describe("Footer", () => {
   it("has the footer class for styling", () => {
     render(<Footer />);
     const footer = screen.getByText(/this product uses the tmdb api/i).closest("div");
-    expect(footer).toHaveClass("footer");
+    expect(footer.parentElement).toHaveClass("footer");
   });
+});
 

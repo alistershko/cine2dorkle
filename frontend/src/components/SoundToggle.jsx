@@ -31,6 +31,7 @@ const SoundToggle = () => {
         aria-label={soundEnabled ? "Mute Sound" : "Enable Sound"}
         className="toggle-btn"
         title={soundEnabled ? "Sound On" : "Sound Off"}
+        data-testid="sound-toggle"
       >
         {soundEnabled ? <img src={unmutedPath}></img> : <img src={mutedPath}></img>}
       </button>
