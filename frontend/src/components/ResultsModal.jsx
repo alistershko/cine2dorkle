@@ -6,16 +6,27 @@ import "../css/ResultsModal.css";
 const ResultsModal = ({ isOpen, playAgain, leaveGame, score }) => {
   const [isVisible, setIsVisible] = useState(false);
 
+  // This effect controls the visibility of the modal
   useEffect(() => {
+    console.log("ResultsModal isOpen changed:", isOpen);
+
     if (isOpen) {
       // Short delay to sync with drumroll
-      setTimeout(() => setIsVisible(true), 300);
+      const timer = setTimeout(() => {
+        console.log("Setting modal to visible");
+        setIsVisible(true);
+      }, 300);
+
+      return () => clearTimeout(timer);
     } else {
       setIsVisible(false);
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  // If the modal isn't open, don't render anything
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <div className={`modal-overlay open-modal ${isVisible ? "visible" : ""}`}>
