@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect, useRef } from "react";
 import Footer from "../../components/Footer";
 import "./HomePage.css";
@@ -14,38 +15,54 @@ export const HomePage = () => {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    // Create audio element
-    audioRef.current = new Audio(jazz);
-    audioRef.current.loop = true;
+    try {
+      // Create audio element safely
+      const audioElement = new Audio(jazz);
 
-    // Check initial sound setting
-    const soundEnabled = localStorage.getItem("soundEnabled") !== "false";
-    if (soundEnabled) {
-      audioRef.current
-        .play()
-        .catch((e) => console.log("Autoplay prevented:", e));
-    }
+      // Store reference after successful creation
+      audioRef.current = audioElement;
+      audioRef.current.loop = true;
 
-    // Listen for sound toggle changes
-    const handleSoundToggle = () => {
+      // Check initial sound setting
       const soundEnabled = localStorage.getItem("soundEnabled") !== "false";
-      if (soundEnabled) {
-        audioRef.current.play().catch((e) => console.log("Play prevented:", e));
-      } else {
-        audioRef.current.pause();
+      if (soundEnabled && audioRef.current) {
+        audioRef.current
+          .play()
+          .catch((e) => console.log("Autoplay prevented:", e));
       }
-    };
 
-    document.addEventListener("soundSettingChanged", handleSoundToggle);
+      // Listen for sound toggle changes
+      const handleSoundToggle = (event) => {
+        const soundEnabled =
+          event?.detail?.soundEnabled ??
+          localStorage.getItem("soundEnabled") !== "false";
 
-    // Cleanup function
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-      document.removeEventListener("soundSettingChanged", handleSoundToggle);
-    };
+        if (soundEnabled && audioRef.current) {
+          audioRef.current
+            .play()
+            .catch((e) => console.log("Play prevented:", e));
+        } else if (audioRef.current) {
+          audioRef.current.pause();
+        }
+      };
+
+      document.addEventListener("soundSettingChanged", handleSoundToggle);
+
+      // Cleanup function
+      return () => {
+        if (audioRef.current) {
+          try {
+            audioRef.current.pause();
+          } catch (e) {
+            console.log("Error pausing audio:", e);
+          }
+          audioRef.current = null;
+        }
+        document.removeEventListener("soundSettingChanged", handleSoundToggle);
+      };
+    } catch (error) {
+      console.error("Error setting up audio:", error);
+    }
   }, []);
 
   return (
