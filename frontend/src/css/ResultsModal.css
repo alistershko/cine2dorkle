@@ -12,6 +12,7 @@
   visibility: hidden;
   z-index: -10;
   opacity: 0;
+  pointer-events: none;
 }
 
 .open-modal {
@@ -48,6 +49,7 @@
 .modal-container.visible {
   transform: translateY(0);
   opacity: 1;
+  pointer-events: all;
 }
 
 /* Close Button – stylized like an old cinema "X" light */
