@@ -1,18 +1,29 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../css/ModeToggle.css";
 
-const ModeToggle = () => {
+const ModeToggle = ({ onModeChange }) => {
   const [isHardMode, setIsHardMode] = useState(
     localStorage.getItem("gameMode") === "hard"
   );
 
+  // Use a ref to track if this is the first render
+  const isInitialRender = useRef(true);
+
   useEffect(() => {
     // Update localStorage when mode changes
     localStorage.setItem("gameMode", isHardMode ? "hard" : "easy");
-  }, [isHardMode]);
+
+    // Call the callback if provided, but not on the initial render
+    if (onModeChange && !isInitialRender.current) {
+      onModeChange(isHardMode ? "hard" : "easy");
+    }
+
+    // After the first render, set isInitialRender to false
+    isInitialRender.current = false;
+  }, [isHardMode, onModeChange]);
 
   return (
-    <div className="mode-toggle-container">
+    <div className="mode-toggle-container" data-testid="mode-toggle-container">
       <span className={`mode-label ${!isHardMode ? "active" : ""}`}>
         Easy Mode
       </span>
