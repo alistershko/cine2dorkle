@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import '@testing-library/jest-dom';
-import Header from "../components/header";
+import Header from "../components/Header";
 
 // Header renders logo
 describe("Header component", () => {

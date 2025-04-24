@@ -1,0 +1,78 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  backend:
+    name: Backend Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 23.9.0
+        
+    # Step 3: Clean up node_modules and package-lock.json
+      - name: Clean up dependencies
+        working-directory: ./frontend
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+
+      # Step 3: Install backend dependencies
+      - name: Install backend dependencies
+        working-directory: ./api
+        run: npm install
+
+      # Step 4: Run backend tests
+      - name: Run backend tests
+        working-directory: ./api
+        run: npm test
+    
+  frontend:
+    name: Frontend Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 23.9.0
+    
+    # Step 2: Set up environment variables
+      - name: Set environment variables
+        run: echo "BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}" >> .env
+
+      # Step 3: Clean up node_modules and package-lock.json
+      - name: Clean up dependencies
+        working-directory: ./frontend
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+
+      # Step 4: Install frontend dependencies
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      # Step 5: Run frontend tests
+      - name: Run frontend tests
+        working-directory: ./frontend
+        run: npm test
