@@ -90,7 +90,7 @@ describe("Timer", () => {
 
   it("calls onTimeUp when timer reaches zero", () => {
     vi.useFakeTimers();
-
+  
     render(
       <Timer
         resetTrigger={0}
@@ -99,12 +99,15 @@ describe("Timer", () => {
         gameMode="hard" // 20 seconds
       />
     );
-
+  
     // Advance by 20 seconds to reach 0
     act(() => {
       vi.advanceTimersByTime(20000);
     });
-
+  
+    // Run any pending timers (this will execute the setTimeout for onTimeUp)
+    vi.runAllTimers(); 
+  
     // onTimeUp should have been called
     expect(mockOnTimeUp).toHaveBeenCalledTimes(1);
   });
