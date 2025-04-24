@@ -16,8 +16,10 @@ describe("HowTo Component", () => {
     const button = screen.getByRole("button", { name: /how to play/i });
     fireEvent.click(button);
 
-    expect(screen.getByText(/this is how to play/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /×/ })).toBeInTheDocument();
+    // Check that the modal content has been rendered
+    expect(screen.getByText(/how to play double feature/i)).toBeInTheDocument();
+    expect(screen.getByText(/how well do you know your films\?/i)).toBeInTheDocument();
+    expect(screen.getByText("X")).toBeInTheDocument();
   });
 
   // Close button exits modal
@@ -26,9 +28,11 @@ describe("HowTo Component", () => {
     const button = screen.getByRole("button", { name: /how to play/i });
     fireEvent.click(button);
 
-    const closeBtn = screen.getByRole("button", { name: /×/ });
+    const closeBtn = screen.getByText("X");
     fireEvent.click(closeBtn);
 
-    expect(screen.queryByText(/this is how to play/i)).not.toBeInTheDocument();
+    // Check that modal content is no longer visible
+    expect(screen.queryByText(/how to play double feature/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/how well do you know your films\?/i)).not.toBeInTheDocument();
   });
 });
