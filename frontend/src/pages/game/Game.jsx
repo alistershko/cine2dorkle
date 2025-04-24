@@ -14,7 +14,6 @@ import quirkyJazz from "../../assets/Audio/QuirkyJazz.mp3"; // Import the jazz a
 
 // components to import
 import InitialFilmBox from "../../components/InitialFilmBox";
-import Header from "../../components/header";
 import Footer from "../../components/Footer";
 import InputBox from "../../components/InputBox";
 import Timer from "../../components/Timer";
