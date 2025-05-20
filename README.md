@@ -1,5 +1,14 @@
 # Double Feature
 
+<!-- 
+TO DO
+REWRITE INSTALLATION INSTRUCTIONS
+WILL NEED TO INCLUDE INSTRUCTIONS ABOUT GETTING AN API KEY FROM TMDB
+AND CREATING AN ENV FILE WITH API KEY IN IT
+ACKNOWLEDGE TMDB
+INCLUDE INFO ABOUT DEPLOYED VERSION
+ -->
+
 ## Description
 
 Double Feature is a movie themed game where the player needs to make connections between movies based on the cast.
